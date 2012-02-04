@@ -1,42 +1,22 @@
 =======================
 Unified Installer Tests
 =======================
-$LastChangedDate: 2011-10-10 15:57:37 -0700 (Mon, 10 Oct 2011) $ $LastChangedRevision: 52415 $
 
 -----------
 Setup stuff
 -----------
 
-    >>> import subprocess, os, os.path, sys, shutil, urllib2, stat, pwd, time
+    >>> import os, os.path, urllib2, stat, pwd, time
     >>> uid = os.geteuid()
     >>> root = uid == 0
 
-    NOTE: Make sure the test target is in a partition where ownership &
-    permissions work. That may not be so in a mountable or tmp partition.
-    >>> testTarget = '/Users/steve/nobackup/plonetest'
-    >>> withPython = '/opt/local/bin/python'
-
-    >>> if os.path.exists(testTarget): shutil.rmtree(testTarget)
-
-This test should be run from the directory with install.sh    
-    
-    >>> os.chdir(os.path.join(os.getcwd(), '..'))
-    >>> os.path.exists('install.sh')
-    True
-
 install.sh should be executable
-    >>> os.access('install.sh', os.X_OK)
+
+    >>> os.access('../install.sh', os.X_OK)
     True
 
-
-Let's set up a convenience function for executing a command line
-and getting stdout, stderr and return code.
-
-    >>> def doCommand(command):
-    ...    p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    ...    out, err = p.communicate()
-    ...    return (out, err, p.returncode)
-
+See also the DOCTEST_GLOBALS variable that has been defined
+in the test's declaration.
 
 -------------
 Usage Message
@@ -53,12 +33,17 @@ Running install.sh with no options should result in a usage message:
     "\nUsage: ..."
 
 
------------------
+------------------
 Test a ZEO install
 ------------------
 
     >>> stdout, stderr, returncode = doCommand('./install.sh zeo --target=%s --password=admin --libjpeg=yes --libz=yes --libreadline=yes --without-lxml' % testTarget)
-    
+
+If the intallation has failed print the log so that we have some idea what
+went wrong.
+
+    >>> if returncode != 0:
+    ...     print(open('../install.log').read())
     >>> returncode and (stdout + stderr)
     0
 
@@ -318,7 +303,6 @@ Test a standalone install
     # ...
     # daemon process stopped
     # <BLANKLINE>
-
 
 ------------------------------
 Test an --instance=... install

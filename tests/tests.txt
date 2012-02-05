@@ -175,15 +175,15 @@ went wrong.
     # <BLANKLINE>
     
     Fetch root page via client1
-    >>> urllib2.urlopen('http://localhost:8080/').read()
+    >>> urllib2.urlopen('http://localhost:%s/' % withClientPort).read()
     '...Plone is up and running...
 
     Fetch root page via client2
-    >>> urllib2.urlopen('http://localhost:8081/').read()
+    >>> urllib2.urlopen('http://localhost:%s/' % withClientPort + 1).read()
     '...Plone is up and running...
 
     Check Banner
-    >>> print urllib2.urlopen('http://localhost:8080/').headers['server']
+    >>> print urllib2.urlopen('http://localhost:%s/' % withClientPort).headers['server']
     Zope/(2.13..., python 2.6.7, darwin) ZServer/1.1
 
     Stop it
@@ -279,15 +279,15 @@ Test a standalone install
     # program running; pid=...
 
     Fetch root page
-    >>> urllib2.urlopen('http://localhost:8080/').read()
+    >>> urllib2.urlopen('http://localhost:%s/' % withClientPort).read()
     '...Plone is up and running...
 
     # Fetch Plone top page
-    # >>> urllib2.urlopen('http://localhost:8080/Plone').read()
+    # >>> urllib2.urlopen('http://localhost:%s/Plone' % withClientPort).read()
     # '...This site was built using Plone CMS...
 
     Check Banner
-    >>> print urllib2.urlopen('http://localhost:8080/').headers['server']
+    >>> print urllib2.urlopen('http://localhost:%s/' % withClientPort).headers['server']
     Zope/(2.13..., python 2.6...) ZServer/1.1
 
     Stop it

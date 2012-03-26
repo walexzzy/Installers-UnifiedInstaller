@@ -317,7 +317,7 @@
           <!-- size of the package in KBs -->
           <fileSize>16</fileSize>
           <installerURL>http://python-distribute.org/distribute_setup.py</installerURL>
-          <displayURL>http://www.python.org/download/releases/2.6.6</displayURL>
+          <displayURL>http://pypi.python.org/pypi/distribute#distribute-setup-py</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>624c16d9c59327f95ead3be82e305a5b330abd32</sha1>
         </installerFile>

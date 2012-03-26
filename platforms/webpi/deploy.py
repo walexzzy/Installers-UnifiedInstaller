@@ -3,9 +3,9 @@
 import sys
 import os
 import logging
-import subprocess
 
 logger = logging.getLogger('plone.webdeploy')
+
 
 def main():
     # Run bootstrap
@@ -13,12 +13,12 @@ def main():
         os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
         'zeocluster', 'bootstrap.py'), '-d']
     logger.info('Running bootstrap: %r' % ' '.join(bootstrap))
-    subprocess.check_call(bootstrap)
+    assert os.system(' '.join(bootstrap)) == 0, 'Bootstrap failed'
     # Run buildout
     buildout = [os.path.join(
         os.path.dirname(__file__), 'bin', 'buildout.exe'), '-N']
     logger.info('Running buildout: %r' % ' '.join(buildout))
-    subprocess.check_call(buildout)
+    assert os.system(' '.join(buildout)) == 0, 'Buildout failed'
     
 
 if __name__ == '__main__':

@@ -13,5 +13,5 @@ def main():
         os.path.dirname(__file__), 'bin', 'buildout.exe', '-N'))
     
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     main()

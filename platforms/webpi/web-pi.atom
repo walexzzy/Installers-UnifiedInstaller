@@ -301,9 +301,7 @@
       </file>
     </discoveryHint>
     <dependency>
-      <dependency>
-        <productId>Python27</productId>
-      </dependency>
+      <productId>Python27</productId>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not
          installed as a related/nice-to-have product, not a dependency -->
@@ -389,9 +387,7 @@
       </file>
     </discoveryHint>
     <dependency>
-      <dependency>
-        <productId>Python27</productId>
-      </dependency>
+      <productId>Python27</productId>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not
          installed as a related/nice-to-have product, not a dependency -->
@@ -475,9 +471,7 @@
     <!-- Bring along Visual Studio Python support, if it is not
          installed as a related/nice-to-have product, not a dependency -->
     <dependency>
-      <dependency>
-        <productId>Python27</productId>
-      </dependency>
+      <productId>Python27</productId>
     </dependency>
     <related>
       <relatedProduct>
@@ -547,9 +541,7 @@
       </file>
     </discoveryHint>
     <dependency>
-      <dependency>
-        <productId>Python27</productId>
-      </dependency>
+      <productId>Python27</productId>
     </dependency>
     <related>
       <relatedProduct>

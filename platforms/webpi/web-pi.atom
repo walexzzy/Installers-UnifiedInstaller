@@ -38,6 +38,8 @@
   <!-- Plone 4.2 app with dependencies -->
   <entry type="application">
     <productId>Plone_4_2</productId>
+    <!-- TODO what should the id be to get auto-upgrades on minor
+         versions, but not major versions -->
     <id>http://plone.org/products/plone/releases/4.2</id>
     <version>4.2</version>
     

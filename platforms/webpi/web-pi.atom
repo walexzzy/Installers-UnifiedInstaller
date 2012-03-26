@@ -116,7 +116,7 @@
           <installerURL>https://github.com/downloads/plone/Installers-UnifiedInstaller/Installers-UnifiedInstaller.zip</installerURL>
           <displayURL>http://plone.org/products/plone//releases/4.2</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>b4652074013b845dda98e4667fe6069039123c78</sha1>
+          <sha1>65bcd99ad2b504d560057ca569935fc3a43b7836</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

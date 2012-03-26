@@ -85,7 +85,7 @@
           <productId>Python26_distribute</productId>
         </dependency>
         <dependency>
-          <productId>PIL</productId>
+          <productId>Python26_PIL</productId>
         </dependency>
         <dependency>
           <productId>Python26_lxml</productId>
@@ -201,7 +201,7 @@
         <productId>Python26_distribute</productId>
       </relatedProduct>
       <relatedProduct>
-        <productId>PIL</productId>
+        <productId>Python26_PIL</productId>
       </relatedProduct>
       <relatedProduct>
         <productId>Python26_lxml</productId>

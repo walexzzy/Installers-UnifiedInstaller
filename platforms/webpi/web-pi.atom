@@ -79,19 +79,19 @@
     <dependency>
       <and>
         <dependency>
-          <productId>Python26</productId>
+          <productId>Python27</productId>
         </dependency>
         <dependency>
-          <productId>Python26_distribute</productId>
+          <productId>Python27_distribute</productId>
         </dependency>
         <dependency>
-          <productId>Python26_PIL</productId>
+          <productId>Python27_PIL</productId>
         </dependency>
         <dependency>
-          <productId>Python26_lxml</productId>
+          <productId>Python27_lxml</productId>
         </dependency>
         <dependency>
-          <productId>Python26_pywin32</productId>
+          <productId>Python27_pywin32</productId>
         </dependency>
       </and>
     </dependency>
@@ -100,7 +100,7 @@
     <related>
       <relatedProduct>
         <productId>PTVS</productId>
-        <productId>Python26_ldap</productId>
+        <productId>Python27_ldap</productId>
         <productId>msysgit</productId>
       </relatedProduct>
     </related>
@@ -162,17 +162,17 @@
     </longSummary>
   </entry>
 
-  <!-- Python 2.6 dependency -->
+  <!-- Python 2.7 dependency -->
   <entry type="application">
-    <productId>Python26</productId>
-    <id>http://www.python.org/download/releases/2.6.6</id>
-    <version>2.6</version>
+    <productId>Python27</productId>
+    <id>http://www.python.org/download/releases/2.7.2</id>
+    <version>2.7</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python26_Title">Python 2.6</title>
+    <title resourceName="Entry_Python27_Title">Python 2.7</title>
     <link href="http://python.org" />
-    <summary resourceName="Entry_Python26_Summary">
+    <summary resourceName="Entry_Python27_Summary">
       Python is a programming language that lets you work more quickly
       and integrate your systems more effectively. You can learn to
       use Python and see almost immediate gains in productivity and
@@ -198,16 +198,16 @@
          installed as a related/nice-to-have product, not a dependency -->
     <related>
       <relatedProduct>
-        <productId>Python26_distribute</productId>
+        <productId>Python27_distribute</productId>
       </relatedProduct>
       <relatedProduct>
-        <productId>Python26_PIL</productId>
+        <productId>Python27_PIL</productId>
       </relatedProduct>
       <relatedProduct>
-        <productId>Python26_lxml</productId>
+        <productId>Python27_lxml</productId>
       </relatedProduct>
       <relatedProduct>
-        <productId>Python26_pywin32</productId>
+        <productId>Python27_pywin32</productId>
       </relatedProduct>
       <relatedProduct>
         <productId>PTVS</productId>
@@ -219,12 +219,12 @@
         <!-- List of languages this package is localized in -->
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
-        <eulaURL>http://www.python.org/download/releases/2.6/license/</eulaURL>
+        <eulaURL>http://www.python.org/download/releases/2.7/license/</eulaURL>
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>14871</fileSize>
-          <installerURL>http://www.python.org/ftp/python/2.6.6/python-2.6.6.msi</installerURL>
-          <displayURL>http://www.python.org/download/releases/2.6.6</displayURL>
+          <installerURL>http://www.python.org/ftp/python/2.7.2/python-2.7.2.msi</installerURL>
+          <displayURL>http://www.python.org/download/releases/2.7.2</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>b742f78a4bb7b120187e8f782eab0753a7b901b0</sha1>
         </installerFile>
@@ -241,9 +241,9 @@
       </installer>
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python26</pageName>
+    <pageName>Python27</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
-    <longSummary resourceName="Entry_Python26_LongSummary">
+    <longSummary resourceName="Entry_Python27_LongSummary">
       Python is a remarkably powerful dynamic programming language
       that is used in a wide variety of application domains. Python is
       often compared to Tcl, Perl, Ruby, Scheme or Java. Some of its
@@ -264,17 +264,17 @@
     </longSummary>
   </entry>
 
-  <!-- Python 2.6 distribute dependency -->
+  <!-- Python 2.7 distribute dependency -->
   <entry type="application">
-    <productId>Python26_distribute</productId>
+    <productId>Python27_distribute</productId>
     <id>http://packages.python.org/distribute</id>
     <version>0.6.25</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python26_distribute_Title">Python 2.6 Distribute</title>
+    <title resourceName="Entry_Python27_distribute_Title">Python 2.7 Distribute</title>
     <link href="http://packages.python.org/distribute" />
-    <summary resourceName="Entry_Python26_distribute_Summary">
+    <summary resourceName="Entry_Python27_distribute_Summary">
       Easily download, build, install, upgrade, and uninstall Python packages
     </summary>
     <author>
@@ -295,7 +295,7 @@
     <dependency>
       <and>
         <dependency>
-          <productId>Python26</productId>
+          <productId>Python27</productId>
         </dependency>
       </and>
     </dependency>
@@ -334,9 +334,9 @@
       </installer>
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python26_distribute</pageName>
+    <pageName>Python27_distribute</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
-    <longSummary resourceName="Entry_Python26_distribute_LongSummary">
+    <longSummary resourceName="Entry_Python27_distribute_LongSummary">
       Distribute is a fork of the Setuptools project.
 
       Distribute is intended to replace Setuptools as the standard
@@ -351,17 +351,17 @@
     </longSummary>
   </entry>
 
-  <!-- Python 2.6 PIL dependency -->
+  <!-- Python 2.7 PIL dependency -->
   <entry type="application">
-    <productId>Python26_PIL</productId>
+    <productId>Python27_PIL</productId>
     <id>http://www.pythonware.com/products/pil</id>
     <version>1.1.7</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python26_PIL_Title">Python 2.6 Imaging Library</title>
+    <title resourceName="Entry_Python27_PIL_Title">Python 2.7 Imaging Library</title>
     <link href="http://www.pythonware.com/products/pil" />
-    <summary resourceName="Entry_Python26_PIL_Summary">
+    <summary resourceName="Entry_Python27_PIL_Summary">
       The Python Imaging Library (PIL) adds image processing
       capabilities to your Python interpreter. This library supports
       many file formats, and provides powerful image processing and
@@ -385,7 +385,7 @@
     <dependency>
       <and>
         <dependency>
-          <productId>Python26</productId>
+          <productId>Python27</productId>
         </dependency>
       </and>
     </dependency>
@@ -406,7 +406,7 @@
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>819</fileSize>
-          <installerURL>http://effbot.org/downloads/PIL-1.1.7.win32-py2.6.exe</installerURL>
+          <installerURL>http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe</installerURL>
           <displayURL>http://www.pythonware.com/products/pil/#pil117</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>0f55b2116032365860594b0c255d8e8f4c6f479f</sha1>
@@ -422,9 +422,9 @@
       </installer>
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python26_PIL</pageName>
+    <pageName>Python27_PIL</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
-    <longSummary resourceName="Entry_Python26_PIL_LongSummary">
+    <longSummary resourceName="Entry_Python27_PIL_LongSummary">
       The Python Imaging Library adds image processing capabilities to
       your Python interpreter.
 
@@ -440,15 +440,15 @@
 
   <!-- Python lxml dependency -->
   <entry type="application">
-    <productId>Python26_lxml</productId>
+    <productId>Python27_lxml</productId>
     <id>http://lxml.de</id>
     <version>2.3.3</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python26_lxml_Title">Python 2.6 lxml</title>
+    <title resourceName="Entry_Python27_lxml_Title">Python 2.7 lxml</title>
     <link href="http://python.org" />
-    <summary resourceName="Entry_Python26_lxml_Summary">
+    <summary resourceName="Entry_Python27_lxml_Summary">
       XML and HTML with Python
     </summary>
     <author>
@@ -473,7 +473,7 @@
     <dependency>
       <and>
         <dependency>
-          <productId>Python26</productId>
+          <productId>Python27</productId>
         </dependency>
       </and>
     </dependency>
@@ -492,7 +492,7 @@
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>1396</fileSize>
-          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/4j5pfugm/lxml-2.3.3.win32-py2.6.exe</installerURL>
+          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/4j5pfugm/lxml-2.3.3.win32-py2.7.exe</installerURL>
           <displayURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>735fa3185ea725739aea2e34758392681824818d</sha1>
@@ -508,9 +508,9 @@
       </installer>
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python26_lxml</pageName>
+    <pageName>Python27_lxml</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
-    <longSummary resourceName="Entry_Python26_lxml_LongSummary">
+    <longSummary resourceName="Entry_Python27_lxml_LongSummary">
       The lxml XML toolkit is a Pythonic binding for the C libraries
       libxml2 and libxslt. It is unique in that it combines the speed
       and XML feature completeness of these libraries with the
@@ -521,13 +521,13 @@
 
   <!-- Python for Windows Extensions dependency -->
   <entry type="application">
-    <productId>Python26_pywin32</productId>
+    <productId>Python27_pywin32</productId>
     <id>http://starship.python.net/crew/mhammond/win32</id>
     <version>217</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python26_pywin32_Title">Python for Windows Extensions</title>
+    <title resourceName="Entry_Python27_pywin32_Title">Python for Windows Extensions</title>
     <link href="http://starship.python.net/crew/mhammond/win32" />
     <author>
       <name>Mark Hammond</name>
@@ -547,7 +547,7 @@
     <dependency>
       <and>
         <dependency>
-          <productId>Python26</productId>
+          <productId>Python27</productId>
         </dependency>
       </and>
     </dependency>
@@ -566,7 +566,7 @@
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>6458</fileSize>
-          <installerURL>http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.6.exe</installerURL>
+          <installerURL>http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe</installerURL>
           <displayURL>http://sourceforge.net/projects/pywin32/files/pywin32/Build%20217</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>49a4f0ed6ba0d8c304c8396434991e3505d74c9e</sha1>
@@ -582,7 +582,7 @@
       </installer>
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python26_pywin32</pageName>
+    <pageName>Python27_pywin32</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
 

@@ -121,9 +121,7 @@
         <installCommands>
           <cmdline>
             <exe>%SystemDrive%\Python27\python.exe</exe>
-            <commandLineArguments>
-              &quot;%InstallerFile%\platforms\webpi\deploy.py&quot;
-            </commandLineArguments>
+            <commandLineArguments>&quot;%InstallerFile%\platforms\webpi\deploy.py&quot;</commandLineArguments>
           </cmdline>
         </installCommands>
         <msDeploy />
@@ -239,9 +237,7 @@
         <installCommands>
           <cmdline>
             <exe>%windir%\system32\msiexec.exe</exe>
-            <commandLineArguments>
-              /i &quot;%InstallerFile%&quot; /qn ALLUSERS=1
-            </commandLineArguments>
+            <commandLineArguments>/i &quot;%InstallerFile%&quot; /qn ALLUSERS=1</commandLineArguments>
           </cmdline>
         </installCommands>
         <msDeploy />
@@ -328,9 +324,7 @@
         <installCommands>
           <cmdline>
             <exe>%SystemDrive%\Python27\python.exe</exe>
-            <commandLineArguments>
-              &quot;%InstallerFile%&quot;
-            </commandLineArguments>
+            <commandLineArguments>&quot;%InstallerFile%&quot;</commandLineArguments>
           </cmdline>
         </installCommands>
         <msDeploy />

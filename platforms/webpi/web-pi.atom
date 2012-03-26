@@ -80,7 +80,7 @@
           <productId>Python26</productId>
         </dependency>
         <dependency>
-          <productId>Python26_setuptools</productId>
+          <productId>Python26_distribute</productId>
         </dependency>
         <dependency>
           <productId>PIL</productId>

@@ -9,3 +9,5 @@ autom4te.cache
 Plone-docs
 *.gz
 *.bz2
+zeocluster
+buildout-cache

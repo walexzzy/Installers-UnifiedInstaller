@@ -263,6 +263,87 @@
     </longSummary>
   </entry>
 
+  <!-- Python lxml dependency -->
+  <entry type="application">
+    <productId>Python26_lxml</productId>
+    <id>http://lxml.de</id>
+    <version>2.3.3</version>
+    
+    <updated>2012-03-25T13:22:48.440870</updated>
+    <published>2012-03-25T13:22:48.440870</published>
+    <title resourceName="Entry_Python26_lxml_Title">Python 2.6 lxml</title>
+    <link href="http://python.org" />
+    <summary resourceName="Entry_Python26_lxml_Summary">
+      XML and HTML with Python
+    </summary>
+    <author>
+      <name>Stephan Richter</name>
+      <uri>https://twitter.com/#!/strichter</uri>
+    </author>
+    <keywords>
+      <keywordId>libxml2</keywordId>
+      <keywordId>libxslt</keywordId>
+      <keywordId>Python</keywordId>
+    </keywords>
+    <images>
+      <icon>http://lxml.de/python-xml-title.png</icon>
+    </images>
+    <discoveryHint>
+      <file>
+        <filePath>TODO</filePath>
+      </file>
+    </discoveryHint>
+    <!-- Bring along Visual Studio Python support, if it is not
+         installed as a related/nice-to-have product, not a dependency -->
+    <dependency>
+      <and>
+        <dependency>
+          <productId>Python26</productId>
+        </dependency>
+      </and>
+    </dependency>
+    <related>
+      <relatedProduct>
+        <productId>PTVS</productId>
+      </relatedProduct>
+    </related>
+    <installers>
+      <installer>
+        <id>1</id>
+        <!-- List of languages this package is localized in -->
+        <languageId>en</languageId>
+        <osList idref="SupportedAppPlatforms" />
+        <eulaURL>https://github.com/lxml/lxml/blob/master/doc/licenses/BSD.txt</eulaURL>
+        <installerFile>
+          <!-- size of the package in KBs -->
+          <fileSize>1396</fileSize>
+          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/4j5pfugm/lxml-2.3.3.win32-py2.6.exe</installerURL>
+          <displayURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</displayURL>
+          <!-- SHA of the package file for signature verification -->
+          <sha1>735fa3185ea725739aea2e34758392681824818d</sha1>
+        </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%InstallerFile%</exe>
+            <commandLineArguments>/verysilent</commandLineArguments>
+          </cmdline>
+        </installCommands>
+        <msDeploy />
+        <helpLink>http://lxml.de/installation.html</helpLink>
+      </installer>
+    </installers>
+    <addToFeedDate>3-25-2012</addToFeedDate>
+    <pageName>Python26_lxml</pageName>
+    <productFamily resourceName="Applications">Applications</productFamily>
+    <longSummary resourceName="Entry_Python26_lxml_LongSummary">
+      The lxml XML toolkit is a Pythonic binding for the C libraries
+      libxml2 and libxslt. It is unique in that it combines the speed
+      and XML feature completeness of these libraries with the
+      simplicity of a native Python API, mostly compatible but
+      superior to the well-known ElementTree API.
+    </longSummary>
+  </entry>
+
   <!-- Python for Windows Extensions dependency -->
   <entry type="application">
     <productId>Python26_pywin32</productId>

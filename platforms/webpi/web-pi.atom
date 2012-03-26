@@ -351,6 +351,93 @@
     </longSummary>
   </entry>
 
+  <!-- Python 2.6 PIL dependency -->
+  <entry type="application">
+    <productId>Python26_PIL</productId>
+    <id>http://www.pythonware.com/products/pil</id>
+    <version>1.1.7</version>
+    
+    <updated>2012-03-25T13:22:48.440870</updated>
+    <published>2012-03-25T13:22:48.440870</published>
+    <title resourceName="Entry_Python26_PIL_Title">Python 2.6 Imaging Library</title>
+    <link href="http://www.pythonware.com/products/pil" />
+    <summary resourceName="Entry_Python26_PIL_Summary">
+      The Python Imaging Library (PIL) adds image processing
+      capabilities to your Python interpreter. This library supports
+      many file formats, and provides powerful image processing and
+      graphics capabilities.
+    </summary>
+    <author>
+      <name>PythonWare</name>
+      <uri>http://www.pythonware.com</uri>
+    </author>
+    <keywords>
+      <keywordId>Python</keywordId>
+    </keywords>
+    <images>
+      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
+    </images>
+    <discoveryHint>
+      <file>
+        <filePath>TODO</filePath>
+      </file>
+    </discoveryHint>
+    <dependency>
+      <and>
+        <dependency>
+          <productId>Python26</productId>
+        </dependency>
+      </and>
+    </dependency>
+    <!-- Bring along Visual Studio Python support, if it is not
+         installed as a related/nice-to-have product, not a dependency -->
+    <related>
+      <relatedProduct>
+        <productId>PTVS</productId>
+      </relatedProduct>
+    </related>
+    <installers>
+      <installer>
+        <id>1</id>
+        <!-- List of languages this package is localized in -->
+        <languageId>en</languageId>
+        <osList idref="SupportedAppPlatforms" />
+        <eulaURL>http://www.pythonware.com/products/pil/license.htm</eulaURL>
+        <installerFile>
+          <!-- size of the package in KBs -->
+          <fileSize>819</fileSize>
+          <installerURL>http://effbot.org/downloads/PIL-1.1.7.win32-py2.6.exe</installerURL>
+          <displayURL>http://www.pythonware.com/products/pil/#pil117</displayURL>
+          <!-- SHA of the package file for signature verification -->
+          <sha1>0f55b2116032365860594b0c255d8e8f4c6f479f</sha1>
+        </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%InstallerFile%</exe>
+            <commandLineArguments>/verysilent</commandLineArguments>
+          </cmdline>
+        </installCommands>
+        <msDeploy />
+        <helpLink>http://www.pythonware.com/products/pil</helpLink>
+      </installer>
+    </installers>
+    <addToFeedDate>3-25-2012</addToFeedDate>
+    <pageName>Python26_PIL</pageName>
+    <productFamily resourceName="Applications">Applications</productFamily>
+    <longSummary resourceName="Entry_Python26_PIL_LongSummary">
+      The Python Imaging Library adds image processing capabilities to
+      your Python interpreter.
+
+      This library provides extensive file format support, an
+      efficient internal representation, and fairly powerful image
+      processing capabilities.
+      
+      The core image library is designed for fast access to data
+      stored in a few basic pixel formats. It should provide a solid
+      foundation for a general image processing tool.
+    </longSummary>
+  </entry>
+
   <!-- Python lxml dependency -->
   <entry type="application">
     <productId>Python26_lxml</productId>

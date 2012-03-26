@@ -88,6 +88,9 @@
         <dependency>
           <productId>Python26_lxml</productId>
         </dependency>
+        <dependency>
+          <productId>Python26_pywin32</productId>
+        </dependency>
       </and>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not

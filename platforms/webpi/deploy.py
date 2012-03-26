@@ -7,7 +7,8 @@ import subprocess
 def main():
     # Run bootstrap
     subprocess.check_call([sys.executable, os.path.join(
-        os.path.dirname(__file__), 'bootstrap.py'), '-d'])
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        'bootstrap.py'), '-d'])
     # Run buildout
     subprocess.check_call([os.path.join(
         os.path.dirname(__file__), 'bin', 'buildout.exe'), '-N'])

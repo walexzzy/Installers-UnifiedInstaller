@@ -456,8 +456,6 @@
       <uri>https://twitter.com/#!/strichter</uri>
     </author>
     <keywords>
-      <keywordId>libxml2</keywordId>
-      <keywordId>libxslt</keywordId>
       <keywordId>Python</keywordId>
     </keywords>
     <images>

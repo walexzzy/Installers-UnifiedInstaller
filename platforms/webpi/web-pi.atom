@@ -67,6 +67,11 @@
       <icon>http://www.sixfeetup.com/blog/plone.png</icon>
       <screenshot>http://plone.org/products/plone/screenshot</screenshot>
     </images>
+    <discoveryHint>
+      <file>
+        <filePath>TODO</filePath>
+      </file>
+    </discoveryHint>
     <!-- Minimum set of requirements/dependencies in order to
          successfully install Plone -->
     <dependency>

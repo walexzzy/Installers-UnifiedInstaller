@@ -264,6 +264,93 @@
     </longSummary>
   </entry>
 
+  <!-- Python 2.6 distribute dependency -->
+  <entry type="application">
+    <productId>Python26_distribute</productId>
+    <id>http://packages.python.org/distribute</id>
+    <version>0.6.25</version>
+    
+    <updated>2012-03-25T13:22:48.440870</updated>
+    <published>2012-03-25T13:22:48.440870</published>
+    <title resourceName="Entry_Python26_distribute_Title">Python 2.6 Distribute</title>
+    <link href="http://packages.python.org/distribute" />
+    <summary resourceName="Entry_Python26_distribute_Summary">
+      Easily download, build, install, upgrade, and uninstall Python packages
+    </summary>
+    <author>
+      <name>The fellowship of the packaging</name>
+      <uri>http://packages.python.org/distribute/</uri>
+    </author>
+    <keywords>
+      <keywordId>Python</keywordId>
+    </keywords>
+    <images>
+      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
+    </images>
+    <discoveryHint>
+      <file>
+        <filePath>%SystemDrive%\Python27\easy_install.exe</filePath>
+      </file>
+    </discoveryHint>
+    <dependency>
+      <and>
+        <dependency>
+          <productId>Python26</productId>
+        </dependency>
+      </and>
+    </dependency>
+    <!-- Bring along Visual Studio Python support, if it is not
+         installed as a related/nice-to-have product, not a dependency -->
+    <related>
+      <relatedProduct>
+        <productId>PTVS</productId>
+      </relatedProduct>
+    </related>
+    <installers>
+      <installer>
+        <id>1</id>
+        <!-- List of languages this package is localized in -->
+        <languageId>en</languageId>
+        <osList idref="SupportedAppPlatforms" />
+        <eulaURL>http://docs.python.org/license.html#terms-and-conditions-for-accessing-or-otherwise-using-python</eulaURL>
+        <installerFile>
+          <!-- size of the package in KBs -->
+          <fileSize>16</fileSize>
+          <installerURL>http://python-distribute.org/distribute_setup.py</installerURL>
+          <displayURL>http://www.python.org/download/releases/2.6.6</displayURL>
+          <!-- SHA of the package file for signature verification -->
+          <sha1>624c16d9c59327f95ead3be82e305a5b330abd32</sha1>
+        </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%SystemDrive%\Python27\python.exe</exe>
+            <commandLineArguments>
+              &quot;%InstallerFile%&quot;
+            </commandLineArguments>
+          </cmdline>
+        </installCommands>
+        <msDeploy />
+        <helpLink>http://pypi.python.org/pypi/distribute#distribute-setup-py</helpLink>
+      </installer>
+    </installers>
+    <addToFeedDate>3-25-2012</addToFeedDate>
+    <pageName>Python26_distribute</pageName>
+    <productFamily resourceName="Applications">Applications</productFamily>
+    <longSummary resourceName="Entry_Python26_distribute_LongSummary">
+      Distribute is a fork of the Setuptools project.
+
+      Distribute is intended to replace Setuptools as the standard
+      method for working with Python module distributions.
+      
+      For those who may wonder why they should switch to Distribute
+      over Setuptools, it’s quite simple:
+      
+      * Distribute is a drop-in replacement for Setuptools
+      * The code is actively maintained, and has over 10 commiters
+      * Distribute offers Python 3 support !
+    </longSummary>
+  </entry>
+
   <!-- Python lxml dependency -->
   <entry type="application">
     <productId>Python26_lxml</productId>

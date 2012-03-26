@@ -47,6 +47,6 @@ It fails, cd to the zeocluster directory
 
 C:\Python26\Scripts\buildout.exe bootstrap -d
 
-bin\buildout.exe -N
+bin\buildout.exe -N -c develop.cfg
 
-
+Install 7zip http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7z920.msi

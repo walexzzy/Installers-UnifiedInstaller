@@ -405,11 +405,11 @@
         <eulaURL>http://www.pythonware.com/products/pil/license.htm</eulaURL>
         <installerFile>
           <!-- size of the package in KBs -->
-          <fileSize>819</fileSize>
+          <fileSize>818</fileSize>
           <installerURL>http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe</installerURL>
           <displayURL>http://www.pythonware.com/products/pil/#pil117</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>0f55b2116032365860594b0c255d8e8f4c6f479f</sha1>
+          <sha1>2293618ac972fdda2e43636cbb4e93646b10e343</sha1>
         </installerFile>
         <installCommands>
           <cmdline>
@@ -485,11 +485,11 @@
         <eulaURL>https://github.com/lxml/lxml/blob/master/doc/licenses/BSD.txt</eulaURL>
         <installerFile>
           <!-- size of the package in KBs -->
-          <fileSize>1396</fileSize>
-          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/4j5pfugm/lxml-2.3.3.win32-py2.7.exe</installerURL>
+          <fileSize>1395</fileSize>
+          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/gnbjek6p/lxml-2.3.3.win32-py2.7.exe</installerURL>
           <displayURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>735fa3185ea725739aea2e34758392681824818d</sha1>
+          <sha1>3899cf60f2d6a78df136ab1f18515136193cfde6</sha1>
         </installerFile>
         <installCommands>
           <cmdline>
@@ -559,7 +559,7 @@
           <installerURL>http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe</installerURL>
           <displayURL>http://sourceforge.net/projects/pywin32/files/pywin32/Build%20217</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>49a4f0ed6ba0d8c304c8396434991e3505d74c9e</sha1>
+          <sha1>36016bbccebddd9060073f1c9f0c80a2c2dd9cc1</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

@@ -120,8 +120,8 @@
         </installerFile>
         <installCommands>
           <cmdline>
-            <exe>%SystemDrive%\Python27\python.exe</exe>
-            <commandLineArguments>&quot;%InstallerFile%\platforms\webpi\deploy.py&quot;</commandLineArguments>
+            <exe>%windir%\system32\cmd.exe</exe>
+            <commandLineArguments>&quot;%InstallerFile%\platforms\webpi\deploy.cmd&quot;</commandLineArguments>
           </cmdline>
         </installCommands>
         <msDeploy />

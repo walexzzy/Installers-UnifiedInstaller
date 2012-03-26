@@ -580,7 +580,6 @@
 
   <!-- categories  - needed by the AppGallery -->
   <keywords>
-    <keyword id="ContentMgmt" resourceName="Keyword_ContentMgmt">CMS</keyword>
     <keyword id="Python" resourceName="Keyword_Python">Python</keyword>
     <keyword id="Zope" resourceName="Keyword_Zope">Zope</keyword>
     <keyword id="Plone" resourceName="Keyword_Plone">Plone</keyword>

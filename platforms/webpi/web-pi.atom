@@ -368,6 +368,18 @@
         <filePath>TODO</filePath>
       </file>
     </discoveryHint>
+    <dependency>
+      <and>
+        <dependency>
+          <productId>Python26</productId>
+        </dependency>
+      </and>
+    </dependency>
+    <related>
+      <relatedProduct>
+        <productId>PTVS</productId>
+      </relatedProduct>
+    </related>
     <installers>
       <installer>
         <id>1</id>

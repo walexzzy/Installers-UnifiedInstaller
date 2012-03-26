@@ -118,6 +118,14 @@
           <!-- SHA of the package file for signature verification -->
           <sha1>b4652074013b845dda98e4667fe6069039123c78</sha1>
         </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%SystemDrive%\Python27\python.exe</exe>
+            <commandLineArguments>
+              &quot;%InstallerFile%\platforms\webpi\deploy.py&quot;
+            </commandLineArguments>
+          </cmdline>
+        </installCommands>
         <msDeploy />
         <helpLink>http://plone.org/download</helpLink>
       </installer>

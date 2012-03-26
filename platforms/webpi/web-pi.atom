@@ -263,6 +263,61 @@
     </longSummary>
   </entry>
 
+  <!-- Python for Windows Extensions dependency -->
+  <entry type="application">
+    <productId>Python26_pywin32</productId>
+    <id>http://starship.python.net/crew/mhammond/win32</id>
+    <version>217</version>
+    
+    <updated>2012-03-25T13:22:48.440870</updated>
+    <published>2012-03-25T13:22:48.440870</published>
+    <title resourceName="Entry_Python26_pywin32_Title">Python for Windows Extensions</title>
+    <link href="http://starship.python.net/crew/mhammond/win32" />
+    <author>
+      <name>Mark Hammond</name>
+      <uri>http://starship.python.net/crew/mhammond</uri>
+    </author>
+    <keywords>
+      <keywordId>Python</keywordId>
+    </keywords>
+    <images>
+      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
+    </images>
+    <discoveryHint>
+      <file>
+        <filePath>TODO</filePath>
+      </file>
+    </discoveryHint>
+    <installers>
+      <installer>
+        <id>1</id>
+        <!-- List of languages this package is localized in -->
+        <languageId>en</languageId>
+        <osList idref="SupportedAppPlatforms" />
+        <eulaURL>http://pywin32.hg.sourceforge.net/hgweb/pywin32/pywin32/raw-file/c5c768dabcbd/Pythonwin/License.txt</eulaURL>
+        <installerFile>
+          <!-- size of the package in KBs -->
+          <fileSize>6458</fileSize>
+          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/4j5pfugm/lxml-2.3.3.win32-py2.6.exe</installerURL>
+          <displayURL>http://sourceforge.net/projects/pywin32/files/pywin32/Build%20217</displayURL>
+          <!-- SHA of the package file for signature verification -->
+          <sha1>49a4f0ed6ba0d8c304c8396434991e3505d74c9e</sha1>
+        </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%InstallerFile%</exe>
+            <commandLineArguments>/verysilent</commandLineArguments>
+          </cmdline>
+        </installCommands>
+        <msDeploy />
+        <helpLink>http://starship.python.net/crew/mhammond/win32/Downloads.html</helpLink>
+      </installer>
+    </installers>
+    <addToFeedDate>3-25-2012</addToFeedDate>
+    <pageName>Python26_pywin32</pageName>
+    <productFamily resourceName="Applications">Applications</productFamily>
+  </entry>
+
   <!-- categories  - needed by the AppGallery -->
   <keywords>
     <keyword id="ContentMgmt" resourceName="Keyword_ContentMgmt">CMS</keyword>

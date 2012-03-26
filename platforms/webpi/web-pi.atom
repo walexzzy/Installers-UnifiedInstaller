@@ -237,7 +237,6 @@
         <msDeploy />
         <helpLink>http://python.org/download</helpLink>
       </installer>
-      <!-- TODO installers for other languages? -->
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
     <pageName>Python26</pageName>

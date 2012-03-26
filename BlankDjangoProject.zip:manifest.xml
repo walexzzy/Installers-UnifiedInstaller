@@ -1,0 +1,3 @@
+<MSDeploy.iisApp>
+    <iisApp path="Plone_4_2" />
+</MSDeploy.iisApp>

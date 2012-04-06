@@ -64,6 +64,7 @@
       <keywordId>Python</keywordId>
       <keywordId>Zope</keywordId>
       <keywordId>Plone</keywordId>
+      <keywordId>ApplicationSpotlight</keywordId>
     </keywords>
     <images>
       <icon>http://www.sixfeetup.com/blog/plone.png</icon>

@@ -119,12 +119,6 @@
           <!-- SHA of the package file for signature verification -->
           <sha1>6f7969925db249fb60c175935d95adc17c51df52</sha1>
         </installerFile>
-        <installCommands>
-          <cmdline>
-            <exe>%windir%\system32\cmd.exe</exe>
-            <commandLineArguments>&quot;%InstallerFile%\platforms\webpi\deploy.cmd&quot;</commandLineArguments>
-          </cmdline>
-        </installCommands>
         <msDeploy />
         <helpLink>http://plone.org/download</helpLink>
       </installer>

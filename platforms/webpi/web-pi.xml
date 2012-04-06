@@ -94,6 +94,9 @@
         <dependency>
           <productId>Python27_pywin32</productId>
         </dependency>
+        <dependency>
+          <productId>Python27_iisfcgi</productId>
+        </dependency>
       </and>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not
@@ -119,6 +122,11 @@
           <!-- SHA of the package file for signature verification -->
           <sha1>6f7969925db249fb60c175935d95adc17c51df52</sha1>
         </installerFile>
+        <installCommands>
+          <cmdline>
+            <exe>%SystemDrive%\Python27\iisfcgi_deploy.exe</exe>
+          </cmdline>
+        </installCommands>
         <msDeploy />
         <helpLink>http://plone.org/download</helpLink>
       </installer>
@@ -562,6 +570,64 @@
     </installers>
     <addToFeedDate>3-25-2012</addToFeedDate>
     <pageName>Python27_pywin32</pageName>
+    <productFamily resourceName="Applications">Applications</productFamily>
+  </entry>
+
+  <!-- Python IIS FastCGI to WSGI bridge dependency -->
+  <entry type="application">
+    <productId>Python27_iisfcgi</productId>
+    <id>http://pypi.python.org/pypi/iisfcgi</id>
+    <version>0.1</version>
+    
+    <updated>2012-03-25T13:22:48.440870</updated>
+    <published>2012-03-25T13:22:48.440870</published>
+    <title resourceName="Entry_Python27_iisfcgi_Title">Python IIS FastCGI WSGI Bridge</title>
+    <link href="http://pypi.python.org/pypi/iisfcgi" />
+    <author>
+      <name>Ross Patterson</name>
+      <uri>http://pypi.python.org/pypi/iisfcgi</uri>
+    </author>
+    <keywords>
+      <keywordId>Python</keywordId>
+      <keywordId>IIS</keywordId>
+      <keywordId>FastCGI</keywordId>
+    </keywords>
+    <images>
+      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
+    </images>
+    <discoveryHint>
+      <file>
+        <filePath>TODO</filePath>
+      </file>
+    </discoveryHint>
+    <dependency>
+      <productId>Python27</productId>
+      <productId>Python27_distribute</productId>
+    </dependency>
+    <related>
+      <relatedProduct>
+        <productId>PTVS</productId>
+      </relatedProduct>
+    </related>
+    <installers>
+      <installer>
+        <id>1</id>
+        <!-- List of languages this package is localized in -->
+        <languageId>en</languageId>
+        <osList idref="SupportedAppPlatforms" />
+        <eulaURL>http://www.gnu.org/copyleft/gpl.html</eulaURL>
+        <installCommands>
+          <cmdline>
+            <exe>C:\Python27\Scripts\easy_install.exe</exe>
+            <commandLineArguments>iisfcgi</commandLineArguments>
+          </cmdline>
+        </installCommands>
+        <msDeploy />
+        <helpLink>http://pypi.python.org/pypi/iisfcgi</helpLink>
+      </installer>
+    </installers>
+    <addToFeedDate>3-25-2012</addToFeedDate>
+    <pageName>Python27_iisfcgi</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
 

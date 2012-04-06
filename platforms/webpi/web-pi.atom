@@ -113,11 +113,11 @@
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
           <!-- size of the package in KBs -->
-          <fileSize>33869</fileSize>
-          <installerURL>https://github.com/downloads/plone/Installers-UnifiedInstaller/Installers-UnifiedInstaller.zip</installerURL>
+          <fileSize>49415</fileSize>
+          <installerURL>file:///c:/Plone42.zip</installerURL>
           <displayURL>http://plone.org/products/plone//releases/4.2</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>52854bd389c494dd5dbc860b148f4b8e08e02c1d</sha1>
+          <sha1>6f7969925db249fb60c175935d95adc17c51df52</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

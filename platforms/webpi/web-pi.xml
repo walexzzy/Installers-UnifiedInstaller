@@ -172,7 +172,7 @@
   </entry>
 
   <!-- Python 2.7 dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27</productId>
     <id>http://www.python.org/download/releases/2.7.2</id>
     <version>2.7</version>
@@ -272,7 +272,7 @@
   </entry>
 
   <!-- Python 2.7 distribute dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27_distribute</productId>
     <id>http://packages.python.org/distribute</id>
     <version>0.6.25</version>
@@ -353,7 +353,7 @@
   </entry>
 
   <!-- Python 2.7 PIL dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27_PIL</productId>
     <id>http://www.pythonware.com/products/pil</id>
     <version>1.1.7</version>
@@ -436,7 +436,7 @@
   </entry>
 
   <!-- Python lxml dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27_lxml</productId>
     <id>http://lxml.de</id>
     <version>2.3.3</version>
@@ -511,7 +511,7 @@
   </entry>
 
   <!-- Python for Windows Extensions dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27_pywin32</productId>
     <id>http://starship.python.net/crew/mhammond/win32</id>
     <version>217</version>
@@ -574,7 +574,7 @@
   </entry>
 
   <!-- Python IIS FastCGI to WSGI bridge dependency -->
-  <entry type="application">
+  <entry>
     <productId>Python27_iisfcgi</productId>
     <id>http://pypi.python.org/pypi/iisfcgi</id>
     <version>0.1</version>

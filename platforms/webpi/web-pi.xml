@@ -116,11 +116,11 @@
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
           <!-- size of the package in KBs -->
-          <fileSize>49415</fileSize>
+          <fileSize>50759</fileSize>
           <installerURL>file:///c:/Plone42.zip</installerURL>
           <displayURL>http://plone.org/products/plone//releases/4.2</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>6f7969925db249fb60c175935d95adc17c51df52</sha1>
+          <sha1>aba399aab04e3b330be58f522ecd66755e585afe</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

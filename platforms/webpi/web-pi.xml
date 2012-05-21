@@ -191,6 +191,7 @@
       <name>Python Software Foundation</name>
       <uri>http://python.org/psf/</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>FrameworkRuntime</keywordId>
       <keywordId>Python</keywordId>
@@ -288,8 +289,10 @@
       <name>The fellowship of the packaging</name>
       <uri>http://packages.python.org/distribute/</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>Python</keywordId>
+      <keywordId>Tools</keywordId>
     </keywords>
     <images>
       <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
@@ -372,8 +375,10 @@
       <name>PythonWare</name>
       <uri>http://www.pythonware.com</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>Python</keywordId>
+      <keywordId>Tools</keywordId>
     </keywords>
     <images>
       <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
@@ -452,8 +457,10 @@
       <name>Stephan Richter</name>
       <uri>https://twitter.com/#!/strichter</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>Python</keywordId>
+      <keywordId>Tools</keywordId>
     </keywords>
     <images>
       <icon>http://lxml.de/python-xml-title.png</icon>
@@ -524,8 +531,10 @@
       <name>Mark Hammond</name>
       <uri>http://starship.python.net/crew/mhammond</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>Python</keywordId>
+      <keywordId>Tools</keywordId>
     </keywords>
     <images>
       <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
@@ -587,8 +596,10 @@
       <name>Ross Patterson</name>
       <uri>http://pypi.python.org/pypi/iisfcgi</uri>
     </author>
+    <frameworkFamily resourceName="Python">Python</frameworkFamily>
     <keywords>
       <keywordId>Python</keywordId>
+      <keywordId>Tools</keywordId>
       <keywordId>IIS</keywordId>
       <keywordId>FastCGI</keywordId>
     </keywords>

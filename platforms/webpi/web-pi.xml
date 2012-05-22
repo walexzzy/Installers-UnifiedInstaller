@@ -124,7 +124,7 @@
         </installerFile>
         <installCommands>
           <cmdline>
-            <exe>%SystemDrive%\Python27\iisfcgi_deploy.exe</exe>
+            <exe>%SystemDrive%\Python27\Scripts\iisfcgi_deploy.exe</exe>
           </cmdline>
         </installCommands>
         <msDeploy />

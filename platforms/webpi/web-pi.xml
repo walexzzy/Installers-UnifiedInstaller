@@ -439,7 +439,7 @@
   <entry>
     <productId>Python27_lxml</productId>
     <id>http://lxml.de</id>
-    <version>2.3.3</version>
+    <version>2.3.4</version>
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
@@ -483,10 +483,10 @@
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>1395</fileSize>
-          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/gnbjek6p/lxml-2.3.3.win32-py2.7.exe</installerURL>
+          <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/xj4i3y5m/lxml-2.3.4.win32-py2.7.exe</installerURL>
           <displayURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>3899cf60f2d6a78df136ab1f18515136193cfde6</sha1>
+          <sha1>b8e1d3e69f24f567d45af5127d87683cdbd29818</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

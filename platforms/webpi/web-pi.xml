@@ -103,7 +103,7 @@
          installed as a related/nice-to-have product, not a dependency -->
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
         <productId>Python27_ldap</productId>
         <productId>msysgit</productId>
       </relatedProduct>
@@ -219,7 +219,7 @@
         <productId>Python27_pywin32</productId>
       </relatedProduct>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>
@@ -306,7 +306,7 @@
          installed as a related/nice-to-have product, not a dependency -->
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>
@@ -390,7 +390,7 @@
          installed as a related/nice-to-have product, not a dependency -->
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>
@@ -470,7 +470,7 @@
     </dependency>
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>
@@ -540,7 +540,7 @@
     </dependency>
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>
@@ -606,7 +606,7 @@
     </dependency>
     <related>
       <relatedProduct>
-        <productId>PTVS</productId>
+        <productId>PythonToolsForVS</productId>
       </relatedProduct>
     </related>
     <installers>

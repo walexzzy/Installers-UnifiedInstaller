@@ -171,107 +171,6 @@
     </longSummary>
   </entry>
 
-  <!-- Python 2.7 dependency -->
-  <entry>
-    <productId>Python27</productId>
-    <id>http://www.python.org/download/releases/2.7.2</id>
-    <version>2.7</version>
-    
-    <updated>2012-03-25T13:22:48.440870</updated>
-    <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python27_Title">Python 2.7</title>
-    <link href="http://python.org" />
-    <summary resourceName="Entry_Python27_Summary">
-      Python is a programming language that lets you work more quickly
-      and integrate your systems more effectively. You can learn to
-      use Python and see almost immediate gains in productivity and
-      lower maintenance costs.
-    </summary>
-    <author>
-      <name>Python Software Foundation</name>
-      <uri>http://python.org/psf/</uri>
-    </author>
-    <frameworkFamily resourceName="Python">Python</frameworkFamily>
-    <keywords>
-      <keywordId>FrameworkRuntime</keywordId>
-      <keywordId>Python</keywordId>
-    </keywords>
-    <images>
-      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
-    </images>
-    <discoveryHint>
-      <file>
-        <filePath>%SystemDrive%\Python27\python.exe</filePath>
-      </file>
-    </discoveryHint>
-    <!-- Bring along Visual Studio Python support, if it is not
-         installed as a related/nice-to-have product, not a dependency -->
-    <related>
-      <relatedProduct>
-        <productId>Python27_distribute</productId>
-      </relatedProduct>
-      <relatedProduct>
-        <productId>Python27_PIL</productId>
-      </relatedProduct>
-      <relatedProduct>
-        <productId>Python27_lxml</productId>
-      </relatedProduct>
-      <relatedProduct>
-        <productId>Python27_pywin32</productId>
-      </relatedProduct>
-      <relatedProduct>
-        <productId>PythonToolsForVS</productId>
-      </relatedProduct>
-    </related>
-    <installers>
-      <installer>
-        <id>1</id>
-        <!-- List of languages this package is localized in -->
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <eulaURL>http://www.python.org/download/releases/2.7/license/</eulaURL>
-        <installerFile>
-          <!-- size of the package in KBs -->
-          <fileSize>14871</fileSize>
-          <installerURL>http://www.python.org/ftp/python/2.7.2/python-2.7.2.msi</installerURL>
-          <displayURL>http://www.python.org/download/releases/2.7.2</displayURL>
-          <!-- SHA of the package file for signature verification -->
-          <sha1>b742f78a4bb7b120187e8f782eab0753a7b901b0</sha1>
-        </installerFile>
-        <installCommands>
-          <cmdline>
-            <exe>%windir%\system32\msiexec.exe</exe>
-            <commandLineArguments>/i &quot;%InstallerFile%&quot; /qn ALLUSERS=1</commandLineArguments>
-          </cmdline>
-        </installCommands>
-        <msDeploy />
-        <helpLink>http://python.org/download</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python27</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-    <longSummary resourceName="Entry_Python27_LongSummary">
-      Python is a remarkably powerful dynamic programming language
-      that is used in a wide variety of application domains. Python is
-      often compared to Tcl, Perl, Ruby, Scheme or Java. Some of its
-      key distinguishing features include:
-
-      * very clear, readable syntax
-      * strong introspection capabilities
-      * intuitive object orientation
-      * natural expression of procedural code
-      * full modularity, supporting hierarchical packages
-      * exception-based error handling
-      * very high level dynamic data types
-      * extensive standard libraries and third party modules for
-        virtually every task
-      * extensions and modules easily written in C, C++
-        (or Java for Jython, or .NET languages for IronPython)
-      * embeddable within applications as a scripting interface
-    </longSummary>
-  </entry>
-
   <!-- Python 2.7 distribute dependency -->
   <entry>
     <productId>Python27_distribute</productId>
@@ -644,7 +543,6 @@
 
   <!-- categories  - needed by the AppGallery -->
   <keywords>
-    <keyword id="Python" resourceName="Keyword_Python">Python</keyword>
     <keyword id="Zope" resourceName="Keyword_Zope">Zope</keyword>
     <keyword id="Plone" resourceName="Keyword_Plone">Plone</keyword>
   </keywords>

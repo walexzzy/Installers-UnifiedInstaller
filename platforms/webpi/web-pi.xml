@@ -119,7 +119,7 @@
         <installerFile>
           <!-- size of the package in KBs -->
           <fileSize>50759</fileSize>
-          <installerURL>file:///c:/Plone42.zip</installerURL>
+          <installerURL>https://github.com/downloads/plone/Installers-UnifiedInstaller/Plone42.zip</installerURL>
           <displayURL>http://plone.org/products/plone//releases/4.2</displayURL>
           <!-- SHA of the package file for signature verification -->
           <sha1>aba399aab04e3b330be58f522ecd66755e585afe</sha1>
@@ -226,7 +226,7 @@
           <installerURL>http://python-distribute.org/distribute_setup.py</installerURL>
           <displayURL>http://pypi.python.org/pypi/distribute#distribute-setup-py</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>624c16d9c59327f95ead3be82e305a5b330abd32</sha1>
+          <sha1>482ad3eb6493791392baa009aa262795f995fa3c</sha1>
         </installerFile>
         <installCommands>
           <cmdline>
@@ -394,7 +394,7 @@
           <installerURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/xj4i3y5m/lxml-2.3.4.win32-py2.7.exe</installerURL>
           <displayURL>http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</displayURL>
           <!-- SHA of the package file for signature verification -->
-          <sha1>b8e1d3e69f24f567d45af5127d87683cdbd29818</sha1>
+          <sha1>dd0ef2f07f01111de97526270dc26fde26a5ead6</sha1>
         </installerFile>
         <installCommands>
           <cmdline>

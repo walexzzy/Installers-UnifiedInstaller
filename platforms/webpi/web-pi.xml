@@ -64,6 +64,8 @@
       <keywordId>Python</keywordId>
       <keywordId>Zope</keywordId>
       <keywordId>Plone</keywordId>
+      <keywordId>Server</keywordId>
+      <keywordId>FrameworkRuntime</keywordId>
       <keywordId>ApplicationSpotlight</keywordId>
     </keywords>
     <images>

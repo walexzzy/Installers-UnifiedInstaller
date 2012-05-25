@@ -1,0 +1,56 @@
+Building binary eggs:
+
+Download and install Visual C++ Express 2008 (not 2005, not 2010, nor anything newer)
+Install python binaries
+Run Visual C++ Express and use the Visual Studio 2008 Command Prompt (in the Tools menu)
+Unpack source distribution
+Make necessary edits to setup.py
+
+lxml needs:
+
+STATIC_INCLUDE_DIRS = [
+       "..\\libxml2-2.7.8.win32\\include",
+       "..\\libxslt-1.1.26.win32\\include",
+       "..\\zlib-1.2.7\\include",
+       "..\\iconv-1.9.2.win32\\include"
+       ]
+
+STATIC_LIBRARY_DIRS = [
+       "..\\libxml2-2.7.8.win32\\lib",
+       "..\\libxslt-1.1.26.win32\\lib",
+       "..\\zlib-1.2.7",
+       "..\\iconv-1.9.2.win32\\lib
+       ]
+
+With adjustments for the versions of dependencies being used.
+
+buildout setup setup.py bdist_egg
+
+PIL:
+
+JPEG_ROOT = "../jpeg-8b"
+ZLIB_ROOT = "../zlib-1.2.7
+
+
+We currently have win32 bdist_egg builds of lxml 2.3.3 and 2.3.4 on:
+http://dist.plone.org:5021/thirdparty/
+
+
+On buildout:
+
+Running buildout on Windows systems employing anti-virus software will sometimes result in an IOError (Access Denied) while compiling Python files.  This is due to a pattern in which files are copied or unzipped, deleted, then recreated.  The antivirus software may prevent the recreation if it has not finished scanning the deleted file.
+
+It turns out that the code which deletes the .py[co] files is unnecessary and removing it will prevent this failure.
+
+zc/buildout/easy_install.py in redo_pyc(), comment out or remove:
+
+            # Remove old files.
+            for suffix in 'co':
+                if os.path.exists(filepath+suffix):
+                    os.remove(filepath+suffix)
+                    
+The successive call to py_compile.compile will overwrite the files without incident.
+
+We can probably work around this with a buildout extension patching redo_pyc().
+
+

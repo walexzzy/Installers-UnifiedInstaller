@@ -18,9 +18,9 @@ Building the Web Deploy Package
 #. Clone `Installers-UnifiedInstaller
    <https://github.com/plone/Installers-UnifiedInstaller>`_
 
-   Skip this if you've already done it and haven't changed anything since.
-
-   Using a `windows git client <http://help.github.com/win-set-up-git/>`_.
+   Use a `windows git client
+   <http://help.github.com/win-set-up-git/>`_. Skip this if you've
+   already done it and haven't changed anything since.
 
 #. TODO Create the buildout::
 

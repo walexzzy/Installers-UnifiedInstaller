@@ -1,0 +1,11 @@
+include Manifest.xml
+include Parameters.xml
+
+include zinstance/*.cfg
+exclude zinstance/.*.cfg
+
+include zinstance/src/README.txt
+include zinstance/var/README.txt
+include zinstance/products/README.txt
+
+recursive-include buildout-cache/eggs *.egg

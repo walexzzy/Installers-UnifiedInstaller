@@ -106,3 +106,19 @@ Building the Web Deploy Package
    #. TODO Install the new package with WebPI
 
    #. TODO Test with WebMatrix
+
+#. Release the package
+
+   #. Restore the ``<installerURL>`` element contents.
+
+   #. Commit the SHA1 and file size changes to
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml``
+
+   #. Upload ``Parameters.zip`` to ``dist.plone.org`` as
+      ``PloneInstaller-4-2.zip``
+
+   #. upload
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` to
+      ``dist.plone.org``
+   
+   #. Ask Windows users to test by installing from WebPI

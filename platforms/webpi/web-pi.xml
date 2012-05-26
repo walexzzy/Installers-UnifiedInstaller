@@ -85,7 +85,7 @@
           <productId>Python27</productId>
         </dependency>
         <dependency>
-          <productId>Python27_distribute</productId>
+          <productId>PyDistributeModule</productId>
         </dependency>
         <dependency>
           <productId>Python27_PIL</productId>

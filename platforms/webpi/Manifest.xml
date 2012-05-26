@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MSDeploy.iisApp>
   <iisApp path="PloneInstaller-4-2" />
-  <runCommand path="%IIS_BIN%\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath='%SystemDrive%\Python27\python.exe',arguments='-u %APPL_PHYSICAL_PATH%\zinstance\bin\iisfcgi-script.py -c %APPL_PHYSICAL_PATH%\zinstance
-\development.ini',maxInstances='1',monitorChangesTo='%APPL_PHYSICAL_PATH%\zinstance\development.ini']&quot; /commit:apphost" />
   <runCommand path="%SystemDrive%\Python27\python.exe %APPL_PHYSICAL_PATH%\zinstance\bootstrap.py -d -c %APPL_PHYSICAL_PATH%\zinstance\buildout.cfg" />
   <runCommand path="%APPL_PHYSICAL_PATH%\zinstance\bin\buildout.exe -c %APPL_PHYSICAL_PATH%\zinstance\buildout.cfg -N" />
   <runCommand path="%APPL_PHYSICAL_PATH%\zinstance\bin\instance.exe adduser admin %ADMIN_PASSWORD%" />
+  <runCommand path="%IIS_BIN%\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath='%SystemDrive%\Python27\python.exe',arguments='-u %APPL_PHYSICAL_PATH%\zinstance\bin\iisfcgi-script.py -c %APPL_PHYSICAL_PATH%\zinstance
+\development.ini',maxInstances='1',monitorChangesTo='%APPL_PHYSICAL_PATH%\zinstance\development.ini']&quot; /commit:apphost" />
 </MSDeploy.iisApp>

@@ -67,13 +67,16 @@ Building the Web Deploy Package
         > fciv.exe -sha1 Parameters.zip
 
       Copy the printed hash and replace the existing one in
-      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml``.
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` at
+      (xpath) ``installers/installer/installerFile/sha1`` inside the
+      ``entry/productId`` for ``Plone_4_2``.
 
    #. Update the package size
 
       Use use the file browser to get the package size in KB replace
       the existing one in
-      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml``.
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` at
+      ``installers/installer/installerFile/fileSize``.
 
 #. Test with WebPI
  
@@ -95,8 +98,9 @@ Building the Web Deploy Package
       You can skip this if you've done it before and the new package is
       in the same place as the file URL points to.
   
-      Replace the ``<installerURL>`` element contents in
-      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` with
+      Replace the URL in
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` at
+      ``installers/installer/installerFile/installerURL`` with
       ``file:///C:/.../Parameters.zip`` replacing ``...`` with the
       appropriate path.  This will make the WebPI install your archive
       and not the current one online.

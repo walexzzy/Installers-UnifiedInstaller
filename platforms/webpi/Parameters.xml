@@ -9,4 +9,15 @@
         scope="iisapp" 
         match="PloneInstaller-4-2" /> 
   </parameter>
+  <parameter
+     name="adminPassword"
+     tags="New, Password" >
+     <parameterValidation
+       type="RegularExpression"
+       validationString="....+" />
+     <parameterEntry
+       type="TextFile"
+       scope="\\Manifest.xml"
+       match="%ADMIN_PASSWORD%" />
+  </parameter>
 </parameters>

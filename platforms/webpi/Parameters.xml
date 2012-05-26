@@ -1,0 +1,12 @@
+<parameters>
+  <parameter
+    name="ApplicationPath"
+    description="Full site path where you would like to install your application (i.e., Plone42)" 
+    defaultValue="Default Web Site/Plone42" 
+    tags="iisapp">
+      <parameterEntry 
+        type="ProviderPath" 
+        scope="iisapp" 
+        match="PloneInstaller-4-2" /> 
+  </parameter>
+</parameters>

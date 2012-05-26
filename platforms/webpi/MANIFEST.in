@@ -6,4 +6,5 @@ include zinstance/src/README.txt
 include zinstance/var/README.txt
 include zinstance/products/README.txt
 
+include buildout-cache/downloads
 recursive-include buildout-cache/eggs *

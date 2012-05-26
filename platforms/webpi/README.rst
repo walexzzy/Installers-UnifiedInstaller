@@ -31,7 +31,7 @@ Building the Web Deploy Package
 
    Run::
 
-     >C:\Python27\python.exe helper_scripts\create_inst ance.py C:\Installers-UnifiedInstaller C:\Installers-UnifiedInstaller zeocluster xen xen act1v4t3 0 1 0 0 cluster C:\Installers-UnifiedInstaller\install.log 2
+     >C:\Python27\python.exe helper_scripts\create_instance.py . "%USERPROFILE%\My Documents\My Web Sites\Plone42Installer" zinstance __CLIENT_USER__ __ZEO_USER__ __PASSWORD__ 0 0 0 0 standalone create_instance.log 1
 
 #. Run the buildout::
 

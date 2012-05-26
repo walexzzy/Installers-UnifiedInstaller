@@ -1,6 +1,3 @@
-include Manifest.xml
-include Parameters.xml
-
 include zinstance/*.cfg
 exclude zinstance/.*.cfg
 

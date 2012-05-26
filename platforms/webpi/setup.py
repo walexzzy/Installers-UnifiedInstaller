@@ -1,7 +1,7 @@
 from distutils.core import setup
 from distutils.command import build
 
-version = '4.2'
+version = '4-2'
 
 
 class MSDeployBuild(build.build):

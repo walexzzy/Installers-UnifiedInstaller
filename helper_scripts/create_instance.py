@@ -233,7 +233,10 @@ fd.write(str(buildout))
 fd.close()
 os.chmod(fn, stat.S_IRUSR | stat.S_IWUSR)
 
-
+if sys.platform[:3].lower() == "win":
+    shutil.copy(
+        os.path.join(UIDIR, 'platforms', 'webpi', 'platform.cfg'),
+        os.path.join(INSTANCE_HOME, 'platform.cfg'))
 
 ################
 # Start the fun!

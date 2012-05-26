@@ -6,4 +6,4 @@ include zinstance/src/README.txt
 include zinstance/var/README.txt
 include zinstance/products/README.txt
 
-recursive-include buildout-cache/eggs *.egg
+recursive-include buildout-cache/eggs *

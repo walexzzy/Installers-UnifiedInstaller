@@ -25,18 +25,18 @@ Building the Web Deploy Package
 #. TODO Create the buildout::
 
      >cd Installers-UnifiedInstaller
-     >C:\Python27\python.exe platforms\webpi\TODO.py PloneWebDeployPackage
+     >%SYSTEMDRIVE%\Python27\python.exe platforms\webpi\TODO.py PloneWebDeployPackage
 
    Make buildout-cache/eggs, buildout-cache/downloads
 
    Run::
 
-     >C:\Python27\python.exe helper_scripts\create_instance.py . "%USERPROFILE%\My Documents\My Web Sites\Plone42Installer" zinstance __CLIENT_USER__ __ZEO_USER__ __PASSWORD__ 0 0 0 0 standalone create_instance.log 1
+     >%SYSTEMDRIVE%\Python27\python.exe helper_scripts\create_instance.py . "%USERPROFILE%\My Documents\My Web Sites\Plone42Installer" zinstance __CLIENT_USER__ __ZEO_USER__ __PASSWORD__ 0 0 0 0 standalone create_instance.log 1
 
 #. Run the buildout::
 
      >cd PloneWebDeployPackage
-     >C:\Python27\python.exe bootstrap.py -d
+     >%SYSTEMDRIVE%\Python27\python.exe bootstrap.py -d
      >bin\buildout.exe -N -c develop.cfg
 
    We use develop.cfg to make sure we have all the eggs the user may
@@ -44,13 +44,13 @@ Building the Web Deploy Package
 
 #. Create the Web Deploy zip package::
 
-     >C:\Python27\python.exe setup.py sdist --formats=tar -k
+     >%SYSTEMDRIVE%\Python27\python.exe setup.py sdist --formats=tar -k
 
    Then open a file browser, select ``Manifest.xml``,
    ``Parameters.xml`` and ``PloneInstaller-4-2``, then right-click and
    Select "Send to -> Compressed (zipped) Folder".
 
-     TODO>C:\Python27\python.exe setup.py bdist_msdeploy
+     TODO>%SYSTEMDRIVE%\Python27\python.exe setup.py bdist_msdeploy
 
 #. TODO Test with msdeploy
 

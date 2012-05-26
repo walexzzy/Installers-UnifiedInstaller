@@ -81,8 +81,6 @@ substitutions = {
     "ZEO_USER": ZEO_USER,
     "PASSWORD": PASSWORD,
     "PYTHON": sys.executable,
-    "DISTRIBUTE_EGG": findEgg('distribute'),
-    "BUILDOUT_EGG": findEgg('zc.buildout'),
 }
 if RUN_BUILDOUT == '1':
     substitutions.update({

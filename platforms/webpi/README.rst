@@ -18,9 +18,9 @@ Building the Web Deploy Package
 #. Clone `Installers-UnifiedInstaller
    <https://github.com/plone/Installers-UnifiedInstaller>`_
 
-   Skip this if you've already done it and haven't changed anything since.
-
-   Using a `windows git client <http://help.github.com/win-set-up-git/>`_.
+   Use a `windows git client
+   <http://help.github.com/win-set-up-git/>`_. Skip this if you've
+   already done it and haven't changed anything since.
 
 #. TODO Create the buildout::
 
@@ -29,7 +29,9 @@ Building the Web Deploy Package
 
    Make buildout-cache/eggs, buildout-cache/downloads
 
-   Run "C:\Installers-UnifiedInstaller>C:\Python26\python.exe helper_scripts\create_inst ance.py C:\Installers-UnifiedInstaller C:\Installers-UnifiedInstaller zeocluster xen xen act1v4t3 0 1 0 0 cluster C:\Installers-UnifiedInstaller\install.log 2 ߀"
+   Run::
+
+     >C:\Python27\python.exe helper_scripts\create_inst ance.py C:\Installers-UnifiedInstaller C:\Installers-UnifiedInstaller zeocluster xen xen act1v4t3 0 1 0 0 cluster C:\Installers-UnifiedInstaller\install.log 2 ߀
 
 #. Run the buildout::
 
@@ -108,3 +110,19 @@ Building the Web Deploy Package
    #. TODO Install the new package with WebPI
 
    #. TODO Test with WebMatrix
+
+#. Release the package
+
+   #. Restore the ``<installerURL>`` element contents.
+
+   #. Commit the SHA1 and file size changes to
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml``
+
+   #. Upload ``Parameters.zip`` to ``dist.plone.org`` as
+      ``PloneInstaller-4-2.zip``
+
+   #. upload
+      ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` to
+      ``dist.plone.org``
+   
+   #. Ask Windows users to test by installing from WebPI

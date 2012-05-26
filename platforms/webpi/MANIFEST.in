@@ -1,3 +1,4 @@
+include zinstance/bootstrap.py
 include zinstance/*.cfg
 exclude zinstance/.*.cfg
 

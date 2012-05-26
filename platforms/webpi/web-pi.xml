@@ -88,12 +88,6 @@
           <productId>PyDistributeModule</productId>
         </dependency>
         <dependency>
-          <productId>Python27_PIL</productId>
-        </dependency>
-        <dependency>
-          <productId>Python27_lxml</productId>
-        </dependency>
-        <dependency>
           <productId>Python27_pywin32</productId>
         </dependency>
         <dependency>

@@ -8,3 +8,4 @@ include zinstance/products/README.txt
 
 include buildout-cache/downloads
 recursive-include buildout-cache/eggs *
+recursive-exclude buildout-cache/eggs *.py[co]

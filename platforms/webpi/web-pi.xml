@@ -90,9 +90,6 @@
         <dependency>
           <productId>Python27_pywin32</productId>
         </dependency>
-        <dependency>
-          <productId>Python27_iisfcgi</productId>
-        </dependency>
       </and>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not

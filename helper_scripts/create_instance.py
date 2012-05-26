@@ -84,6 +84,11 @@ substitutions = {
     "DISTRIBUTE_EGG": findEgg('distribute'),
     "BUILDOUT_EGG": findEgg('zc.buildout'),
 }
+if RUN_BUILDOUT == '1':
+    substitutions.update({
+        "DISTRIBUTE_EGG": findEgg('distribute'),
+        "BUILDOUT_EGG": findEgg('zc.buildout'),
+    })
 
 
 # apply substitutions to a file
@@ -229,15 +234,16 @@ fd.close()
 os.chmod(fn, stat.S_IRUSR | stat.S_IWUSR)
 
 
-# boostrapping is problematic when the python may not have the right
-# components; so, let's fix up the bin/buildout ourselves.
-print "Fixing up bin/buildout"
-inPlaceSub(os.path.join(INSTANCE_HOME, 'bin', 'buildout'))
-
 
 ################
 # Start the fun!
 if RUN_BUILDOUT == '1':
+    
+    # boostrapping is problematic when the python may not have the right
+    # components; so, let's fix up the bin/buildout ourselves.
+    print "Fixing up bin/buildout"
+    inPlaceSub(os.path.join(INSTANCE_HOME, 'bin', 'buildout'))
+
     os.chdir(INSTANCE_HOME)
 
     logfile = file(LOG_FILE, 'a')

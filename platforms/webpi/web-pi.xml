@@ -87,9 +87,6 @@
         <dependency>
           <productId>PyDistributeModule</productId>
         </dependency>
-        <dependency>
-          <productId>Python27_pywin32</productId>
-        </dependency>
       </and>
     </dependency>
     <!-- Bring along Visual Studio Python support, if it is not
@@ -402,71 +399,6 @@
       simplicity of a native Python API, mostly compatible but
       superior to the well-known ElementTree API.
     </longSummary>
-  </entry>
-
-  <!-- Python for Windows Extensions dependency -->
-  <entry>
-    <productId>Python27_pywin32</productId>
-    <id>http://starship.python.net/crew/mhammond/win32</id>
-    <version>217</version>
-    
-    <updated>2012-03-25T13:22:48.440870</updated>
-    <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_Python27_pywin32_Title">Python for Windows Extensions</title>
-    <link href="http://starship.python.net/crew/mhammond/win32" />
-    <author>
-      <name>Mark Hammond</name>
-      <uri>http://starship.python.net/crew/mhammond</uri>
-    </author>
-    <frameworkFamily resourceName="Python">Python</frameworkFamily>
-    <keywords>
-      <keywordId>Python</keywordId>
-      <keywordId>Tools</keywordId>
-    </keywords>
-    <images>
-      <icon>http://www.helicontech.com/zoo/media/icons/python-100x100.png</icon>
-    </images>
-    <discoveryHint>
-      <file>
-        <filePath>TODO</filePath>
-      </file>
-    </discoveryHint>
-    <dependency>
-      <productId>Python27</productId>
-    </dependency>
-    <related>
-      <relatedProduct>
-        <productId>PythonToolsForVS</productId>
-      </relatedProduct>
-    </related>
-    <installers>
-      <installer>
-        <id>1</id>
-        <!-- List of languages this package is localized in -->
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <eulaURL>http://pywin32.hg.sourceforge.net/hgweb/pywin32/pywin32/raw-file/c5c768dabcbd/Pythonwin/License.txt</eulaURL>
-        <installerFile>
-          <!-- size of the package in KBs -->
-          <fileSize>6458</fileSize>
-          <installerURL>http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe</installerURL>
-          <displayURL>http://sourceforge.net/projects/pywin32/files/pywin32/Build%20217</displayURL>
-          <!-- SHA of the package file for signature verification -->
-          <sha1>36016bbccebddd9060073f1c9f0c80a2c2dd9cc1</sha1>
-        </installerFile>
-        <installCommands>
-          <cmdline>
-            <exe>%InstallerFile%</exe>
-            <commandLineArguments>/verysilent</commandLineArguments>
-          </cmdline>
-        </installCommands>
-        <msDeploy />
-        <helpLink>http://starship.python.net/crew/mhammond/win32/Downloads.html</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>3-25-2012</addToFeedDate>
-    <pageName>Python27_pywin32</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
 
   <!-- Python IIS FastCGI to WSGI bridge dependency -->

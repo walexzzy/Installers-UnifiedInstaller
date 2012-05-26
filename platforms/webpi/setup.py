@@ -1,6 +1,17 @@
-from setuptools import setup
+from distutils.core import setup
+from distutils.command import build
 
 version = '4.2'
+
+
+class MSDeployBuild(build.build):
+    """Build an MSDeploy zip packages for installation into IIS."""
+
+    def initialize_options(self):
+        """Be more discriminating about what to prune."""
+        build.build.initialize_options(self)
+        self.build_base = 'build/'
+
 
 setup(name='PloneInstaller',
       version=version,
@@ -19,5 +30,5 @@ setup(name='PloneInstaller',
       author_email='plone-developers@lists.sourceforge.net',
       url='http://plone.org/',
       license='GPL version 2',
-      zip_safe=True,
+      cmdclass={'build': MSDeployBuild},
       )

@@ -118,11 +118,6 @@
           <!-- SHA of the package file for signature verification -->
           <sha1>aba399aab04e3b330be58f522ecd66755e585afe</sha1>
         </installerFile>
-        <installCommands>
-          <cmdline>
-            <exe>%SystemDrive%\Python27\Scripts\iisfcgi_deploy.exe</exe>
-          </cmdline>
-        </installCommands>
         <msDeploy />
         <helpLink>http://plone.org/download</helpLink>
       </installer>

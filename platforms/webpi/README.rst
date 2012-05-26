@@ -24,8 +24,8 @@ Building the Web Deploy Package
 
 #. TODO Create the buildout::
 
-     > cd Installers-UnifiedInstaller
-     > C:\Python2.7\python.exe platforms\webpi\TODO.py PloneWebDeployPackage
+     >cd Installers-UnifiedInstaller
+     >C:\Python2.7\python.exe platforms\webpi\TODO.py PloneWebDeployPackage
 
    Make buildout-cache/eggs, buildout-cache/downloads
 
@@ -35,22 +35,22 @@ Building the Web Deploy Package
 
 #. Run the buildout::
 
-     > cd PloneWebDeployPackage
-     > C:\Python2.7\python.exe bootstrap.py -d
-     > bin\buildout.exe -N -c develop.cfg
+     >cd PloneWebDeployPackage
+     >C:\Python2.7\python.exe bootstrap.py -d
+     >bin\buildout.exe -N -c develop.cfg
 
    We use develop.cfg to make sure we have all the eggs the user may
    need including develop tools.
 
 #. Create the Web Deploy zip package::
 
-     > C:\Python2.7\python.exe setup.py sdist --formats=tar -k
+     >C:\Python2.7\python.exe setup.py sdist --formats=tar -k
 
    Then open a file browser, select ``Manifest.xml``,
    ``Parameters.xml`` and ``PloneInstaller-4-2``, then right-click and
    Select "Send to -> Compressed (zipped) Folder".
 
-     TODO> C:\Python2.7\python.exe setup.py bdist_msdeploy
+     TODO>C:\Python2.7\python.exe setup.py bdist_msdeploy
 
 #. TODO Test with msdeploy
 
@@ -66,7 +66,7 @@ Building the Web Deploy Package
       Then use it to `display the SHA1 hash
       <http://learn.iis.net/page.aspx/1082/web-deploy-parameterization/>`_::
 
-        > fciv.exe -sha1 Parameters.zip
+        >fciv.exe -sha1 Parameters.zip
 
       Copy the printed hash and replace the existing one in
       ``Installers-UnifiedInstaller\platforms\webpi\web-pi.xml`` at

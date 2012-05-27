@@ -46,7 +46,7 @@ Building the Web Deploy Package
 
 #. Create the Web Deploy zip package::
 
-     >%SYSTEMDRIVE%\Python27\python.exe setup.py sdist --formats=tar -k
+     >%SYSTEMDRIVE%\Python27\python.exe setup.py -q sdist --formats=tar -k<
 
    Then open a file browser, select ``Manifest.xml``,
    ``Parameters.xml`` and ``PloneInstaller-4-2``, then right-click and

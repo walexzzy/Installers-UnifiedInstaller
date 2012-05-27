@@ -49,8 +49,9 @@ Building the Web Deploy Package
      >%SYSTEMDRIVE%\Python27\python.exe setup.py -q sdist --formats=tar -k<
 
    Then open a file browser, select ``Manifest.xml``,
-   ``Parameters.xml`` and ``PloneInstaller-4-2``, then right-click and
-   Select "Send to -> Compressed (zipped) Folder".
+   ``Parameters.xml`` and ``PloneInstaller-4-2`` in that order so the
+   zipfile gets the right name, then right-click and Select "Send to
+   -> Compressed (zipped) Folder".
 
      TODO>%SYSTEMDRIVE%\Python27\python.exe setup.py bdist_msdeploy
 

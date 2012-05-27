@@ -27,7 +27,9 @@ Building the Web Deploy Package
      >cd Installers-UnifiedInstaller
      >%SYSTEMDRIVE%\Python27\python.exe platforms\webpi\TODO.py PloneWebDeployPackage
 
-   Make buildout-cache/eggs, buildout-cache/downloads
+   Make buildout-cache/eggs, buildout-cache/downloads, and
+   buildout-cache/downloads/README.txt (so that the package will
+   create the directory without including it's contents).
 
    Run::
 

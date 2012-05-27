@@ -4,20 +4,16 @@
     description="Full site path where you would like to install your application (i.e., Plone42Project)" 
     defaultValue="Default Web Site/Plone42Project" 
     tags="iisapp">
-      <parameterEntry 
-        type="ProviderPath" 
-        scope="iisapp" 
-        match="PloneInstaller-4-2" /> 
+      <parameterEntry type="ProviderPath" 
+		      scope="iisapp" 
+		      match="PloneInstaller-4-2" /> 
   </parameter>
-  <parameter
-     name="adminPassword"
-     tags="New, Password" >
-     <parameterValidation
-       type="RegularExpression"
-       validationString="....+" />
-     <parameterEntry
-       type="TextFile"
-       scope="\\Manifest.xml"
-       match="%ADMIN_PASSWORD%" />
+  <parameter name="adminPassword"
+	     tags="New, Password" >
+     <parameterValidation type="RegularExpression"
+			  validationString="....+" />
+     <parameterEntry type="TextFile"
+		     scope="\\Manifest.xml"
+		     match="%ADMIN_PASSWORD%" />
   </parameter>
 </parameters>

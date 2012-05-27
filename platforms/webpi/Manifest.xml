@@ -2,16 +2,16 @@
 <MSDeploy.iisApp>
   <iisApp path="PloneInstaller-4-2" />
   <runCommand
-      path="%SystemDrive%\Python27\python.exe %APPL_PHYSICAL_PATH%\zinstance\bootstrap.py -d -c %APPL_PHYSICAL_PATH%\zinstance\buildout.cfg"
+      path="&quot;%SystemDrive%\Python27\python.exe&quot; &quot;%APPL_PHYSICAL_PATH%\zinstance\bootstrap.py&quot; -d -c &quot;%APPL_PHYSICAL_PATH%\zinstance\buildout.cfg&quot;"
       MSDeploy.MSDeployKeyAttributeName="path" />
   <runCommand
-      path="%APPL_PHYSICAL_PATH%\zinstance\bin\buildout.exe -c %APPL_PHYSICAL_PATH%\zinstance\buildout.cfg -N"
+      path="&quot;%APPL_PHYSICAL_PATH%\zinstance\bin\buildout.exe&quot; -c &quot;%APPL_PHYSICAL_PATH%\zinstance\buildout.cfg&quot; -N"
       MSDeploy.MSDeployKeyAttributeName="path" />
   <runCommand
-      path="%APPL_PHYSICAL_PATH%\zinstance\bin\instance.exe adduser admin %ADMIN_PASSWORD%"
+      path="&quot;%APPL_PHYSICAL_PATH%\zinstance\bin\instance.exe&quot; adduser admin &quot;%ADMIN_PASSWORD%&quot;"
       MSDeploy.MSDeployKeyAttributeName="path" />
   <runCommand
-      path="%IIS_BIN%\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath='%SystemDrive%\Python27\python.exe',arguments='-u %APPL_PHYSICAL_PATH%\zinstance\bin\iisfcgi-script.py -c %APPL_PHYSICAL_PATH%\zinstance
+      path="&quot;%IIS_BIN%\appcmd.exe&quot; set config -section:system.webServer/fastCgi /+&quot;[fullPath='%SystemDrive%\Python27\python.exe',arguments='-u %APPL_PHYSICAL_PATH%\zinstance\bin\iisfcgi-script.py -c %APPL_PHYSICAL_PATH%\zinstance
 \development.ini',maxInstances='1',monitorChangesTo='%APPL_PHYSICAL_PATH%\zinstance\development.ini']&quot; /commit:apphost"
       MSDeploy.MSDeployKeyAttributeName="path" />
 </MSDeploy.iisApp>

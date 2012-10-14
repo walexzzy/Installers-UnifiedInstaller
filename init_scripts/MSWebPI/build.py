@@ -10,6 +10,9 @@ logger = logging.getLogger('Plone.UnifiedInstaller')
 def main():
     """
     Expects to be run with the system python in the PloneApp directory.
+
+    >cd Plone.msdeploy\PloneApp
+    >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
     """
     CWD = os.getcwd()
     UIDIR = os.path.dirname(os.path.dirname(os.path.dirname(

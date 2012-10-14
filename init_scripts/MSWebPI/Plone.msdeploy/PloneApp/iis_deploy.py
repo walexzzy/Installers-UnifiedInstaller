@@ -15,7 +15,7 @@ def main():
     try:
         os.chdir(INSTANCE_HOME)
         subprocess.check_call([sys.executable, 'bootstrap.py', '-d'])
-        subprocess.check_call([os.path.join('bin', 'buildout.exe'), '-ND'])
+        subprocess.check_call([os.path.join('bin', 'buildout.exe'), '-N'])
     finally:
         os.chdir(CWD)
 

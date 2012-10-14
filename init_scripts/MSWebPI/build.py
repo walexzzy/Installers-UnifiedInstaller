@@ -2,6 +2,9 @@ import sys
 import os
 import subprocess
 import shutil
+import logging
+
+logger = logging.getLogger('Plone.UnifiedInstaller')
 
 
 def main():
@@ -34,16 +37,14 @@ def main():
     if not os.path.exists(BUILDOUT_DIST):
         os.makedirs(BUILDOUT_DIST)
 
+    logger.info('Delegating to Web Deploy Package script: {0}'.format(
+        os.path.join(PLONE_HOME, 'iis_deploy.py')))
     try:
-        os.chdir(INSTANCE_HOME)
-        run_buildout()
+        os.chdir(PLONE_HOME)
+        subprocess.check_call([sys.executable, 'iis_deploy.py'])
     finally:
         os.chdir(CWD)
 
-
-def run_buildout():
-    subprocess.check_call([sys.executable, 'bootstrap.py', '-d'])
-    subprocess.check_call([os.path.join('bin', 'buildout.exe'), '-ND'])
-
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     main()

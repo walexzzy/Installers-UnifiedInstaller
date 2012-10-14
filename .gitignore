@@ -9,3 +9,9 @@ autom4te.cache
 Plone-docs
 *.gz
 *.bz2
+init_scripts/MSWebPI/*.msdeploy/MANIFEST
+init_scripts/MSWebPI/*.msdeploy/Manifest.xml
+init_scripts/MSWebPI/Include/
+init_scripts/MSWebPI/Lib/
+init_scripts/MSWebPI/Scripts/
+init_scripts/MSWebPI/web-pi.xml

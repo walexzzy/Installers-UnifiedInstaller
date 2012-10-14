@@ -14,8 +14,8 @@ def main():
     >cd Plone.msdeploy\PloneApp
     >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
     """
-    UIDIR = os.path.dirname(os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__))))
+    WEBPI_DIR = os.path.dirname(os.path.abspath(__file__))
+    UIDIR = os.path.dirname(os.path.dirname(WEBPI_DIR))
     PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join(PLONE_HOME, 'zinstance')
     BUILDOUT_DIST = os.path.join(
@@ -38,6 +38,14 @@ def main():
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
                          'iiswsgi_deploy.exe'), '-vvis']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
+    subprocess.check_call(args)
+
+    # Assumes sys.executable is a system python with iiswsgi installed
+    args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
+                         'iiswsgi_build.exe'),
+            '-vv', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
+            os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
+    logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)
 
 if __name__ == '__main__':

@@ -3,8 +3,12 @@ import os
 import subprocess
 import shutil
 import logging
+import urllib2
+import urlparse
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
+
+lxml_url = 'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg'
 
 
 def main():
@@ -33,6 +37,13 @@ def main():
 
     if not os.path.exists(BUILDOUT_DIST):
         os.makedirs(BUILDOUT_DIST)
+    # Manually add binary lxml egg since buildout doesn't seem to use
+    # it even with find-links
+    lxml_egg = os.path.join(
+        BUILDOUT_DIST,
+        urlparse.urlsplit(lxml_url).path.rsplit('/', 1)[-1])
+    if not os.path.exists(lxml_egg):
+        open(lxml_egg, 'w').write(urllib2.urlopen(lxml_url).read())
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',

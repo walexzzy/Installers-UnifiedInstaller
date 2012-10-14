@@ -19,6 +19,12 @@ def main():
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
+    for path in ('base_skeleton', 'buildout_templates', 'helper_scripts'):
+        if os.path.exists(path):
+            logger.info('Deleting old UI directory: {0}'.format(path))
+            shutil.rmtree(path)
+        logger.info('Copying UI directory: {0}'.format(path))
+        shutil.copytree(os.path.join(UIDIR, path), path)
 
     if os.path.exists(INSTANCE_HOME):
         shutil.rmtree(INSTANCE_HOME)

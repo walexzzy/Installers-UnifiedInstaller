@@ -8,40 +8,31 @@ logger = logging.getLogger('Plone.UnifiedInstaller')
 
 
 def main():
+    """
+    Expects to be run with the system python in the PloneApp directory.
+    """
     CWD = os.getcwd()
-    UIDIR = os.path.dirname(os.path.dirname(os.path.abspath(CWD)))
-    PLONE_HOME = os.path.join(CWD, 'Plone.msdeploy', 'PloneApp')
+    UIDIR = os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))))
+    PLONE_HOME = CWD
     INSTANCE_HOME = os.path.join(PLONE_HOME, 'zinstance')
-    CLIENT_USER = os.environ['USERNAME']
-    ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = "0"
-    RUN_BUILDOUT = "0"
-    INSTALL_LXML = "no"
-    ITYPE = "standalone"
-    LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
-    PASSWORD = subprocess.check_output([
-        sys.executable,
-        os.path.join(UIDIR, 'helper_scripts', 'generateRandomPassword.py')])
 
     if os.path.exists(INSTANCE_HOME):
         shutil.rmtree(INSTANCE_HOME)
-    subprocess.check_call([
-        sys.executable,
-        os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
-        UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
-        PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
-        ITYPE, LOG_FILE, CLIENTS])
 
     if not os.path.exists(BUILDOUT_DIST):
         os.makedirs(BUILDOUT_DIST)
 
-    logger.info('Delegating to Web Deploy Package script: {0}'.format(
-        os.path.join(PLONE_HOME, 'iis_deploy.py')))
+    # Assumes sys.executable is a system python with iiswsgi installed
+    args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
+                         'iiswsgi_deploy.exe'), '-vvis']
+    logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     try:
         os.chdir(PLONE_HOME)
-        subprocess.check_call([sys.executable, 'iis_deploy.py'])
+        subprocess.check_call(args)
     finally:
         os.chdir(CWD)
 

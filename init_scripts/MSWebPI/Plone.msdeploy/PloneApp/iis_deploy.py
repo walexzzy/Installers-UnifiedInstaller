@@ -9,8 +9,23 @@ logger = logging.getLogger('plone.iiswsgi')
 
 
 def main():
-    CWD = os.getcwd()
+    CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
+    CLIENT_USER = os.environ['USERNAME']
+    ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = "0"
+    RUN_BUILDOUT = "0"
+    INSTALL_LXML = "no"
+    ITYPE = "standalone"
+    LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
+
+    PASSWORD = '__webpi_password_parameter__'
+    subprocess.check_call([
+        sys.executable,
+        os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
+        UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
+        PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
+        ITYPE, LOG_FILE, CLIENTS])
+
 
     try:
         os.chdir(INSTANCE_HOME)

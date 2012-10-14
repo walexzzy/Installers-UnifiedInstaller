@@ -13,6 +13,6 @@ init_scripts/MSWebPI/web-pi.xml
 init_scripts/MSWebPI/*.msdeploy/MANIFEST
 init_scripts/MSWebPI/*.msdeploy/Manifest.xml
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/zinstance
-init_scripts/MSWebPI/Include/
-init_scripts/MSWebPI/Lib/
-init_scripts/MSWebPI/Scripts/
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Include/
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Lib/
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Scripts/

@@ -5,10 +5,10 @@ import shutil
 
 
 def main():
-    PLONE_HOME = os.path.abspath(os.path.dirname(__file__))
-    UIDIR = os.path.dirname(os.path.dirname(PLONE_HOME))
-    INSTANCE_HOME = os.path.join(
-        UIDIR, 'init_scripts', 'MSWebPI', 'Plone.msdeploy', 'zinstance')
+    CWD = os.getcwd()
+    UIDIR = os.path.dirname(os.path.dirname(os.path.abspath(CWD)))
+    PLONE_HOME = os.path.join(CWD, 'Plone.msdeploy', 'PloneApp')
+    INSTANCE_HOME = os.path.join(PLONE_HOME, 'zinstance')
     CLIENT_USER = os.environ['USERNAME']
     ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = "0"
     RUN_BUILDOUT = "0"

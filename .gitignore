@@ -11,7 +11,7 @@ Plone-docs
 *.bz2
 init_scripts/MSWebPI/*.msdeploy/MANIFEST
 init_scripts/MSWebPI/*.msdeploy/Manifest.xml
-init_scripts/MSWebPI/*.msdeploy/zinstance
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/zinstance
 init_scripts/MSWebPI/Include/
 init_scripts/MSWebPI/Lib/
 init_scripts/MSWebPI/Scripts/

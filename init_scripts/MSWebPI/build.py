@@ -9,8 +9,8 @@ def main():
     INSTANCE_HOME = os.path.join(
         UIDIR, 'init_scripts', 'MSWebPI', 'Plone.msdeploy', 'zinstance')
     CLIENT_USER = os.environ['USERNAME']
-    ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = 0
-    RUN_BUILDOUT = 1
+    ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = "0"
+    RUN_BUILDOUT = "1"
     INSTALL_LXML = "no"
     ITYPE = "standalone"
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')

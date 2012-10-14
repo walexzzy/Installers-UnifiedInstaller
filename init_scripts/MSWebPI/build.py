@@ -14,10 +14,9 @@ def main():
     >cd Plone.msdeploy\PloneApp
     >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
     """
-    CWD = os.getcwd()
     UIDIR = os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__))))
-    PLONE_HOME = CWD
+    PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join(PLONE_HOME, 'zinstance')
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
@@ -39,11 +38,7 @@ def main():
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
                          'iiswsgi_deploy.exe'), '-vvis']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
-    try:
-        os.chdir(PLONE_HOME)
-        subprocess.check_call(args)
-    finally:
-        os.chdir(CWD)
+    subprocess.check_call(args)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

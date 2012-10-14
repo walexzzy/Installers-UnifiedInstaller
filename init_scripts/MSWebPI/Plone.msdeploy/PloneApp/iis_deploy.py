@@ -12,10 +12,12 @@ def main():
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
     CLIENT_USER = os.environ['USERNAME']
-    ZEO_USER = ROOT_INSTALL = OFFLINE = CLIENTS = "0"
+    ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
     RUN_BUILDOUT = "0"
     INSTALL_LXML = "no"
-    ITYPE = "standalone"
+    ITYPE = ("__webpi_zeo_parameter__".lower() == "true" and "cluster"
+             or "standalone")
+    CLIENTS = int('__webpi_clients_parameter__')
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
 
     PASSWORD = '__webpi_password_parameter__'
@@ -25,7 +27,6 @@ def main():
         UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
         PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
         ITYPE, LOG_FILE, CLIENTS])
-
 
     try:
         os.chdir(INSTANCE_HOME)

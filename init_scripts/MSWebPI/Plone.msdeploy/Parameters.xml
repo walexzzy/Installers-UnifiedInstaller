@@ -8,4 +8,36 @@
     <parameterEntry kind="ProviderPath" scope="iisApp" match="PloneApp" />
   </parameter>
 
+  <parameter 
+      name="password"
+      friendlyName="Admin password"
+      description="Enter a password for the 'admin' user."
+      tags="New,Password">
+    <!-- At least 5 characters -->
+    <parameterValidation type="RegularExpression" validationString=".{5,}" />
+    <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
+                    match="__webpi_password_parameter__" />
+  </parameter>
+
+  <parameter 
+      name="zeo"
+      friendlyName="ZEO cluster?"
+      description="If 'True', a ZEO service will be installed and the Zope instance(s) will connect to it.  Otherwise, a standalon Zope instance will be created."
+      defaultValue="False">
+    <parameterValidation type="Boolean" />
+    <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
+                    match="__webpi_zeo_parameter__" />
+  </parameter>
+  
+  <parameter 
+      name="clients"
+      friendlyName="Zope client count?"
+      description="Use with the 'zeo' install method to specify the number of Zope clients you wish to create. Default is 2."
+      defaultValue="2">
+    <!-- Integer >= 1 -->
+    <parameterValidation type="RegularExpression" validationString="[1-9][0-9]*" />
+    <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
+                    match="__webpi_clients_parameter__" />
+  </parameter>
+  
 </parameters>

@@ -19,3 +19,5 @@ init_scripts/MSWebPI/Plone.msdeploy/PloneApp/helper_scripts/
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Include/
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Lib/
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/Scripts/
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/iis_deploy.stamp
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/web.config

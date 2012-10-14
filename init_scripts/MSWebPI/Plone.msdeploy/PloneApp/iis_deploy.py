@@ -17,7 +17,7 @@ def main():
     INSTALL_LXML = "no"
     ITYPE = ("__webpi_zeo_parameter__".lower() == "true" and "cluster"
              or "standalone")
-    CLIENTS = int('__webpi_clients_parameter__')
+    CLIENTS = "1"  # IIS controls number of instances
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
 
     PASSWORD = '__webpi_password_parameter__'

@@ -32,11 +32,13 @@
   <parameter 
       name="clients"
       friendlyName="Zope client count?"
-      description="Use with the 'zeo' install method to specify the number of Zope clients you wish to create. Default is 2."
-      defaultValue="2">
+      description="Use with the 'zeo' install method to specify the number of Zope clients you wish to create. Default is 1."
+      defaultValue="1">
+    <!-- TODO default should be 2 for ZEO, but maxInstances must be 1
+         for standalone -->
     <!-- Integer >= 1 -->
     <parameterValidation type="RegularExpression" validationString="[1-9][0-9]*" />
-    <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
+    <parameterEntry kind="TextFile" scope="\\web\.config$"
                     match="__webpi_clients_parameter__" />
   </parameter>
   

@@ -9,7 +9,7 @@
           fullPath="{APPL_PHYSICAL_PATH}\Scripts\python.exe"
           arguments="-u &quot;{APPL_PHYSICAL_PATH}\Scripts\iiswsgi-script.py&quot; -vv -c &quot;{APPL_PHYSICAL_PATH}\TODO.ini&quot;"
           monitorChangesTo="{APPL_PHYSICAL_PATH}\TODO.ini"
-          maxInstances="1" />
+          maxInstances="__webpi_clients_parameter__" />
     </fastCgi>
     <security>
       <requestFiltering allowDoubleEscaping="true">

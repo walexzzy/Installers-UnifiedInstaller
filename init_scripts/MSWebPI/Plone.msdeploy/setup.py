@@ -8,9 +8,9 @@ except ImportError:
 
 version = '0.1'
 
-setup(name='PyramidApp',
+setup(name='PloneApp',
       version=version,
-      description="""Pyramid application project.""",
+      description="""Plone application project.""",
       classifiers=[
         "Environment :: Web Environment",
         "License :: OSI Approved :: GNU General Public License (GPL)",
@@ -18,10 +18,10 @@ setup(name='PyramidApp',
         "Programming Language :: Python",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         ],
-      keywords='python Pyramid IIS FastCGI WSGI',
-      author='Ross Patterson',
-      author_email='me@rpatterson.net',
-      url='http://www.pylonsproject.org/projects/pyramid/about',
+      keywords='python Plone IIS FastCGI WSGI',
+      author='Plone Foundation',
+      author_email='board@plone.org',
+      url='http://plone.org',
       license='GPL version 3',
       # TODO get the custom commands to work without iiswsgi installed
       # in the python

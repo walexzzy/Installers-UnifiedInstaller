@@ -6,4 +6,5 @@ include PloneApp/iis_deploy.py
 include PloneApp/iis_deploy.stamp
 
 recursive-include PloneApp/buildout-cache/eggs *
-recursive-exclude PloneApp/buildout-cache/eggs *.pyc *.pyo
+
+global-exclude *.pyc *.pyo *~

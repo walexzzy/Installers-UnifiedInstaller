@@ -4,6 +4,7 @@ import sys
 import os
 import subprocess
 import logging
+import pprint
 
 logger = logging.getLogger('plone.iiswsgi')
 
@@ -25,17 +26,24 @@ def main():
         ITYPE = "standalone"
         INSTANCE_HOME = os.path.join('zinstance')
 
-    subprocess.check_call([
-        sys.executable,
-        os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
-        UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
-        PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
-        ITYPE, LOG_FILE, CLIENTS])
+    args = [sys.executable,
+            os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
+            UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
+            PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
+            ITYPE, LOG_FILE, CLIENTS]
+    logger.info('Creating the buildout: {0}'.format(' '.join(args)))
+    subprocess.check_call(args)
 
     try:
         os.chdir(INSTANCE_HOME)
-        subprocess.check_call([sys.executable, 'bootstrap.py', '-d'])
-        subprocess.check_call([os.path.join('bin', 'buildout.exe'), '-N'])
+
+        args = [sys.executable, 'bootstrap.py', '-d']
+        logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
+        subprocess.check_call(args)
+
+        args = [os.path.join('bin', 'buildout.exe'), '-N']
+        logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
+        subprocess.check_call(args)
     finally:
         os.chdir(CWD)
 

@@ -15,12 +15,16 @@ def main():
     ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
     RUN_BUILDOUT = "0"
     INSTALL_LXML = "no"
-    ITYPE = ("__webpi_zeo_parameter__".lower() == "true" and "cluster"
-             or "standalone")
     CLIENTS = "1"  # IIS controls number of instances
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
-
     PASSWORD = '__webpi_password_parameter__'
+
+    ITYPE = "cluster"
+    INSTANCE_HOME = os.path.join('zeocluster')
+    if "__webpi_zeo_parameter__".lower() == "false":
+        ITYPE = "standalone"
+        INSTANCE_HOME = os.path.join('zinstance')
+
     subprocess.check_call([
         sys.executable,
         os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),

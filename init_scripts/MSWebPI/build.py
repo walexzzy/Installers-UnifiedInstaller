@@ -25,6 +25,9 @@ def main():
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
+    environ = os.environ.copy()
+    environ['APPL_PHYSICAL_PATH'] = PLONE_HOME
+
     for path in ('base_skeleton', 'buildout_templates', 'helper_scripts'):
         if os.path.exists(path):
             logger.info('Deleting old UI directory: {0}'.format(path))
@@ -49,7 +52,7 @@ def main():
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
                          'iiswsgi_deploy.exe'), '-vvis']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
-    subprocess.check_call(args)
+    subprocess.check_call(args, env=environ)
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',

@@ -1,7 +1,8 @@
-include PloneApp/*.py
-
 include Manifest.xml
 include Parameters.xml
 include PloneApp/web.config.in
 include PloneApp/requirements.txt
 include PloneApp/iis_deploy.stamp
+
+recursive-include PloneApp/buildout-cache/eggs *
+recursive-exclude PloneApp/buildout-cache/eggs *.pyc *.pyo

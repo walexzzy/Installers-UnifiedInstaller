@@ -1,1 +1,2 @@
 iiswsgi
+https://bitbucket.org/lrowe/infrae.wsgi/get/2.0.zip

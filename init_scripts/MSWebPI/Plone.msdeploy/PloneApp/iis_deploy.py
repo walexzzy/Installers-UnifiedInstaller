@@ -21,10 +21,16 @@ def main():
     PASSWORD = '__webpi_password_parameter__'
 
     ITYPE = "cluster"
+    PART = 'client1'
     INSTANCE_HOME = os.path.join('zeocluster')
     if "__webpi_zeo_parameter__".lower() == "false":
         ITYPE = "standalone"
+        PART = 'instance'
         INSTANCE_HOME = os.path.join('zinstance')
+
+    logger.info('Perform web.config substitutions')
+    logger.debug('locals():\n{0}'.format(pprint.pformat(locals())))
+    open('web.config', 'w').write(open('web.config').read().format(**locals()))
 
     args = [sys.executable,
             os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),

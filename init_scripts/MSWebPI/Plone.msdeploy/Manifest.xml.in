@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <msDeploy.iisApp>
-  <iisApp path="PyramidApp" />
+  <iisApp path="PloneApp" />
   <runCommand
       path="%SystemDrive%\Python27\Scripts\iiswsgi_deploy.exe -vv"
       waitAttempts="10" waitInterval="60000" successReturnCodes="0x0"

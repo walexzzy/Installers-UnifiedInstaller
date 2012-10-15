@@ -26,6 +26,7 @@ def main():
     if "__webpi_zeo_parameter__".lower() == "false":
         ITYPE = "standalone"
         PART = 'instance'
+        PART  # pyflakes, used in web.config
         INSTANCE_HOME = os.path.join('zinstance')
 
     logger.info('Perform web.config substitutions')

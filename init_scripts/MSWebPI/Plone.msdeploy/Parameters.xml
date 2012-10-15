@@ -38,7 +38,7 @@
          for standalone -->
     <!-- Integer >= 1 -->
     <parameterValidation type="RegularExpression" validationString="[1-9][0-9]*" />
-    <parameterEntry kind="TextFile" scope="\\web\.config$"
+    <parameterEntry kind="TextFile" scope="\\web\.config\.in$"
                     match="__webpi_clients_parameter__" />
   </parameter>
   

@@ -27,6 +27,10 @@ def main():
 
     >cd Plone.msdeploy\PloneApp
     >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
+
+    Since the Unified installer and buildout-cache layouts can result
+    in deep paths, it is best to place the UI checkout at the root of
+    a drive.
     """
     WEBPI_DIR = os.path.dirname(os.path.abspath(__file__))
     UIDIR = os.path.dirname(os.path.dirname(WEBPI_DIR))

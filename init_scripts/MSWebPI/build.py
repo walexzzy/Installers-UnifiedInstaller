@@ -66,14 +66,14 @@ def main():
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
-                         'iiswsgi_deploy.exe'), '-vvis']
+                         'iiswsgi_deploy.exe'), '-vis']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     subprocess.check_call(args, env=environ)
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
                          'iiswsgi_build.exe'),
-            '-vv', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
+            '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
             os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)

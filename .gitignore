@@ -13,6 +13,7 @@ init_scripts/MSWebPI/web-pi.xml
 init_scripts/MSWebPI/*.msdeploy/MANIFEST
 init_scripts/MSWebPI/*.msdeploy/Manifest.xml
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/zinstance
+init_scripts/MSWebPI/Plone.msdeploy/PloneApp/zeocluster
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/base_skeleton/
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/buildout_templates/
 init_scripts/MSWebPI/Plone.msdeploy/PloneApp/helper_scripts/

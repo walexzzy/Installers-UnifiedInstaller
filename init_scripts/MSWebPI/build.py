@@ -75,9 +75,14 @@ def main():
     subprocess.check_call(args, env=environ)
 
     # Assumes sys.executable is a system python with iiswsgi installed
+    GITHUB_EXAMPLES = os.path.join(
+        os.environ['USERPROFILE'], 'Documents', 'GitHub', 'iiswsgi',
+        'examples')
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
                          'iiswsgi_build.exe'),
             '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
+            os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
+            os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
             os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)

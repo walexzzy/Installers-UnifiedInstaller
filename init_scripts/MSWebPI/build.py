@@ -11,6 +11,16 @@ logger = logging.getLogger('Plone.UnifiedInstaller')
 lxml_url = 'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg'
 
 
+def download_url(url, file):
+    req = urllib2.urlopen(url)
+    CHUNK = 16 * 1024
+    with open(file, 'wb') as fp:
+        chunk = req.read(CHUNK)
+        while chunk:
+            fp.write(chunk)
+            chunk = req.read(CHUNK)
+
+
 def main():
     """
     Expects to be run with the system python in the PloneApp directory.
@@ -45,8 +55,11 @@ def main():
     lxml_egg = os.path.join(
         BUILDOUT_DIST,
         urlparse.urlsplit(lxml_url).path.rsplit('/', 1)[-1])
-    if not os.path.exists(lxml_egg):
-        open(lxml_egg, 'w').write(urllib2.urlopen(lxml_url).read())
+    if os.path.exists(lxml_egg):
+        logger.info('Deleting old lxml binary egg: {0}'.format(lxml_egg))
+        os.remove(lxml_egg)
+    logger.info('Downloading lxml binary egg: {0}'.format(lxml_url))
+    download_url(lxml_url, lxml_egg)
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',

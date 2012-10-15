@@ -1,7 +1,7 @@
-include PyramidApp/*.py
+include PloneApp/*.py
 
 include Manifest.xml
 include Parameters.xml
-include PyramidApp/web.config.in
-include PyramidApp/requirements.txt
-include PyramidApp/iis_deploy.stamp
+include PloneApp/web.config.in
+include PloneApp/requirements.txt
+include PloneApp/iis_deploy.stamp

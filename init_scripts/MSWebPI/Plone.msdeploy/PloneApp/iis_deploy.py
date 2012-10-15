@@ -44,6 +44,13 @@ def main():
         args = [os.path.join('bin', 'buildout.exe'), '-N']
         logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
+
+        if ITYPE == 'cluster':
+            args = [os.path.join('bin', 'zeoserver_service.exe'),
+                    '--startup', 'auto', 'install']
+            logger.info('Installing and starting the ZEO service: {0}'.format(
+                ' '.join(args)))
+            subprocess.check_call(args)
     finally:
         os.chdir(CWD)
 

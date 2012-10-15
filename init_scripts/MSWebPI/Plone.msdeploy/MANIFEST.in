@@ -5,6 +5,14 @@ include PloneApp/requirements.txt
 include PloneApp/iis_deploy.py
 include PloneApp/iis_deploy.stamp
 
+include PloneApp/base_skeleton/*
+include PloneApp/base_skeleton/products/README.*
+include PloneApp/base_skeleton/src/README.*
+include PloneApp/base_skeleton/var/README.*
+
+recursive-include PloneApp/buildout_templates *
+recursive-include PloneApp/helper_scripts *.py *.txt
+
 recursive-include PloneApp/buildout-cache/eggs *
 
 global-exclude *.pyc *.pyo *~

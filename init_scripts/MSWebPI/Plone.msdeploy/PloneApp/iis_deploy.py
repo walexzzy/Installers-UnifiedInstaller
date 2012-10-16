@@ -58,7 +58,11 @@ def main():
         if ITYPE == 'cluster':
             args = [os.path.join('bin', 'zeoserver_service.exe'),
                     '--startup', 'auto', 'install']
-            logger.info('Installing and starting the ZEO service: {0}'.format(
+            logger.info('Installing the ZEO service: {0}'.format(
+                ' '.join(args)))
+            subprocess.check_call(args)
+            args = [os.path.join('bin', 'zeoserver_service.exe'), 'start']
+            logger.info('Starting the ZEO service: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)
     finally:

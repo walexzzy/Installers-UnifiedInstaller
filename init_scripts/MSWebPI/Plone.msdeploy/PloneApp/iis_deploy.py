@@ -33,13 +33,16 @@ def main():
     logger.debug('locals():\n{0}'.format(pprint.pformat(locals())))
     open('web.config', 'w').write(open('web.config').read().format(**locals()))
 
-    args = [sys.executable,
-            os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
-            UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
-            PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
-            ITYPE, LOG_FILE, CLIENTS]
-    logger.info('Creating the buildout: {0}'.format(' '.join(args)))
-    subprocess.check_call(args)
+    if not os.path.exists(INSTANCE_HOME):
+        args = [sys.executable,
+                os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
+                UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
+                PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
+                ITYPE, LOG_FILE, CLIENTS]
+        logger.info('Creating the buildout: {0}'.format(' '.join(args)))
+        subprocess.check_call(args)
+    else:
+        logger.warn('The buildout already exists: {0}'.format(INSTANCE_HOME))
 
     try:
         os.chdir(INSTANCE_HOME)

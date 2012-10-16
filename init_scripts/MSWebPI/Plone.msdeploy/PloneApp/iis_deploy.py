@@ -33,7 +33,8 @@ def main():
 
     logger.info('Perform web.config substitutions')
     logger.debug('locals():\n{0}'.format(pprint.pformat(locals())))
-    open('web.config', 'w').write(open('web.config').read().format(**locals()))
+    web_config = open('web.config').read()
+    open('web.config', 'w').write(web_config.format(**locals()))
 
     if not os.path.exists(BUILDOUT_DIST):
         os.makedirs(BUILDOUT_DIST)

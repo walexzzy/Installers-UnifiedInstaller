@@ -14,7 +14,8 @@
           fullPath="{APPL_PHYSICAL_PATH}\Scripts\python.exe"
           arguments="-u &quot;{APPL_PHYSICAL_PATH}\{{INSTANCE_HOME}}\bin\iiswsgi-script.py&quot; -vv -c &quot;{APPL_PHYSICAL_PATH}\{{INSTANCE_HOME}}\development.ini&quot;"
           monitorChangesTo="{APPL_PHYSICAL_PATH}\{{INSTANCE_HOME}}\development.ini"
-          maxInstances="__webpi_clients_parameter__" />
+          maxInstances="__webpi_clients_parameter__"
+          activityTimeout="600" requestTimeout="600" idleTimeout="604800" />
     </fastCgi>
     <security>
       <requestFiltering allowDoubleEscaping="true">

@@ -19,6 +19,8 @@ def main():
     CLIENTS = "1"  # IIS controls number of instances
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
     PASSWORD = '__webpi_password_parameter__'
+    BUILDOUT_DIST = os.path.join(
+        PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
     ITYPE = "cluster"
     PART = 'client1'
@@ -32,6 +34,9 @@ def main():
     logger.info('Perform web.config substitutions')
     logger.debug('locals():\n{0}'.format(pprint.pformat(locals())))
     open('web.config', 'w').write(open('web.config').read().format(**locals()))
+
+    if not os.path.exists(BUILDOUT_DIST):
+        os.makedirs(BUILDOUT_DIST)
 
     if not os.path.exists(INSTANCE_HOME):
         args = [sys.executable,

@@ -37,8 +37,6 @@ def main():
     PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join(PLONE_HOME, 'zeocluster')
     STANDALONE_HOME = os.path.join(PLONE_HOME, 'zinstance')
-    BUILDOUT_DIST = os.path.join(
-        PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
     environ = os.environ.copy()
     environ['APPL_PHYSICAL_PATH'] = PLONE_HOME
@@ -55,8 +53,6 @@ def main():
     if os.path.exists(STANDALONE_HOME):
         shutil.rmtree(STANDALONE_HOME)
 
-    if not os.path.exists(BUILDOUT_DIST):
-        os.makedirs(BUILDOUT_DIST)
     # Manually add binary lxml egg since buildout doesn't seem to use
     # it even with find-links
     lxml_egg = os.path.join(

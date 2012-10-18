@@ -6,6 +6,8 @@ import subprocess
 import logging
 import pprint
 
+from iiswsgi import options
+
 logger = logging.getLogger('plone.iiswsgi')
 
 
@@ -57,17 +59,18 @@ def main():
         logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
-        args = [os.path.join('bin', 'buildout.exe'), '-N']
+        args = [os.path.join(
+            options.scripts_name, 'buildout' + options.script_ext), '-N']
         logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
         if ITYPE == 'cluster':
-            args = [os.path.join('bin', 'zeoserver_service.exe'),
-                    '--startup', 'auto', 'install']
+            service_script = options.get_script_path('zeoserver_service')
+            args = [service_script, '--startup', 'auto', 'install']
             logger.info('Installing the ZEO service: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)
-            args = [os.path.join('bin', 'zeoserver_service.exe'), 'start']
+            args = [service_script, 'start']
             logger.info('Starting the ZEO service: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)

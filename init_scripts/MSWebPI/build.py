@@ -65,8 +65,7 @@ def main():
     download_url(lxml_url, lxml_egg)
 
     # Assumes sys.executable is a system python with iiswsgi installed
-    args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
-                         'iiswsgi_deploy.exe'), '-vis']
+    args = [options.get_script_path('iiswsgi_deploy'), '-vis']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     subprocess.check_call(args, env=environ)
 
@@ -74,8 +73,7 @@ def main():
     GITHUB_EXAMPLES = os.path.join(
         os.environ['USERPROFILE'], 'Documents', 'GitHub', 'iiswsgi',
         'examples')
-    args = [os.path.join(os.path.dirname(sys.executable), 'Scripts',
-                         'iiswsgi_build.exe'),
+    args = [options.get_script_path('iiswsgi_build'),
             '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
             os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),

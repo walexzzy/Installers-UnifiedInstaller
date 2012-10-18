@@ -14,7 +14,10 @@ logger = logging.getLogger('plone.iiswsgi')
 def main():
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
-    CLIENT_USER = os.environ['USERNAME']
+    CLIENT_USER = os.environ.get('USERNAME')
+    if CLIENT_USER is None:
+        # Non-Windows compat for testing
+        CLIENT_USER = os.environ['USER']
     ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
     RUN_BUILDOUT = "0"
     INSTALL_LXML = "no"
@@ -66,14 +69,18 @@ def main():
 
         if ITYPE == 'cluster':
             service_script = options.get_script_path('zeoserver_service')
-            args = [service_script, '--startup', 'auto', 'install']
-            logger.info('Installing the ZEO service: {0}'.format(
-                ' '.join(args)))
-            subprocess.check_call(args)
-            args = [service_script, 'start']
-            logger.info('Starting the ZEO service: {0}'.format(
-                ' '.join(args)))
-            subprocess.check_call(args)
+            if os.path.exists(service_script):
+                args = [service_script, '--startup', 'auto', 'install']
+                logger.info('Installing the ZEO service: {0}'.format(
+                    ' '.join(args)))
+                subprocess.check_call(args)
+                args = [service_script, 'start']
+                logger.info('Starting the ZEO service: {0}'.format(
+                    ' '.join(args)))
+                subprocess.check_call(args)
+            else:
+                logger.error('ZEO service script does not exist: {0}'.format(
+                                 service_script))
     finally:
         os.chdir(CWD)
 

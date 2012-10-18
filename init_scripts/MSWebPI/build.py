@@ -6,6 +6,8 @@ import logging
 import urllib2
 import urlparse
 
+from iiswsgi import options
+
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
 lxml_url = 'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg'

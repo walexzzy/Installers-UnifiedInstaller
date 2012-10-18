@@ -81,6 +81,11 @@ def main():
             else:
                 logger.error('ZEO service script does not exist: {0}'.format(
                                  service_script))
+
+            args = [options.get_script_path('iiswsgi'), '--test']
+            logger.info('Testing the Zope instance: {0}'.format(
+                ' '.join(args)))
+            subprocess.check_call(args)
     finally:
         os.chdir(CWD)
 

@@ -12,7 +12,7 @@ from iiswsgi import deploy
 logger = logging.getLogger('plone.iiswsgi')
 
 
-def main():
+def main(install_fcgi_app=True):
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
     CLIENT_USER = os.environ.get('USERNAME')
@@ -38,7 +38,8 @@ def main():
         INSTANCE_HOME = os.path.join('zinstance')
 
     logger.info('Delegate to `iiswsgi.deploy` for the normal deployment')
-    deployer = deploy.Deployer('PloneApp')
+    deployer = deploy.Deployer(app_name='PloneApp',
+                               install_fcgi_app=install_fcgi_app)
     deployer.deploy(**locals())
 
     if not os.path.exists(BUILDOUT_DIST):
@@ -93,4 +94,5 @@ def main():
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    main()
+    args, remaining = deploy.deploy_parser.parse_known_args()
+    main(args.install_fcgi_app)

@@ -37,7 +37,7 @@ def main(install_fcgi_app=True):
         PART  # pyflakes, used in web.config
         INSTANCE_HOME = os.path.join('zinstance')
 
-    logger.info('Delegate to `iiswsgi.deploy` for the normal deployment')
+    logger.info('Delegate to "iiswsgi.deploy" for the normal deployment')
     deployer = deploy.Deployer(app_name='PloneApp',
                                install_fcgi_app=install_fcgi_app)
     deployer.deploy(**locals())

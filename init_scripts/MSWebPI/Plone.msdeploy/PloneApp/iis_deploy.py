@@ -64,14 +64,13 @@ def main(install_fcgi_app=True):
         logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
-        args = [os.path.join(
-            options.scripts_name, 'buildout' + options.script_ext), '-N']
+        args = [os.path.join('bin', 'buildout' + options.script_ext), '-N']
         logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
         if ITYPE == 'cluster':
             service_script = os.path.join(
-                options.scripts_name, 'zeoserver_service' + options.script_ext)
+                'bin', 'zeoserver_service' + options.script_ext)
             if os.path.exists(service_script):
                 args = [service_script, '--startup', 'auto', 'install']
                 logger.info('Installing the ZEO service: {0}'.format(
@@ -86,7 +85,7 @@ def main(install_fcgi_app=True):
                                  service_script))
 
             args = [os.path.join(
-            options.scripts_name, 'iiswsgi' + options.script_ext), '--test']
+                'bin', 'iiswsgi' + options.script_ext), '--test']
             logger.info('Testing the Zope WSGI app: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)

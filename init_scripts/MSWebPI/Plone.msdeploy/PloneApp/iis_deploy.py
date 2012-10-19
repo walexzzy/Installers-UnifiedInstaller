@@ -7,6 +7,7 @@ import logging
 import pprint
 
 from iiswsgi import options
+from iiswsgi import deploy
 
 logger = logging.getLogger('plone.iiswsgi')
 
@@ -36,10 +37,9 @@ def main():
         PART  # pyflakes, used in web.config
         INSTANCE_HOME = os.path.join('zinstance')
 
-    logger.info('Perform web.config substitutions')
-    logger.debug('locals():\n{0}'.format(pprint.pformat(locals())))
-    web_config = open('web.config').read()
-    open('web.config', 'w').write(web_config.format(**locals()))
+    logger.info('Delegate to `iiswsgi.deploy` for the normal deployment')
+    deployer = deploy.Deployer('PloneApp')
+    deployer.deploy(**locals())
 
     if not os.path.exists(BUILDOUT_DIST):
         os.makedirs(BUILDOUT_DIST)

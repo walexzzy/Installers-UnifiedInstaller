@@ -83,7 +83,7 @@ def main():
                                  service_script))
 
             args = [options.get_script_path('iiswsgi'), '--test']
-            logger.info('Testing the Zope instance: {0}'.format(
+            logger.info('Testing the Zope WSGI app: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)
     finally:

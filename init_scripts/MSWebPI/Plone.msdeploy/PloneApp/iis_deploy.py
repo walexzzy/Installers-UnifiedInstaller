@@ -46,7 +46,7 @@ def main(install_fcgi_app=True):
         os.makedirs(BUILDOUT_DIST)
 
     if not os.path.exists(INSTANCE_HOME):
-        args = [sys.executable,
+        args = [deployer.executable,
                 os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
                 UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
                 PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,

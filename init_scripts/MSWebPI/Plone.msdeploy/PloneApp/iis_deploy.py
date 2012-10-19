@@ -68,7 +68,8 @@ def main():
         subprocess.check_call(args)
 
         if ITYPE == 'cluster':
-            service_script = options.get_script_path('zeoserver_service')
+            service_script = os.path.join(
+                options.scripts_name, 'zeoserver_service' + options.script_ext)
             if os.path.exists(service_script):
                 args = [service_script, '--startup', 'auto', 'install']
                 logger.info('Installing the ZEO service: {0}'.format(
@@ -82,7 +83,8 @@ def main():
                 logger.error('ZEO service script does not exist: {0}'.format(
                                  service_script))
 
-            args = [options.get_script_path('iiswsgi'), '--test']
+            args = [os.path.join(
+            options.scripts_name, 'iiswsgi' + options.script_ext), '--test']
             logger.info('Testing the Zope WSGI app: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)

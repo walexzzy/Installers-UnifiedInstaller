@@ -59,7 +59,8 @@ def main(install_fcgi_app=True):
     try:
         os.chdir(INSTANCE_HOME)
 
-        args = [sys.executable, 'bootstrap.py', '-d']
+        args = [options.get_script_path(
+                'buildout', deployer.executable), 'bootstrap', '-d']
         logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 

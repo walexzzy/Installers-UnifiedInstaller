@@ -3,24 +3,15 @@ import os
 import subprocess
 import shutil
 import logging
-import urllib2
-import urlparse
 
 from iiswsgi import options
+from iiswsgi import deploy
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
-lxml_url = 'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg'
-
-
-def download_url(url, file):
-    req = urllib2.urlopen(url)
-    CHUNK = 16 * 1024
-    with open(file, 'wb') as fp:
-        chunk = req.read(CHUNK)
-        while chunk:
-            fp.write(chunk)
-            chunk = req.read(CHUNK)
+requirements = (
+    'http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe',
+    'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg')
 
 
 def main():
@@ -69,16 +60,9 @@ def main():
         logger.info('Deleting existing buildout: {0}'.format(buildout))
         shutil.rmtree(buildout)
 
-    # Manually add binary lxml egg since buildout doesn't seem to use
-    # it even with find-links
-    lxml_egg = os.path.join(
-        BUILDOUT_DIST,
-        urlparse.urlsplit(lxml_url).path.rsplit('/', 1)[-1])
-    if os.path.exists(lxml_egg):
-        logger.info('Deleting old lxml binary egg: {0}'.format(lxml_egg))
-        os.remove(lxml_egg)
-    logger.info('Downloading lxml binary egg: {0}'.format(lxml_url))
-    download_url(lxml_url, lxml_egg)
+    deployer = deploy.Deployer(app_name='PloneApp')
+    deployer.setup_virtualenv()
+    deployer.easy_install_requirements(requirements=requirements)
 
     # Assumes sys.executable is a system python with iiswsgi installed
     args = [sys.executable, 'iis_deploy.py', '-v', '-isd']

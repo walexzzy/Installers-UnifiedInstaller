@@ -1,3 +1,6 @@
 iiswsgi
 nt_svcutils
-http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe
+pywin32
+ntfsutils
+lxml==2.3.4
+zc.buildout==1.4.4

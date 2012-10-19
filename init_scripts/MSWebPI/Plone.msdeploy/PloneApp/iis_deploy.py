@@ -36,8 +36,10 @@ def main(install_fcgi_app=True):
         INSTANCE_HOME = os.path.join('zinstance')
 
     logger.info('Delegate to "iiswsgi.deploy" for the normal deployment')
-    deployer = deploy.Deployer(app_name='PloneApp',
-                               install_fcgi_app=install_fcgi_app)
+    deployer = deploy.Deployer(
+        app_name='PloneApp', install_fcgi_app=install_fcgi_app,
+        find_links=(
+            os.path.join(PLONE_HOME, 'buildout-cache', 'eggs'),))
     deployer.deploy(**locals())
 
     if not os.path.exists(BUILDOUT_DIST):

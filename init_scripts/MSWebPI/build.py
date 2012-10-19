@@ -50,10 +50,24 @@ def main():
         logger.info('Copying UI directory: {0}'.format(path))
         shutil.copytree(os.path.join(UIDIR, path), path)
 
-    if os.path.exists(INSTANCE_HOME):
-        shutil.rmtree(INSTANCE_HOME)
-    if os.path.exists(STANDALONE_HOME):
-        shutil.rmtree(STANDALONE_HOME)
+    for buildout in (INSTANCE_HOME, STANDALONE_HOME):
+        if not os.path.exists(buildout):
+            continue
+        if os.path.exists(os.path.join(buildout, 'parts', 'omelette')):
+            # Have to clean up ntfsutils.junction links before
+            # removing the tree or egg contents will be deleted
+            try:
+                os.chdir(INSTANCE_HOME)
+                args = [os.path.join(
+                    'bin', 'buildout' + options.script_ext), '-N']
+                logger.info(
+                    'Running non-development buildout to cleanup omelette: {0}'
+                    .format(' '.join(args)))
+                subprocess.check_call(args)
+            finally:
+                os.chdir(PLONE_HOME)
+        logger.info('Deleting existing buildout: {0}'.format(buildout))
+        shutil.rmtree(buildout)
 
     # Manually add binary lxml egg since buildout doesn't seem to use
     # it even with find-links

@@ -67,7 +67,7 @@ def main():
     download_url(lxml_url, lxml_egg)
 
     # Assumes sys.executable is a system python with iiswsgi installed
-    args = [options.get_script_path('iiswsgi_deploy'), '-visd']
+    args = [options.get_script_path('iiswsgi_deploy'), '-v', '-isd']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     subprocess.check_call(args, env=environ)
 

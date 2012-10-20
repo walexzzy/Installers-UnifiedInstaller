@@ -35,6 +35,12 @@ def main(install_fcgi_app=True):
         PART  # pyflakes, used in web.config
         INSTANCE_HOME = os.path.join('zinstance')
 
+    BUILDOUT_CFG = 'develop.cfg'
+    WSGI_CONFIG = 'development.ini'
+    if "__webpi_develop_parameter__".lower() == "false":
+        BUILDOUT_CFG = 'buildout.cfg'
+        WSGI_CONFIG = 'production.ini'
+
     logger.info('Delegate to "iiswsgi.deploy" for the normal deployment')
     deployer = deploy.Deployer(
         app_name='PloneApp', install_fcgi_app=install_fcgi_app,
@@ -64,7 +70,8 @@ def main(install_fcgi_app=True):
         logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
-        args = [os.path.join('bin', 'buildout' + options.script_ext), '-N']
+        args = [os.path.join('bin', 'buildout' + options.script_ext), '-N',
+                '-c', BUILDOUT_CFG]
         logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
@@ -84,8 +91,8 @@ def main(install_fcgi_app=True):
                 logger.error('ZEO service script does not exist: {0}'.format(
                                  service_script))
 
-            args = [os.path.join(
-                'bin', 'iiswsgi' + options.script_ext), '--test']
+            args = [os.path.join('bin', 'iiswsgi' + options.script_ext),
+                    '--test', '-c', WSGI_CONFIG]
             logger.info('Testing the Zope WSGI app: {0}'.format(
                 ' '.join(args)))
             subprocess.check_call(args)

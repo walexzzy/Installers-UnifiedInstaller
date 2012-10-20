@@ -41,5 +41,15 @@
     <parameterEntry kind="TextFile" scope="\\web\.config\.in$"
                     match="__webpi_clients_parameter__" />
   </parameter>
+
+  <parameter 
+      name="develop"
+      friendlyName="Development Tools?"
+      description="If `True`, include include various development tools."
+      defaultValue="True">
+    <parameterValidation type="Boolean" />
+    <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
+                    match="__webpi_buildout_parameter__" />
+  </parameter>
   
 </parameters>

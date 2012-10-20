@@ -61,7 +61,7 @@ def main():
         shutil.rmtree(buildout)
 
     deployer = deploy.Deployer(app_name='PloneApp')
-    deployer.setup_virtualenv()
+    deployer.executable = deployer.setup_virtualenv()
     deployer.easy_install_requirements(requirements=requirements)
 
     # Assumes sys.executable is a system python with iiswsgi installed

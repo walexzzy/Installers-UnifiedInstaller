@@ -45,7 +45,7 @@
     
     <updated>2012-03-25T13:22:48.440870</updated>
     <published>2012-03-25T13:22:48.440870</published>
-    <title resourceName="Entry_PloneApp_Title">Plone App</title>
+    <title resourceName="Entry_PloneApp_Title">Plone Application</title>
     <link href="http://plone.org"/>
     <!-- TODO Should be dynamic pulled from the `Project Summary` at:
          http://plone.org/products/plone -->

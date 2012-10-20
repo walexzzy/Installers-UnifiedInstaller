@@ -40,6 +40,7 @@ def main(install_fcgi_app=True):
     if "__webpi_develop_parameter__".lower() == "false":
         BUILDOUT_CFG = 'buildout.cfg'
         WSGI_CONFIG = 'production.ini'
+    WSGI_CONFIG  # pyflakes, used web.config
 
     logger.info('Delegate to "iiswsgi.deploy" for the normal deployment')
     deployer = deploy.Deployer(

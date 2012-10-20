@@ -1,7 +1,7 @@
 include Manifest.xml
 include Parameters.xml
 include PloneApp/web.config.in
-include PloneApp/requirements.txt
+include PloneApp/easy_install.txt
 include PloneApp/iis_deploy.py
 include PloneApp/iis_deploy.stamp
 

@@ -3,4 +3,4 @@ nt_svcutils
 pywin32
 ntfsutils
 lxml==2.3.4
-zc.buildout==1.4.4
+zc.buildout==1.6.3

@@ -13,7 +13,6 @@ import stat
 import subprocess
 import shutil
 import iniparse
-import platform
 import glob
 from cStringIO import StringIO
 

@@ -66,7 +66,7 @@ def main():
             # Have to clean up ntfsutils.junction links before
             # removing the tree or egg contents will be deleted
             try:
-                os.chdir(INSTANCE_HOME)
+                os.chdir(buildout)
                 args = [os.path.join(
                     'bin', 'buildout' + options.script_ext), '-N']
                 logger.info(

@@ -93,18 +93,6 @@ def main():
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     subprocess.check_call(args, env=environ)
 
-    try:
-        os.chdir(INSTANCE_HOME)
-
-        # Use the `develop.cfg` config to get all the eggs the install
-        args = [os.path.join('bin', 'buildout' + options.script_ext),
-                '-N', '-c', 'develop.cfg']
-        logger.info('Setting up the development buildout: {0}'.format(
-            ' '.join(args)))
-        subprocess.check_call(args)
-    finally:
-        os.chdir(PLONE_HOME)
-
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')

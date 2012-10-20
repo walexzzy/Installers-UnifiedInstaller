@@ -13,6 +13,7 @@ include PloneApp/base_skeleton/var/README.*
 recursive-include PloneApp/buildout_templates *
 recursive-include PloneApp/helper_scripts *.py *.txt
 
+recursive-include PloneApp/Lib/site-packages *
 recursive-include PloneApp/buildout-cache/eggs *
 
 global-exclude *.pyc *.pyo *~

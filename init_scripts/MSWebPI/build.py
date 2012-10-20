@@ -9,9 +9,9 @@ from iiswsgi import deploy
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
-requirements = (
-    'http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe',
-    'http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg')
+requirements = dict(
+    pywin='http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe',
+    lxml='http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg')
 
 
 def main():
@@ -86,7 +86,12 @@ def main():
     # Install dependencies that can't be found correctly by normal easy_install
     deployer = deploy.Deployer(app_name='PloneApp')
     deployer.executable = deployer.setup_virtualenv()
-    deployer.easy_install_requirements(requirements=requirements)
+    # TODO pywin32 install seems to fail every other time
+    reqs = tuple(
+        url for req, url in requirements.iteritems() if subprocess.call(
+            [deployer.executable, '-c', 'import {0}'.format(req)]))
+    if reqs:
+        deployer.easy_install_requirements(requirements=reqs)
 
     # Use iiswsgi deploy process to make sure the package has everything
     args = [sys.executable, 'iis_deploy.py', '-v', '-isd']

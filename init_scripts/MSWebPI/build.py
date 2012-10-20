@@ -41,6 +41,24 @@ def main():
         logger.info('Copying UI directory: {0}'.format(path))
         shutil.copytree(os.path.join(UIDIR, path), path)
 
+    if os.path.exists(INSTANCE_HOME):
+        # Stop and remove ZEO service if present
+        try:
+            os.chdir(INSTANCE_HOME)
+            service_script = os.path.join(
+            'bin', 'zeoserver_service' + options.script_ext)
+            if os.path.exists(service_script):
+                args = [service_script, 'stop']
+                logger.info('Stopping the ZEO service: {0}'.format(
+                    ' '.join(args)))
+                subprocess.check_call(args)
+                args = [service_script, 'remove']
+                logger.info('Removing the ZEO service: {0}'.format(
+                    ' '.join(args)))
+                subprocess.check_call(args)
+        finally:
+            os.chdir(PLONE_HOME)
+
     for buildout in (INSTANCE_HOME, STANDALONE_HOME):
         if not os.path.exists(buildout):
             continue

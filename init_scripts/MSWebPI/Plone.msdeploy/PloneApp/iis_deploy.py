@@ -92,13 +92,10 @@ def main(install_fcgi_app=True):
                 logger.error('ZEO service script does not exist: {0}'.format(
                                  service_script))
 
-        args = [os.path.join('bin', 'iiswsgi' + options.script_ext),
-                '--test', '-c', WSGI_CONFIG]
-        logger.info('Testing the Zope WSGI app: {0}'.format(
-            ' '.join(args)))
-        subprocess.check_call(args)
     finally:
         os.chdir(CWD)
+
+    deployer.test()
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

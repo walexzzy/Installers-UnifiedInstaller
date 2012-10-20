@@ -16,7 +16,10 @@ requirements = (
 
 def main():
     """
-    Expects to be run with the system python in the PloneApp directory.
+    Build Plone MSDeploy and Web PI package.
+
+    Expects to be run with the system python with iiswsgi installed in
+    the PloneApp directory.
 
     >cd Plone.msdeploy\PloneApp
     >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
@@ -34,6 +37,7 @@ def main():
     environ = os.environ.copy()
     environ['APPL_PHYSICAL_PATH'] = PLONE_HOME
 
+    # Copy the bits of UI that need to be included in the package
     for path in ('base_skeleton', 'buildout_templates', 'helper_scripts'):
         if os.path.exists(path):
             logger.info('Deleting old UI directory: {0}'.format(path))
@@ -59,6 +63,7 @@ def main():
         finally:
             os.chdir(PLONE_HOME)
 
+    # Clean up any existing buildouts
     for buildout in (INSTANCE_HOME, STANDALONE_HOME):
         if not os.path.exists(buildout):
             continue
@@ -78,11 +83,12 @@ def main():
         logger.info('Deleting existing buildout: {0}'.format(buildout))
         shutil.rmtree(buildout)
 
+    # Install dependencies that can't be found correctly by normal easy_install
     deployer = deploy.Deployer(app_name='PloneApp')
     deployer.executable = deployer.setup_virtualenv()
     deployer.easy_install_requirements(requirements=requirements)
 
-    # Assumes sys.executable is a system python with iiswsgi installed
+    # Use iiswsgi deploy process to make sure the package has everything
     args = [sys.executable, 'iis_deploy.py', '-v', '-isd']
     logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
     subprocess.check_call(args, env=environ)
@@ -99,7 +105,7 @@ def main():
     finally:
         os.chdir(PLONE_HOME)
 
-    # Assumes sys.executable is a system python with iiswsgi installed
+    # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
     args = [options.get_script_path('iiswsgi_build'),

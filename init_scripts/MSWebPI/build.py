@@ -21,8 +21,8 @@ def main():
     Expects to be run with the system python with iiswsgi installed in
     the PloneApp directory.
 
-    >cd Plone.msdeploy\PloneApp
-    >%SYSTEMDRIVE%\Python27\python.exe ..\..\build.py
+    >cd Plone.msdeploy
+    >%SYSTEMDRIVE%\Python27\python.exe ..\build.py
 
     Since the Unified installer and buildout-cache layouts can result
     in deep paths, it is best to place the UI checkout at the root of

@@ -26,10 +26,11 @@ def main(install_fcgi_app=True):
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
+    ZEO_PORT = int("__webpi_zeo_parameter__")
     ITYPE = "cluster"
     PART = 'client1'
     INSTANCE_HOME = os.path.join('zeocluster')
-    if "__webpi_zeo_parameter__".lower() == "false":
+    if not ZEO_PORT:
         ITYPE = "standalone"
         PART = 'instance'
         PART  # pyflakes, used in web.config
@@ -62,6 +63,12 @@ def main(install_fcgi_app=True):
         subprocess.check_call(args)
     else:
         logger.warn('The buildout already exists: {0}'.format(INSTANCE_HOME))
+
+    # Set the ZEO port
+    buildout_cfg = open(os.path.join(INSTANCE_HOME, 'buildout.cfg')).read()
+    open(os.path.join(INSTANCE_HOME, 'buildout.cfg'), 'w').write(
+        buildout_cfg.replace('zeo-address = 127.0.0.1:8100',
+                             'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
 
     try:
         os.chdir(INSTANCE_HOME)

@@ -20,13 +20,13 @@
   </parameter>
 
   <parameter 
-      name="zeo"
-      friendlyName="ZEO cluster?"
-      description="If 'True', a ZEO service will be installed and the Zope instance(s) will connect to it.  Otherwise, a standalon Zope instance will be created."
-      defaultValue="False">
-    <parameterValidation type="Boolean" />
+      name="zeo_port"
+      friendlyName="ZEO Port"
+      description="If set, a ZEO service will be installed and the Zope instance(s) will connect to it on this port.  Otherwise, a standalon Zope instance will be created."
+      defaultValue="8100">
+    <parameterValidation type="RegularExpression,AllowEmpty" validationString="[0-9]{0,5}" />
     <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
-                    match="__webpi_zeo_parameter__" />
+                    match="__webpi_zeo_port_parameter__" />
   </parameter>
   
   <parameter 

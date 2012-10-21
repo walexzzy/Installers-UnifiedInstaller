@@ -56,7 +56,9 @@ def main(install_fcgi_app=True):
     BUILDOUT_CFG = 'develop.cfg'
     WSGI_CONFIG = 'development.ini'
     if "__webpi_develop_parameter__".lower() == "false":
-        BUILDOUT_CFG = 'buildout.cfg'
+        # TODO uncomment when all auto-checkout dists in
+        # base_skeleton/develop.cfg have been released
+        # BUILDOUT_CFG = 'buildout.cfg'
         WSGI_CONFIG = 'production.ini'
     WSGI_CONFIG  # pyflakes, used web.config
 

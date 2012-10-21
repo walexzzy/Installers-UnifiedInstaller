@@ -15,7 +15,6 @@ app_name_pattern = re.compile(r'^(.*?)([0-9]*)$')
 
 def main(install_fcgi_app=True):
     CWD = UIDIR = PLONE_HOME = os.getcwd()
-    INSTANCE_HOME = os.path.join('zinstance')
     APP_NAME, COUNT = app_name_pattern.match(PLONE_HOME).groups()
     if COUNT:
         COUNT = int(COUNT)
@@ -37,7 +36,7 @@ def main(install_fcgi_app=True):
     ZEO_PORT = "__webpi_zeo_parameter__"
     ITYPE = "cluster"
     PART = 'client1'
-    INSTANCE_HOME = os.path.join('zeocluster')
+    INSTANCE_HOME = 'zeocluster'
     if ZEO_PORT:
         try:
             ZEO_PORT = int(ZEO_PORT)
@@ -48,7 +47,7 @@ def main(install_fcgi_app=True):
         ITYPE = "standalone"
         PART = 'instance'
         PART  # pyflakes, used in web.config
-        INSTANCE_HOME = os.path.join('zinstance')
+        INSTANCE_HOME = 'zinstance'
 
     BUILDOUT_CFG = 'develop.cfg'
     WSGI_CONFIG = 'development.ini'

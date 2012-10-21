@@ -87,7 +87,6 @@ def main():
     # Install dependencies that can't be found correctly by normal easy_install
     deployer = deploy.Deployer(app_name='PloneApp')
     deployer.executable = deployer.setup_virtualenv()
-    # TODO pywin32 install seems to fail every other time
     reqs = tuple(
         url for req, url in requirements.iteritems() if subprocess.call(
             [deployer.executable, '-c', 'import {0}'.format(req)]))

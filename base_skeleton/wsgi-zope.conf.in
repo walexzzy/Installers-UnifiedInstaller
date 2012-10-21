@@ -48,23 +48,8 @@ ${plone:environment-vars}
 <zodb_db main>
     # Main database
     cache-size 10000
-    
-# Blob-enabled ZEOStorage database
-    <zeoclient>
-      blob-dir ${plone:blob-storage}
-      shared-blob-dir ${plone:shared-blob}
-      server ${plone:zeo-address}
-      storage 1
-      name zeostorage
-      var ${plone:location}\var
-      cache-size 128MB
-      
-      
-      
-      
-      
-      
-    </zeoclient>
+
+    ${plone:zodb-storage}    
     mount-point /
 </zodb_db>
 

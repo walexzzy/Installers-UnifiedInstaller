@@ -80,8 +80,9 @@ def main():
                 subprocess.check_call(args)
             finally:
                 os.chdir(PLONE_HOME)
-        logger.info('Deleting existing buildout: {0}'.format(buildout))
-        shutil.rmtree(buildout)
+        args = 'rmdir /s /q {0}'.format(buildout)
+        logger.info('Deleting existing buildout: {0}'.format(args))
+        subprocess.check_call(args, shell=True)
 
     # Install dependencies that can't be found correctly by normal easy_install
     deployer = deploy.Deployer(app_name='PloneApp')

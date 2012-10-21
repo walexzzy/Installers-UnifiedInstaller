@@ -27,7 +27,11 @@ def main(install_fcgi_app=True):
     ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
     RUN_BUILDOUT = "0"
     INSTALL_LXML = "no"
-    CLIENTS = "1"  # IIS controls number of instances
+    CLIENTS = "__webpi_clients_parameter__"
+    if CLIENTS:
+        CLIENTS = int(CLIENTS)
+    else:
+        CLIENTS = deploy.app_attr_defaults_init['maxInstances']
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
     PASSWORD = '__webpi_password_parameter__'
     BUILDOUT_DIST = os.path.join(
@@ -67,11 +71,12 @@ def main(install_fcgi_app=True):
         os.makedirs(BUILDOUT_DIST)
 
     if not os.path.exists(INSTANCE_HOME):
+        # IIS controls number of instances, so CLIENTS here is 1
         args = [deployer.executable,
                 os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
                 UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
                 PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
-                ITYPE, LOG_FILE, CLIENTS]
+                ITYPE, LOG_FILE, "1"]
         logger.info('Creating the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
     else:

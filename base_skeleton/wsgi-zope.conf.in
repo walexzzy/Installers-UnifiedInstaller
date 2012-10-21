@@ -3,23 +3,18 @@ instancehome $INSTANCEHOME
 %define CLIENTHOME ${buildout:directory}\var\client1
 clienthome $CLIENTHOME
 
-products ${buildout:directory}\products
-debug-mode off
+products ${client1:products}
+debug-mode ${client1:debug-mode}
 security-policy-implementation C
-verbose-security off
+verbose-security ${client1:verbose-security}
 default-zpublisher-encoding utf-8
 
-effective-user Administrator
+effective-user ${client1:effective-user}
 
 zserver-threads 2
 
 <environment>
-    
-zope_i18n_compile_mo_files true
-PYTHON_EGG_CACHE ${buildout:directory}/var/.python-eggs
-PYTHONHASHSEED random
-#    TZ US/Eastern
-#    zope_i18n_allowed_languages en es de fr
+${client1:environment-vars}    
 </environment>
 
 <warnfilter>
@@ -32,7 +27,7 @@ PYTHONHASHSEED random
   
   level INFO
   <logfile>
-    path ${buildout:directory}/var/client1/event.log
+    path ${client1:event-log}
     level INFO
   </logfile>
 </eventlog>
@@ -40,7 +35,7 @@ PYTHONHASHSEED random
 <logger access>
   level WARN
   <logfile>
-    path ${buildout:directory}/var/client1/Z2.log
+    path ${client1:z2-log}
     format %(message)s
   </logfile>
 </logger>
@@ -55,9 +50,9 @@ PYTHONHASHSEED random
     
 # Blob-enabled ZEOStorage database
     <zeoclient>
-      blob-dir ${buildout:directory}/var/blobstorage
-      shared-blob-dir on
-      server 127.0.0.1:8100
+      blob-dir ${client1:blob-storage}
+      shared-blob-dir ${client1:shared-blob}
+      server ${client1:zeo-address}
       storage 1
       name zeostorage
       var ${client1:location}\var
@@ -81,8 +76,8 @@ PYTHONHASHSEED random
     container-class Products.TemporaryFolder.TemporaryContainer
 </zodb_db>
 
-pid-filename ${buildout:directory}/var/client1/client1.pid
-lock-filename ${buildout:directory}/var/client1/client1.lock
+pid-filename ${client1:pid-file}
+lock-filename ${client1:lock-file}
 python-check-interval 1000
 enable-product-installation off
 

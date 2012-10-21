@@ -1,20 +1,20 @@
-%define INSTANCEHOME ${client1:location}
+%define INSTANCEHOME ${plone:location}
 instancehome $INSTANCEHOME
-%define CLIENTHOME ${buildout:directory}\var\client1
+%define CLIENTHOME ${plone:clienthome}
 clienthome $CLIENTHOME
 
-products ${client1:products}
-debug-mode ${client1:debug-mode}
+products ${plone:products}
+debug-mode ${plone:debug-mode}
 security-policy-implementation C
-verbose-security ${client1:verbose-security}
+verbose-security ${plone:verbose-security}
 default-zpublisher-encoding utf-8
 
-effective-user ${client1:effective-user}
+effective-user ${plone:effective-user}
 
 zserver-threads 2
 
 <environment>
-${client1:environment-vars}    
+${plone:environment-vars}    
 </environment>
 
 <warnfilter>
@@ -27,7 +27,7 @@ ${client1:environment-vars}
   
   level INFO
   <logfile>
-    path ${client1:event-log}
+    path ${plone:event-log}
     level INFO
   </logfile>
 </eventlog>
@@ -35,7 +35,7 @@ ${client1:environment-vars}
 <logger access>
   level WARN
   <logfile>
-    path ${client1:z2-log}
+    path ${plone:z2-log}
     format %(message)s
   </logfile>
 </logger>
@@ -50,12 +50,12 @@ ${client1:environment-vars}
     
 # Blob-enabled ZEOStorage database
     <zeoclient>
-      blob-dir ${client1:blob-storage}
-      shared-blob-dir ${client1:shared-blob}
-      server ${client1:zeo-address}
+      blob-dir ${plone:blob-storage}
+      shared-blob-dir ${plone:shared-blob}
+      server ${plone:zeo-address}
       storage 1
       name zeostorage
-      var ${client1:location}\var
+      var ${plone:location}\var
       cache-size 128MB
       
       
@@ -76,8 +76,8 @@ ${client1:environment-vars}
     container-class Products.TemporaryFolder.TemporaryContainer
 </zodb_db>
 
-pid-filename ${client1:pid-file}
-lock-filename ${client1:lock-file}
+pid-filename ${plone:pid-file}
+lock-filename ${plone:lock-file}
 python-check-interval 1000
 enable-product-installation off
 

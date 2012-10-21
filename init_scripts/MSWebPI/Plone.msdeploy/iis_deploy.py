@@ -3,19 +3,24 @@
 import os
 import subprocess
 import logging
+import re
 
 from iiswsgi import options
 from iiswsgi import deploy
 
 logger = logging.getLogger('plone.iiswsgi')
 
-APP_NAME = 'PloneApp'
+app_name_pattern = re.compile(r'^(.*?)([0-9]*)$')
 
 
 def main(install_fcgi_app=True):
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
-    COUNT = int(os.path.basename(PLONE_HOME)[len(APP_NAME):])
+    APP_NAME, COUNT = app_name_pattern.match(PLONE_HOME).groups()
+    if COUNT:
+        COUNT = int(COUNT)
+    else:
+        COUNT = 0
     CLIENT_USER = os.environ.get('USERNAME')
     if CLIENT_USER is None:
         # Non-Windows compat for testing

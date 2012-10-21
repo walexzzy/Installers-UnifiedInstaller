@@ -13,7 +13,7 @@ logger = logging.getLogger('plone.iiswsgi')
 app_name_pattern = re.compile(r'^(.*?)([0-9]*)$')
 
 
-def main(install_fcgi_app=True):
+def main(install_fcgi_app=True, buildout_args=()):
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     APP_NAME, COUNT = app_name_pattern.match(PLONE_HOME).groups()
     if COUNT:
@@ -93,13 +93,15 @@ def main(install_fcgi_app=True):
     try:
         os.chdir(INSTANCE_HOME)
 
-        args = [options.get_script_path(
-                'buildout', deployer.executable), 'bootstrap', '-d']
+        args = [options.get_script_path('buildout', deployer.executable)]
+        args.extend(buildout_args)
+        args.extend(['bootstrap', '-d'])
         logger.info('Bootstrapping the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
         args = [os.path.join('bin', 'buildout' + options.script_ext), '-N',
                 '-c', BUILDOUT_CFG]
+        args.extend(buildout_args)
         logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
         subprocess.check_call(args)
 
@@ -127,4 +129,4 @@ def main(install_fcgi_app=True):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     args, remaining = deploy.deploy_parser.parse_known_args()
-    main(args.install_fcgi_app)
+    main(args.install_fcgi_app, buildout_args=remaining)

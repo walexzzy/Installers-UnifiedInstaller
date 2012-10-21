@@ -22,9 +22,9 @@
   <parameter 
       name="zeo_port"
       friendlyName="ZEO Port"
-      description="If set, a ZEO service will be installed and the Zope instance(s) will connect to it on this port.  Otherwise, a standalon Zope instance will be created."
-      defaultValue="8100">
-    <parameterValidation type="RegularExpression,AllowEmpty" validationString="[0-9]{0,5}" />
+      description="If set, a ZEO service will be installed and the Zope instance(s) will connect to it.  If the value is an integer, the ZEO service will listen on that port.  If the value is 'auto' then the last digits of '8100' will be replaced by the number suffix of the installed app. If not set, a standalon Zope instance will be created."
+      defaultValue="auto">
+    <parameterValidation type="RegularExpression,AllowEmpty" validationString="auto|[0-9]{0,5}" />
     <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
                     match="__webpi_zeo_port_parameter__" />
   </parameter>

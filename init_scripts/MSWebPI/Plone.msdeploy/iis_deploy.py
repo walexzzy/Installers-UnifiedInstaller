@@ -9,10 +9,13 @@ from iiswsgi import deploy
 
 logger = logging.getLogger('plone.iiswsgi')
 
+APP_NAME = 'PloneApp'
+
 
 def main(install_fcgi_app=True):
     CWD = UIDIR = PLONE_HOME = os.getcwd()
     INSTANCE_HOME = os.path.join('zinstance')
+    COUNT = int(os.path.basename(PLONE_HOME)[len(APP_NAME):])
     CLIENT_USER = os.environ.get('USERNAME')
     if CLIENT_USER is None:
         # Non-Windows compat for testing
@@ -26,11 +29,17 @@ def main(install_fcgi_app=True):
     BUILDOUT_DIST = os.path.join(
         PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
 
-    ZEO_PORT = int("__webpi_zeo_parameter__")
+    ZEO_PORT = "__webpi_zeo_parameter__"
     ITYPE = "cluster"
     PART = 'client1'
     INSTANCE_HOME = os.path.join('zeocluster')
-    if not ZEO_PORT:
+    if ZEO_PORT:
+        try:
+            ZEO_PORT = int(ZEO_PORT)
+        except (ValueError, TypeError):
+            # Automatic port choosing
+            ZEO_PORT = 8100 + COUNT
+    else:
         ITYPE = "standalone"
         PART = 'instance'
         PART  # pyflakes, used in web.config

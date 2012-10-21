@@ -28,9 +28,9 @@ def main(install_fcgi_app=True):
     RUN_BUILDOUT = "0"
     INSTALL_LXML = "no"
     CLIENTS = "__webpi_clients_parameter__"
-    if CLIENTS:
+    try:
         CLIENTS = int(CLIENTS)
-    else:
+    except (ValueError, TypeError):
         CLIENTS = deploy.app_attr_defaults_init['maxInstances']
     LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
     PASSWORD = '__webpi_password_parameter__'

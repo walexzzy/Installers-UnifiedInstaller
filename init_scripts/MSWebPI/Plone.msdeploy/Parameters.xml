@@ -35,7 +35,7 @@
       description="If 'ZEO Port' is set, this specifies the number of Zope clients IIS may launch.  If unset, the default is the number of processors."
       defaultValue="">
     <!-- Integer >= 1 -->
-    <parameterValidation type="RegularExpression" validationString="[1-9][0-9]*" />
+    <parameterValidation type="RegularExpression,AllowEmpty" validationString="[1-9][0-9]*" />
     <parameterEntry kind="TextFile" scope="\\iis_deploy\.py$"
                     match="__webpi_clients_parameter__" />
   </parameter>

@@ -17,6 +17,7 @@ zserver-threads 2
 ${plone:environment-vars}    
 </environment>
 
+# TODO honor deprecation-warnings recipe option
 <warnfilter>
   action default
   category exceptions.DeprecationWarning

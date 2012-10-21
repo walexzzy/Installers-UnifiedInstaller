@@ -1,5 +1,5 @@
 [app:plone]
-use = egg:infrae.wsgi#zope2
+use = egg:Zope2#main
 zope_conf = ${plone:location}/etc/zope.conf
 
 [pipeline:main]

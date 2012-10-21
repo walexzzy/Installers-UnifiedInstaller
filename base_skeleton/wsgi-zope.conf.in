@@ -1,9 +1,9 @@
-%define INSTANCEHOME C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\parts\client1
+%define INSTANCEHOME ${client1:location}
 instancehome $INSTANCEHOME
-%define CLIENTHOME C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\var\client1
+%define CLIENTHOME ${buildout:directory}\var\client1
 clienthome $CLIENTHOME
 
-products C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\products
+products ${buildout:directory}\products
 debug-mode off
 security-policy-implementation C
 verbose-security off
@@ -16,7 +16,7 @@ zserver-threads 2
 <environment>
     
 zope_i18n_compile_mo_files true
-PYTHON_EGG_CACHE C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/.python-eggs
+PYTHON_EGG_CACHE ${buildout:directory}/var/.python-eggs
 PYTHONHASHSEED random
 #    TZ US/Eastern
 #    zope_i18n_allowed_languages en es de fr
@@ -32,7 +32,7 @@ PYTHONHASHSEED random
   
   level INFO
   <logfile>
-    path C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/event.log
+    path ${buildout:directory}/var/client1/event.log
     level INFO
   </logfile>
 </eventlog>
@@ -40,16 +40,10 @@ PYTHONHASHSEED random
 <logger access>
   level WARN
   <logfile>
-    path C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/Z2.log
+    path ${buildout:directory}/var/client1/Z2.log
     format %(message)s
   </logfile>
 </logger>
-
-<http-server>
-  address 8080
-
-
-</http-server>
 
 
 
@@ -61,12 +55,12 @@ PYTHONHASHSEED random
     
 # Blob-enabled ZEOStorage database
     <zeoclient>
-      blob-dir C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/blobstorage
+      blob-dir ${buildout:directory}/var/blobstorage
       shared-blob-dir on
       server 127.0.0.1:8100
       storage 1
       name zeostorage
-      var C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\parts\client1\var
+      var ${client1:location}\var
       cache-size 128MB
       
       
@@ -87,8 +81,8 @@ PYTHONHASHSEED random
     container-class Products.TemporaryFolder.TemporaryContainer
 </zodb_db>
 
-pid-filename C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/client1.pid
-lock-filename C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/client1.lock
+pid-filename ${buildout:directory}/var/client1/client1.pid
+lock-filename ${buildout:directory}/var/client1/client1.lock
 python-check-interval 1000
 enable-product-installation off
 

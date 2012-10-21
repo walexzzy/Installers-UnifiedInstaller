@@ -1,0 +1,95 @@
+%define INSTANCEHOME C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\parts\client1
+instancehome $INSTANCEHOME
+%define CLIENTHOME C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\var\client1
+clienthome $CLIENTHOME
+
+products C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\products
+debug-mode off
+security-policy-implementation C
+verbose-security off
+default-zpublisher-encoding utf-8
+
+effective-user Administrator
+
+zserver-threads 2
+
+<environment>
+    
+zope_i18n_compile_mo_files true
+PYTHON_EGG_CACHE C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/.python-eggs
+PYTHONHASHSEED random
+#    TZ US/Eastern
+#    zope_i18n_allowed_languages en es de fr
+</environment>
+
+<warnfilter>
+  action default
+  category exceptions.DeprecationWarning
+</warnfilter>
+
+
+<eventlog>
+  
+  level INFO
+  <logfile>
+    path C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/event.log
+    level INFO
+  </logfile>
+</eventlog>
+
+<logger access>
+  level WARN
+  <logfile>
+    path C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/Z2.log
+    format %(message)s
+  </logfile>
+</logger>
+
+<http-server>
+  address 8080
+
+
+</http-server>
+
+
+
+
+
+<zodb_db main>
+    # Main database
+    cache-size 10000
+    
+# Blob-enabled ZEOStorage database
+    <zeoclient>
+      blob-dir C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/blobstorage
+      shared-blob-dir on
+      server 127.0.0.1:8100
+      storage 1
+      name zeostorage
+      var C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster\parts\client1\var
+      cache-size 128MB
+      
+      
+      
+      
+      
+      
+    </zeoclient>
+    mount-point /
+</zodb_db>
+
+<zodb_db temporary>
+    # Temporary storage database (for sessions)
+    <temporarystorage>
+      name temporary storage for sessioning
+    </temporarystorage>
+    mount-point /temp_folder
+    container-class Products.TemporaryFolder.TemporaryContainer
+</zodb_db>
+
+pid-filename C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/client1.pid
+lock-filename C:\UI\init_scripts\MSWebPI\Plone.msdeploy\zeocluster/var/client1/client1.lock
+python-check-interval 1000
+enable-product-installation off
+
+

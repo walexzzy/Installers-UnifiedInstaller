@@ -72,8 +72,8 @@ def main():
             # removing the tree or egg contents will be deleted
             try:
                 os.chdir(buildout)
-                args = [os.path.join(
-                    'bin', 'buildout' + options.script_ext), '-N']
+                args = [os.path.join('bin', 'buildout' + options.script_ext),
+                        '-N', 'buildout:parts=']
                 logger.info(
                     'Running non-development buildout to cleanup omelette: {0}'
                     .format(' '.join(args)))

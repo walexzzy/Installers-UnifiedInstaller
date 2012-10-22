@@ -105,9 +105,10 @@ def main():
     old_eggs = os.path.join(os.pardir, 'buildout-cache.old', 'eggs')
 
     # Use iiswsgi deploy process to make sure the package has everything
-    args = [sys.executable, 'iis_deploy.py', '-v', '-s',
+    args = [sys.executable, 'setup.py', 'install_msdeploy', '-v', '-s',
             '--find-links={0}'.format(old_eggs)]
-    logger.info('Delegating to `iiswsgi.deploy`: {0}'.format(' '.join(args)))
+    logger.info('Delegating to `iiswsgi.install_msdeploy`: {0}'.format(
+        ' '.join(args)))
     subprocess.check_call(args, env=environ)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed

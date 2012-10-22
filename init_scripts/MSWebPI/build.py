@@ -95,7 +95,7 @@ def main():
     for egg_cache in (virtualenv_eggs, buildout_eggs):
         if not os.path.exists(egg_cache):
             continue
-        logger.info('Moving buildout-cache eggs aside: {0}'.format(egg_cache))
+        logger.info('Moving existing eggs aside: {0}'.format(egg_cache))
         for egg in os.listdir(egg_cache):
             old_egg = os.path.join(old_eggs, egg)
             while os.path.isdir(old_egg):

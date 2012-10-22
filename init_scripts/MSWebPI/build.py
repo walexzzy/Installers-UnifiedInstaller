@@ -84,16 +84,6 @@ def main():
         logger.info('Deleting existing buildout: {0}'.format(args))
         subprocess.check_call(args, shell=True)
 
-    # Install dependencies that can't be found correctly by normal easy_install
-    dist = core.run_setup('setup.py')
-    install = dist.get_command_obj('install_msdeploy')
-    install.executable = install.setup_virtualenv()
-    reqs = tuple(
-        url for req, url in requirements.iteritems() if subprocess.call(
-            [install.executable, '-c', 'import {0}'.format(req)]))
-    if reqs:
-        install.easy_install_requirements(requirements=reqs)
-
     # Move old eggs aside and use them as a --index so that the egg
     # caches has only what's needed without downloading stuff that's
     # already been installed
@@ -115,6 +105,16 @@ def main():
                 if os.path.exists(old_egg):
                     os.remove(old_egg)
             os.rename(os.path.join(egg_cache, egg), old_egg)
+
+    # Install dependencies that can't be found correctly by normal easy_install
+    dist = core.run_setup('setup.py')
+    install = dist.get_command_obj('install_msdeploy')
+    install.executable = install.setup_virtualenv()
+    reqs = tuple(
+        url for req, url in requirements.iteritems() if subprocess.call(
+            [install.executable, '-c', 'import {0}'.format(req)]))
+    if reqs:
+        install.easy_install_requirements(requirements=reqs)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(

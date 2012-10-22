@@ -73,7 +73,7 @@ def main():
             try:
                 os.chdir(buildout)
                 args = [os.path.join('bin', 'buildout' + options.script_ext),
-                        '-N', 'buildout:parts=']
+                        '-N', '-o', 'buildout:parts=']
                 logger.info(
                     'Running non-development buildout to cleanup omelette: {0}'
                     .format(' '.join(args)))

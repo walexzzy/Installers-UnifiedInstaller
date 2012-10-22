@@ -17,8 +17,6 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
     def run(self):
         """Reproduce UI behavior."""
-        self.install()
-
         CWD = UIDIR = PLONE_HOME = os.getcwd()
         APP_NAME = self.distribution.get_name()
         APP_NAME  # pyflakes

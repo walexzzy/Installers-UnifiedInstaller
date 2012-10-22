@@ -93,7 +93,7 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
                 'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
 
         find_links = ['buildout:find-links+={0}'.format(link) for
-                      link in self.find_links]
+                      link in self.find_links or ()]
         try:
             os.chdir(INSTANCE_HOME)
 

@@ -84,6 +84,14 @@ def main():
         logger.info('Deleting existing buildout: {0}'.format(args))
         subprocess.check_call(args, shell=True)
 
+    # Install dependencies that can't be found correctly by normal easy_install
+    dist = core.run_setup('setup.py')
+    install = dist.get_command_obj('install_msdeploy')
+    install.executable = install.setup_virtualenv()
+    reqs = tuple(
+        url for req, url in requirements.iteritems() if subprocess.call(
+            [install.executable, '-c', 'import {0}'.format(req)]))
+
     # Move old eggs aside and use them as a --index so that the egg
     # caches has only what's needed without downloading stuff that's
     # already been installed
@@ -106,13 +114,7 @@ def main():
                     os.remove(old_egg)
             os.rename(os.path.join(egg_cache, egg), old_egg)
 
-    # Install dependencies that can't be found correctly by normal easy_install
-    dist = core.run_setup('setup.py')
-    install = dist.get_command_obj('install_msdeploy')
-    install.executable = install.setup_virtualenv()
-    reqs = tuple(
-        url for req, url in requirements.iteritems() if subprocess.call(
-            [install.executable, '-c', 'import {0}'.format(req)]))
+    # Install tricky dependencies after moving old eggs aside
     if reqs:
         install.easy_install_requirements(requirements=reqs)
 

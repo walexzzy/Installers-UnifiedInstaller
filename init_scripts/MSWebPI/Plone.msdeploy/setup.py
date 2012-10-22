@@ -28,11 +28,6 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
         RUN_BUILDOUT = "0"
         INSTALL_LXML = "no"
-        CLIENTS = "__webpi_clients_parameter__"
-        try:
-            CLIENTS = int(CLIENTS)
-        except (ValueError, TypeError):
-            CLIENTS = fcgi.app_attr_defaults_init['maxInstances']
         LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
         PASSWORD = '__webpi_password_parameter__'
         BUILDOUT_DIST = os.path.join(
@@ -56,12 +51,22 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
         BUILDOUT_CFG = 'develop.cfg'
         WSGI_CONFIG = 'development.ini'
-        if "__webpi_develop_parameter__".lower() == "false":
+        DEVELOP = "__webpi_develop_parameter__".lower() == "false"
+        if DEVELOP:
             # TODO uncomment when all auto-checkout dists in
             # base_skeleton/develop.cfg have been released
             # BUILDOUT_CFG = 'buildout.cfg'
             WSGI_CONFIG = 'production.ini'
         WSGI_CONFIG  # pyflakes, used web.config
+
+        CLIENTS = "__webpi_clients_parameter__"
+        try:
+            CLIENTS = int(CLIENTS)
+        except (ValueError, TypeError):
+            CLIENTS = fcgi.app_attr_defaults_init['maxInstances']
+            if DEVELOP:
+                CLIIENTS = 1
+                CLIIENTS  # pyflakes
 
         substitutions = locals()
         substitutions.pop('self', None)

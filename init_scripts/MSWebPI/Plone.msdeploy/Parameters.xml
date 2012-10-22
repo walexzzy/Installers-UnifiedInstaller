@@ -32,7 +32,7 @@
   <parameter 
       name="clients"
       friendlyName="Zope client count"
-      description="If 'ZEO Port' is set, this specifies the number of Zope clients IIS may launch.  If unset, the default is the number of processors."
+      description="If 'ZEO Port' is set, this specifies the number of Zope clients IIS may launch.  If unset, the default is the number of processors unless 'Development Tools' is 'True', then the default is 1 for easier debugging."
       defaultValue="">
     <!-- Integer >= 1 -->
     <parameterValidation type="RegularExpression,AllowEmpty" validationString="[1-9][0-9]*" />

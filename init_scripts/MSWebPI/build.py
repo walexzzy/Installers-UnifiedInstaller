@@ -122,7 +122,9 @@ def main():
             '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
             '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),
-            'bdist_msdeploy', '--find-links={0}'.format(old_eggs)]
+            'bdist_msdeploy', '--index={0}'.format(
+                os.path.join(os.pardir, old_eggs)),
+            '--find-links=http://pypi.python.org/simple']
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)
 

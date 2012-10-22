@@ -97,21 +97,31 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
                 'zeo-address = 127.0.0.1:8100',
                 'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
 
-        find_links = ['buildout:find-links+={0}'.format(link) for
-                      link in self.find_links or ()]
+        buildout_args = ['-N']
+        if self.index:
+            # Use index as a local cache to simulate offline
+            # access with fallback to online retrieval
+            buildout_args.append(
+                'buildout:index={0}'.format(self.index))
+            if self.find_links:
+                buildout_args.extend('buildout:find-links+={0}'.format(link)
+                                     for link in self.find_links)
+        else:
+            # default to offline
+            buildout_args.append('-o')
         try:
             os.chdir(INSTANCE_HOME)
 
             args = [options.get_script_path('buildout', self.executable)]
-            args.extend(find_links)
+            args.extend(buildout_args)
             args.extend(['bootstrap', '-d'])
             logger.info(
                 'Bootstrapping the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 
-            args = [os.path.join('bin', 'buildout' + options.script_ext), '-N',
+            args = [os.path.join('bin', 'buildout' + options.script_ext),
                     '-c', BUILDOUT_CFG]
-            args.extend(find_links)
+            args.extend(buildout_args)
             logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 

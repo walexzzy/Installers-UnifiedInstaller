@@ -91,6 +91,8 @@ def main():
     reqs = tuple(
         url for req, url in requirements.iteritems() if subprocess.call(
             [install.executable, '-c', 'import {0}'.format(req)]))
+    if reqs:
+        install.easy_install_requirements(requirements=reqs)
 
     # Move old eggs aside and use them as --find-links so that the egg
     # caches has only what's needed without downloading stuff that's
@@ -113,10 +115,6 @@ def main():
                 if os.path.exists(old_egg):
                     os.remove(old_egg)
             os.rename(os.path.join(egg_cache, egg), old_egg)
-
-    # Install tricky dependencies after moving old eggs aside
-    if reqs:
-        install.easy_install_requirements(requirements=reqs)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(

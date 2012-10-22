@@ -98,14 +98,11 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
                 'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
 
         buildout_args = ['-N']
-        if self.index:
-            # Use index as a local cache to simulate offline
+        if self.find_links:
+            # Use find-links as a local cache to simulate offline
             # access with fallback to online retrieval
-            buildout_args.append(
-                'buildout:index={0}'.format(self.index))
-            if self.find_links:
-                buildout_args.extend('buildout:find-links+={0}'.format(link)
-                                     for link in self.find_links)
+            buildout_args.extend('buildout:find-links+={0}'.format(link)
+                                 for link in self.find_links)
         else:
             # default to offline
             buildout_args.append('-o')

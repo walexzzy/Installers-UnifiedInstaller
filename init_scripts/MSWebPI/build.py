@@ -92,7 +92,7 @@ def main():
         url for req, url in requirements.iteritems() if subprocess.call(
             [install.executable, '-c', 'import {0}'.format(req)]))
 
-    # Move old eggs aside and use them as a --index so that the egg
+    # Move old eggs aside and use them as a --index-url so that the egg
     # caches has only what's needed without downloading stuff that's
     # already been installed
     virtualenv_eggs = os.path.join(options.lib_name, 'site-packages')
@@ -126,8 +126,8 @@ def main():
             '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
             '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),
-            'bdist_msdeploy', '--index={0}'.format(
-                os.path.join(os.pardir, old_eggs)),
+            'bdist_msdeploy', '--index-url={0}'.format(
+                os.path.abspath(old_eggs)),
             '--find-links=http://pypi.python.org/simple']
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)

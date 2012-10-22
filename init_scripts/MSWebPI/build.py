@@ -113,21 +113,15 @@ def main():
                 os.remove(old_egg)
             os.rename(os.path.join(cache_eggs, egg), old_egg)
 
-    # Use iiswsgi deploy process to make sure the package has everything
-    args = [sys.executable, 'setup.py', 'install_msdeploy', '-v', '-s',
-            '--find-links={0}'.format(old_eggs)]
-    logger.info('Delegating to `iiswsgi.install_msdeploy`: {0}'.format(
-        ' '.join(args)))
-    subprocess.check_call(args, env=environ)
-
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
     args = [options.get_script_path('iiswsgi_webpi'),
             '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
-            os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
-            os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
-            os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
+            '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
+            '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
+            '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),
+            'bdist_msdeploy', '--find-links={0}'.format(old_eggs)]
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)
 

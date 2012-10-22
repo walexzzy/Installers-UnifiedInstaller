@@ -96,11 +96,13 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
                 'zeo-address = 127.0.0.1:8100',
                 'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
 
+        find_links = ['buildout:find-links+={0}'.format(link) for
+                      link in self.find_links]
         try:
             os.chdir(INSTANCE_HOME)
 
             args = [options.get_script_path('buildout', self.executable)]
-            args.extend(buildout_args)
+            args.extend(find_links)
             args.extend(['bootstrap', '-d'])
             logger.info(
                 'Bootstrapping the buildout: {0}'.format(' '.join(args)))
@@ -108,7 +110,7 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
             args = [os.path.join('bin', 'buildout' + options.script_ext), '-N',
                     '-c', BUILDOUT_CFG]
-            args.extend(buildout_args)
+            args.extend(find_links)
             logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 

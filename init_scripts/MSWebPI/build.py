@@ -116,7 +116,7 @@ def main():
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
-    args = [options.get_script_path('iiswsgi_build'),
+    args = [options.get_script_path('iiswsgi_webpi'),
             '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
             os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),

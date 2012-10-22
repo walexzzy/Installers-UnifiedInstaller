@@ -107,8 +107,10 @@ def main():
         logger.info('Moving buildout-cache eggs aside')
         for egg in os.listdir(cache_eggs):
             old_egg = os.path.join(old_eggs, egg)
-            if os.path.exists(old_egg):
+            if os.path.isdir(old_egg):
                 shutil.rmtree(old_egg)
+            elif os.path.exists(old_egg):
+                os.remove(old_egg)
             os.rename(os.path.join(cache_eggs, egg), old_egg)
 
     # Use iiswsgi deploy process to make sure the package has everything

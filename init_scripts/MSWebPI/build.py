@@ -95,16 +95,21 @@ def main():
     if reqs:
         install.easy_install_requirements(requirements=reqs)
 
+    old_eggs = os.path.join('buildout-cache.old', 'eggs')
     if os.path.exists('buildout-cache'):
+        cache_eggs = os.path.join('buildout-cache', 'eggs')
         # Move old buildout-cache aside and use as --find-links so that
         # the new buildout-cache has only what's needed without
         # downloading stuff that's already been installed
-        if os.path.exists('buildout-cache.old'):
-            logger.info('Deleting buildout-cache.old')
-            shutil.rmtree('buildout-cache.old')
-        logger.info('Moving buildout-cache aside')
-        os.rename('buildout-cache', 'buildout-cache.old')
-    old_eggs = os.path.join(os.pardir, 'buildout-cache.old', 'eggs')
+        if not os.path.exists(old_eggs):
+            os.makedirs(old_eggs)
+
+        logger.info('Moving buildout-cache eggs aside')
+        for egg in os.listdir(cache_eggs):
+            old_egg = os.path.join(old_eggs, egg)
+            if os.path.exists(old_egg):
+                shutil.rmtree(old_egg)
+            os.rename(os.path.join(cache_eggs, egg), old_egg)
 
     # Use iiswsgi deploy process to make sure the package has everything
     args = [sys.executable, 'setup.py', 'install_msdeploy', '-v', '-s',

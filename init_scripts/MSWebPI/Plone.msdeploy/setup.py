@@ -63,7 +63,9 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             WSGI_CONFIG = 'production.ini'
         WSGI_CONFIG  # pyflakes, used web.config
 
-        self.install(**locals())
+        substitutions = locals()
+        substitutions.pop('self', None)
+        self.install(**substitutions)
 
         if not os.path.exists(BUILDOUT_DIST):
             os.makedirs(BUILDOUT_DIST)

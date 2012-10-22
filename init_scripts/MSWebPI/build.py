@@ -102,7 +102,7 @@ def main():
             shutil.rmtree('buildout-cache.old')
         logger.info('Moving buildout-cache aside')
         os.rename('buildout-cache', 'buildout-cache.old')
-        old_eggs = os.path.join(os.pardir, 'buildout-cache.old', 'eggs')
+    old_eggs = os.path.join(os.pardir, 'buildout-cache.old', 'eggs')
 
     # Use iiswsgi deploy process to make sure the package has everything
     args = [sys.executable, 'iis_deploy.py', '-v', '-s',

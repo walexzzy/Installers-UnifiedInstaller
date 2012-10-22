@@ -25,3 +25,4 @@ init_scripts/MSWebPI/Plone.msdeploy/bin/
 init_scripts/MSWebPI/Plone.msdeploy/local/
 init_scripts/MSWebPI/Plone.msdeploy/iis_install.stamp
 init_scripts/MSWebPI/Plone.msdeploy/web.config
+init_scripts/MSWebPI/Plone.msdeploy/buildout-cache

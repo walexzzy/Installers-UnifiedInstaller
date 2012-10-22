@@ -21,10 +21,6 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         APP_NAME = self.distribution.get_name()
         APP_NAME  # pyflakes
         COUNT = self.count
-        if COUNT:
-            COUNT = int(COUNT)
-        else:
-            COUNT = 0
         CLIENT_USER = os.environ.get('USERNAME')
         if CLIENT_USER is None:
             # Non-Windows compat for testing

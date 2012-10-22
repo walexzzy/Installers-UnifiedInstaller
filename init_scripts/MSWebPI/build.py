@@ -4,8 +4,9 @@ import subprocess
 import shutil
 import logging
 
+from distutils import core
+
 from iiswsgi import options
-from iiswsgi import deploy
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
@@ -85,13 +86,14 @@ def main():
         subprocess.check_call(args, shell=True)
 
     # Install dependencies that can't be found correctly by normal easy_install
-    deployer = deploy.Deployer(app_name='PloneApp')
-    deployer.executable = deployer.setup_virtualenv()
+    dist = core.run_setup('setup.py')
+    install = dist.get_command_obj('install_msdeploy')
+    install.executable = install.setup_virtualenv()
     reqs = tuple(
         url for req, url in requirements.iteritems() if subprocess.call(
-            [deployer.executable, '-c', 'import {0}'.format(req)]))
+            [install.executable, '-c', 'import {0}'.format(req)]))
     if reqs:
-        deployer.easy_install_requirements(requirements=reqs)
+        install.easy_install_requirements(requirements=reqs)
 
     if os.path.exists('buildout-cache'):
         # Move old buildout-cache aside and use as --find-links so that

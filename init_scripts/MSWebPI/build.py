@@ -94,17 +94,19 @@ def main():
     if reqs:
         install.easy_install_requirements(requirements=reqs)
 
-    old_eggs = os.path.join('buildout-cache.old', 'eggs')
-    if os.path.exists('buildout-cache'):
-        cache_eggs = os.path.join('buildout-cache', 'eggs')
-        # Move old buildout-cache aside and use as --find-links so that
-        # the new buildout-cache has only what's needed without
-        # downloading stuff that's already been installed
-        if not os.path.exists(old_eggs):
-            os.makedirs(old_eggs)
-
-        logger.info('Moving buildout-cache eggs aside')
-        for egg in os.listdir(cache_eggs):
+    # Move old eggs aside and use them as a --index so that the egg
+    # caches has only what's needed without downloading stuff that's
+    # already been installed
+    virtualenv_eggs = os.path.join(options.lib_name, 'site-packages')
+    buildout_eggs = os.path.join('buildout-cache', 'eggs')
+    old_eggs = buildout_eggs + '.old'
+    if not os.path.exists(old_eggs):
+        os.makedirs(old_eggs)
+    for egg_cache in (virtualenv_eggs, buildout_eggs):
+        if not os.path.exists(egg_cache):
+            continue
+        logger.info('Moving buildout-cache eggs aside: {0}'.format(egg_cache))
+        for egg in os.listdir(egg_cache):
             old_egg = os.path.join(old_eggs, egg)
             while os.path.isdir(old_egg):
                 cmd = 'rmdir /s /q {0}'.format(old_egg)
@@ -112,7 +114,7 @@ def main():
             else:
                 if os.path.exists(old_egg):
                     os.remove(old_egg)
-            os.rename(os.path.join(cache_eggs, egg), old_egg)
+            os.rename(os.path.join(egg_cache, egg), old_egg)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(

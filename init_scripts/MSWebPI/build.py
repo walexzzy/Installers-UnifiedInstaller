@@ -107,10 +107,12 @@ def main():
         logger.info('Moving buildout-cache eggs aside')
         for egg in os.listdir(cache_eggs):
             old_egg = os.path.join(old_eggs, egg)
-            if os.path.isdir(old_egg):
-                shutil.rmtree(old_egg)
-            elif os.path.exists(old_egg):
-                os.remove(old_egg)
+            while os.path.isdir(old_egg):
+                cmd = 'rmdir /s /q {0}'.format(old_egg)
+                subprocess.check_call(cmd, shell=True)
+            else:
+                if os.path.exists(old_egg):
+                    os.remove(old_egg)
             os.rename(os.path.join(cache_eggs, egg), old_egg)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed

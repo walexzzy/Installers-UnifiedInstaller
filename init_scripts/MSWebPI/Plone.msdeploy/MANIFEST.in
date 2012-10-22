@@ -1,7 +1,6 @@
 include web.config.in
 include easy_install.txt
-include iis_deploy.py
-include iis_deploy.stamp
+include iis_install.stamp
 
 include base_skeleton/*
 include base_skeleton/products/README.*

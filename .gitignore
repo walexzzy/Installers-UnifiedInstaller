@@ -23,5 +23,5 @@ init_scripts/MSWebPI/Plone.msdeploy/lib/
 init_scripts/MSWebPI/Plone.msdeploy/Scripts/
 init_scripts/MSWebPI/Plone.msdeploy/bin/
 init_scripts/MSWebPI/Plone.msdeploy/local/
-init_scripts/MSWebPI/Plone.msdeploy/iis_deploy.stamp
+init_scripts/MSWebPI/Plone.msdeploy/iis_install.stamp
 init_scripts/MSWebPI/Plone.msdeploy/web.config

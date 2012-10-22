@@ -47,7 +47,7 @@
       defaultValue="True">
     <parameterValidation type="Boolean" />
     <parameterEntry kind="TextFile" scope="\\setup\.py$"
-                    match="__webpi_buildout_parameter__" />
+                    match="__webpi_develop_parameter__" />
   </parameter>
   
 </parameters>

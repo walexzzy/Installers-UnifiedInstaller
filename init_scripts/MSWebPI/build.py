@@ -11,10 +11,6 @@ from iiswsgi import options
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
-requirements = dict(
-    pywin='http://downloads.sourceforge.net/project/pywin32/pywin32/Build%20217/pywin32-217.win32-py2.7.exe',
-    lxml='http://dist.plone.org/thirdparty/lxml-2.3.4-py2.7-win32.egg')
-
 
 def main():
     """
@@ -87,16 +83,6 @@ def main():
         logger.info('Deleting existing buildout: {0}'.format(args))
         subprocess.check_call(args, shell=True)
 
-    # Install dependencies that can't be found correctly by normal easy_install
-    dist = core.run_setup('setup.py')
-    install = dist.get_command_obj('install_msdeploy')
-    install.executable = install.setup_virtualenv()
-    reqs = tuple(
-        url for req, url in requirements.iteritems() if subprocess.call(
-            [install.executable, '-c', 'import {0}'.format(req)]))
-    if reqs:
-        install.easy_install_requirements(requirements=reqs)
-
     # Move old eggs aside and use them as --find-links so that the egg
     # caches has only what's needed without downloading stuff that's
     # already been installed
@@ -130,8 +116,8 @@ def main():
             '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
             '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),
-            'bdist_msdeploy', '--find-links={0}'.format(
-                os.path.abspath(old_eggs))]
+            'bdist_msdeploy', '--find-links={0} {1}'.format(
+                os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty')]
     logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
     subprocess.check_call(args)
 

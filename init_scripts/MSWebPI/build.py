@@ -2,8 +2,10 @@ import os
 import subprocess
 import shutil
 import logging
+import sysconfig
 
 from distutils import core
+import distutils.sysconfig
 
 from iiswsgi import options
 
@@ -50,7 +52,7 @@ def main():
         try:
             os.chdir(INSTANCE_HOME)
             service_script = os.path.join(
-            'bin', 'zeoserver_service' + options.script_ext)
+                'bin', 'zeoserver_service' + sysconfig.get_config_var('EXE'))
             if os.path.exists(service_script):
                 args = [service_script, 'stop']
                 logger.info('Stopping the ZEO service: {0}'.format(
@@ -72,8 +74,9 @@ def main():
             # removing the tree or egg contents will be deleted
             try:
                 os.chdir(buildout)
-                args = [os.path.join('bin', 'buildout' + options.script_ext),
-                        '-N', '-o', 'buildout:parts=']
+                buildout_script = os.path.join(
+                    'bin', 'buildout' + sysconfig.get_config_var('EXE'))
+                args = [buildout_script, '-N', '-o', 'buildout:parts=']
                 logger.info(
                     'Running non-development buildout to cleanup omelette: {0}'
                     .format(' '.join(args)))
@@ -97,7 +100,7 @@ def main():
     # Move old eggs aside and use them as --find-links so that the egg
     # caches has only what's needed without downloading stuff that's
     # already been installed
-    virtualenv_eggs = os.path.join(options.lib_name, 'site-packages')
+    virtualenv_eggs = distutils.sysconfig.get_python_lib(prefix=os.curdir)
     buildout_eggs = os.path.join('buildout-cache', 'eggs')
     old_eggs = buildout_eggs + '.old'
     if not os.path.exists(old_eggs):
@@ -117,10 +120,13 @@ def main():
             os.rename(os.path.join(egg_cache, egg), old_egg)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed
+    dist = core.run_setup('setup.py')
+    install = dist.get_command_obj('install_msdeploy')
+    install.ensure_finalized()
+    webpi_script = install.get_script_path('iiswsgi_webpi')
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
-    args = [options.get_script_path('iiswsgi_webpi'),
-            '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
+    args = [webpi_script, '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
             '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
             '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
             '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),

@@ -1,12 +1,12 @@
 import os
 import subprocess
 import logging
+import sysconfig
 
 from distutils.core import setup
 
 from iiswsgi import install_msdeploy
 from iiswsgi import fcgi
-from iiswsgi import options
 
 version = '0.1'
 
@@ -109,22 +109,23 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         try:
             os.chdir(INSTANCE_HOME)
 
-            args = [options.get_script_path('buildout', self.executable)]
+            args = [self.get_script_path('buildout', base=os.pardir)]
             args.extend(buildout_args)
             args.extend(['bootstrap', '-d'])
             logger.info(
                 'Bootstrapping the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 
-            args = [os.path.join('bin', 'buildout' + options.script_ext),
+            args = [os.path.join(
+                'bin', 'buildout' + sysconfig.get_config_var('EXE')),
                     '-c', BUILDOUT_CFG]
             args.extend(buildout_args)
             logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 
             if ITYPE == 'cluster':
-                service_script = os.path.join(
-                    'bin', 'zeoserver_service' + options.script_ext)
+                service_script = os.path.join('bin', 'zeoserver_service' +
+                                              sysconfig.get_config_var('EXE'))
                 if os.path.exists(service_script):
                     args = [service_script, '--startup', 'auto', 'install']
                     logger.info('Installing the ZEO service: {0}'.format(

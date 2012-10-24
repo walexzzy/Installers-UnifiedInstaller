@@ -17,85 +17,78 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
     def run(self):
         """Reproduce UI behavior."""
-        CWD = UIDIR = PLONE_HOME = os.getcwd()
-        APP_NAME = self.distribution.get_name()
-        APP_NAME  # pyflakes
-        COUNT = self.count
-        CLIENT_USER = os.environ.get('USERNAME')
-        if CLIENT_USER is None:
-            # Non-Windows compat for testing
-            CLIENT_USER = os.environ['USER']
-        ZEO_USER = ROOT_INSTALL = OFFLINE = "0"
-        RUN_BUILDOUT = "0"
-        INSTALL_LXML = "no"
-        LOG_FILE = os.path.join(PLONE_HOME, 'install.log')
-        PASSWORD = '__webpi_password_parameter__'
-        BUILDOUT_DIST = os.path.join(
-            PLONE_HOME, 'buildout-cache', 'downloads', 'dist')
+        CWD = os.getcwd()
+        os.environ.update(
+            CWD=CWD, UIDIR=CWD, PLONE_HOME=CWD,
+            CLIENT_USER=os.environ.get('USERNAME', os.environ.get('USER', '')),
+            APP_NAME=self.distribution.get_name(), COUNT=str(self.count),
+            ZEO_USER="0", ROOT_INSTALL="0", OFFLINE="0", RUN_BUILDOUT="0",
+            INSTALL_LXML="no",
+            LOG_FILE=os.path.join(CWD, 'install.log'),
+            PASSWORD='__webpi_password_parameter__',
+            BUILDOUT_DIST=os.path.join(
+                CWD, 'buildout-cache', 'downloads', 'dist'),
+            ZEO_PORT="__webpi_zeo_parameter__",
+            CLIENTS="__webpi_clients_parameter__",
+            ITYPE="cluster", PART='client1', INSTANCE_HOME='zeocluster',
+            BUILDOUT_CFG='develop.cfg', WSGI_CONFIG='development.ini',
+            DEVELOP=str(int("__webpi_develop_parameter__".lower() == "false")))
 
-        ZEO_PORT = "__webpi_zeo_parameter__"
-        ITYPE = "cluster"
-        PART = 'client1'
-        INSTANCE_HOME = 'zeocluster'
-        if ZEO_PORT:
+        if os.environ['ZEO_PORT']:
             try:
-                ZEO_PORT = int(ZEO_PORT)
+                os.environ.update(ZEO_PORT=str(int(os.environ['ZEO_PORT'])))
             except (ValueError, TypeError):
                 # Automatic port choosing
-                ZEO_PORT = 8100 + COUNT
+                os.environ.update(ZEO_PORT=str(8100 + self.count))
         else:
-            ITYPE = "standalone"
-            PART = 'instance'
-            PART  # pyflakes, used in web.config
-            INSTANCE_HOME = 'zinstance'
+            os.environ.update(ITYPE="standalone",
+                              PART='instance',
+                              INSTANCE_HOME='zinstance')
 
-        BUILDOUT_CFG = 'develop.cfg'
-        WSGI_CONFIG = 'development.ini'
-        DEVELOP = "__webpi_develop_parameter__".lower() == "false"
-        if DEVELOP:
+        if int(os.environ['DEVELOP']):
             # TODO uncomment when all auto-checkout dists in
             # base_skeleton/develop.cfg have been released
-            # BUILDOUT_CFG = 'buildout.cfg'
-            WSGI_CONFIG = 'production.ini'
-        WSGI_CONFIG  # pyflakes, used web.config
+            os.environ.update(
+                # BUILDOUT_CFG='buildout.cfg',
+                WSGI_CONFIG='production.ini')
 
-        CLIENTS = "__webpi_clients_parameter__"
         try:
-            CLIENTS = int(CLIENTS)
+            os.environ.update(CLIENTS=int(os.environ['CLIENTS']))
         except (ValueError, TypeError):
-            CLIENTS = fcgi.app_attr_defaults_init['maxInstances']
-            if DEVELOP:
-                CLIIENTS = 1
-                CLIIENTS  # pyflakes
+            os.environ.update(
+                CLIENTS=str(fcgi.app_attr_defaults_init['maxInstances']))
+            if os.environ['DEVELOP']:
+                os.environ.update(CLIIENTS="1")
 
-        substitutions = locals()
-        substitutions.pop('self', None)
-        self.install(**substitutions)
+        self.install()
 
-        if not os.path.exists(BUILDOUT_DIST):
-            os.makedirs(BUILDOUT_DIST)
+        if not os.path.exists(os.environ['BUILDOUT_DIST']):
+            os.makedirs(os.environ['BUILDOUT_DIST'])
 
-        if not os.path.exists(INSTANCE_HOME):
+        if not os.path.exists(os.environ['INSTANCE_HOME']):
             # IIS controls number of instances, so CLIENTS here is 1
-            args = [
-                self.executable,
-                os.path.join(UIDIR, 'helper_scripts', 'create_instance.py'),
-                UIDIR, PLONE_HOME, INSTANCE_HOME, CLIENT_USER, ZEO_USER,
-                PASSWORD, ROOT_INSTALL, RUN_BUILDOUT, INSTALL_LXML, OFFLINE,
-                ITYPE, LOG_FILE, "1"]
+            args = [self.executable, os.path.join(
+                os.environ['UIDIR'], 'helper_scripts', 'create_instance.py')]
+            args.extend(os.environ[key] for key in (
+                'UIDIR', 'PLONE_HOME', 'INSTANCE_HOME', 'CLIENT_USER',
+                'ZEO_USER', 'PASSWORD', 'ROOT_INSTALL', 'RUN_BUILDOUT',
+                'INSTALL_LXML', 'OFFLINE', 'ITYPE', 'LOG_FILE'))
+            args.append("1")
             logger.info('Creating the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
         else:
-            logger.warn(
-                'The buildout already exists: {0}'.format(INSTANCE_HOME))
+            logger.warn('The buildout already exists: {INSTANCE_HOME}'.format(
+                **os.environ))
 
         # Set the ZEO port
-        buildout_cfg = open(os.path.join(INSTANCE_HOME, 'buildout.cfg')).read()
-        logger.info('Updating the ZEO port: {0}'.format(ZEO_PORT))
-        open(os.path.join(INSTANCE_HOME, 'buildout.cfg'), 'w').write(
+        buildout_cfg = open(os.path.join(
+            os.environ['INSTANCE_HOME'], 'buildout.cfg')).read()
+        logger.info('Updating the ZEO port: {ZEO_PORT}'.format(**os.environ))
+        open(os.path.join(
+            os.environ['INSTANCE_HOME'], 'buildout.cfg'), 'w').write(
             buildout_cfg.replace(
                 'zeo-address = 127.0.0.1:8100',
-                'zeo-address = 127.0.0.1:{0}'.format(ZEO_PORT)))
+                'zeo-address = 127.0.0.1:{ZEO_PORT}'.format(**os.environ)))
 
         buildout_args = ['-N']
         if self.find_links:
@@ -107,7 +100,7 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             # default to offline
             buildout_args.append('-o')
         try:
-            os.chdir(INSTANCE_HOME)
+            os.chdir(os.environ['INSTANCE_HOME'])
 
             args = [self.get_script_path('buildout', base=os.pardir)]
             args.extend(buildout_args)
@@ -118,12 +111,12 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
             args = [os.path.join(
                 'bin', 'buildout' + sysconfig.get_config_var('EXE')),
-                    '-c', BUILDOUT_CFG]
+                    '-c', os.environ['BUILDOUT_CFG']]
             args.extend(buildout_args)
             logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
             subprocess.check_call(args)
 
-            if ITYPE == 'cluster':
+            if os.environ['ITYPE'] == 'cluster':
                 service_script = os.path.join('bin', 'zeoserver_service' +
                                               sysconfig.get_config_var('EXE'))
                 if os.path.exists(service_script):

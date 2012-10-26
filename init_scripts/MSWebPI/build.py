@@ -18,6 +18,7 @@ def main():
 
     Expects to be run with the system python with iiswsgi installed.
 
+    >%SYSTEMDRIVE%\Python27\easy_install.exe -U iiswsgi[config,webpi]
     >cd init_scripts/MSWebPI
     >%SYSTEMDRIVE%\Python27\python.exe build.py
 

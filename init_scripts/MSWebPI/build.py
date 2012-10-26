@@ -50,10 +50,10 @@ def main():
     installer = install_msdeploy.Installer(
         app_name='PloneIISApp', require_stamp=False,
         install_fcgi_app=False, virtualenv=True)
-    installer(['develop', '--find-links={0}'.format(' '.join(
+    installer(['develop', '--find-links={0}'.format(' '.join([
         os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty',
         'http://downloads.sourceforge.net/project/pywin32/pywin32'
-        '/Build%20217/pywin32-217.win32-py2.7.exe')),
+        '/Build%20217/pywin32-217.win32-py2.7.exe'])),
                'bdist_msdeploy'])
 
     # use bdist_webpi to update the WebPI feed

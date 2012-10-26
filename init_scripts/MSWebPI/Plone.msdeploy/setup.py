@@ -1,12 +1,17 @@
+import sys
 import os
 import subprocess
 import logging
 import sysconfig
 
-from distutils.core import setup
+import distutils.sysconfig
+from distutils import cmd
+
+from setuptools import setup
 
 from iiswsgi import install_msdeploy
 from iiswsgi import fcgi
+from iiswsgi import options
 
 version = '0.1'
 
@@ -140,6 +145,95 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
         self.test()
 
+
+class clean_plone_msdeploy(cmd.Command):
+    """Clean up/uninstall the Plone installation."""
+
+    description = __doc__
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        self.PLONE_HOME = os.getcwd()
+        self.INSTANCE_HOME = os.path.join(self.PLONE_HOME, 'zeocluster')
+        self.STANDALONE_HOME = os.path.join(self.PLONE_HOME, 'zinstance')
+        options.ensure_verbosity(self)
+
+    def run(self):
+        if os.path.exists(self.INSTANCE_HOME):
+            self.clean_zeo(self.INSTANCE_HOME)
+        for buildout in (self.INSTANCE_HOME, self.STANDALONE_HOME):
+            if os.path.exists(buildout):
+                self.clean_buildout(buildout)
+        self.clean_eggs()
+
+    def clean_zeo(self, buildout):
+        """Stop and remove ZEO service if present."""
+        try:
+            os.chdir(buildout)
+            service_script = os.path.join('bin', 'zeoserver_service' +
+                                          sysconfig.get_config_var('EXE'))
+            if os.path.exists(service_script):
+                cmd = [service_script, 'stop']
+                logger.info('Stopping the ZEO service: {0}'.format(
+                    ' '.join(cmd)))
+                subprocess.check_call(cmd)
+                cmd = [service_script, 'remove']
+                logger.info('Removing the ZEO service: {0}'.format(
+                    ' '.join(cmd)))
+                subprocess.check_call(cmd)
+        finally:
+            os.chdir(self.PLONE_HOME)
+
+    def clean_buildout(self, buildout):
+        """Clean up an existing buildout."""
+        # Have to clean up omelette ntfsutils.junction links before
+        # removing the tree or egg contents will be deleted.
+        # Best in general to let buildout recipes do their thing.
+        buildout_script = os.path.join(
+            'bin', 'buildout' + sysconfig.get_config_var('EXE'))
+        if os.path.exists(buildout_script):
+            cmd = [buildout_script, '-N', '-o', 'buildout:parts=']
+            logger.info('Cleanup buildout: {0}'.format(' '.join(cmd)))
+            try:
+                os.chdir(buildout)
+                subprocess.check_call(cmd)
+            finally:
+                os.chdir(self.PLONE_HOME)
+        cmd = 'rmdir /s /q {0}'.format(buildout)
+        logger.info('Deleting existing buildout: {0}'.format(cmd))
+        return subprocess.check_call(cmd, shell=True)
+
+    def clean_eggs(self):
+        """
+        Move old eggs aside to be used as --find-links.
+
+        Thus the egg cache has only what's needed without downloading
+        stuff that's already been installed.
+        """
+        virtualenv_eggs = distutils.sysconfig.get_python_lib(prefix=os.curdir)
+        buildout_eggs = os.path.join('buildout-cache', 'eggs')
+        old_eggs = buildout_eggs + '.old'
+        if not os.path.exists(old_eggs):
+            os.makedirs(old_eggs)
+        for egg_cache in (virtualenv_eggs, buildout_eggs):
+            if not os.path.exists(egg_cache):
+                continue
+            logger.info('Moving existing eggs aside: {0}'.format(egg_cache))
+            for egg in os.listdir(egg_cache):
+                old_egg = os.path.join(old_eggs, egg)
+                while os.path.isdir(old_egg):
+                    cmd = 'rmdir /s /q {0}'.format(old_egg)
+                    subprocess.check_call(cmd, shell=True)
+                else:
+                    if os.path.exists(old_egg):
+                        os.remove(old_egg)
+                os.rename(os.path.join(egg_cache, egg), old_egg)
+
+
 setup(name='PloneApp',
       version=version,
       title="Plone Application",
@@ -205,5 +299,6 @@ setup(name='PloneApp',
                       'iiswsgi'],
       extras_require=dict(install_msdeploy=['WDeploy', 'virtualenv'],
                           install_webpi=['IISManagementConsole']),
-      cmdclass=dict(install_msdeploy=install_plone_msdeploy),
+      cmdclass=dict(install_msdeploy=install_plone_msdeploy,
+                    clean_msdeploy=clean_plone_msdeploy),
       )

@@ -2,10 +2,8 @@ import os
 import subprocess
 import shutil
 import logging
-import sysconfig
 
 from distutils import core
-import distutils.sysconfig
 
 from iiswsgi import options
 
@@ -28,12 +26,6 @@ def main():
     """
     WEBPI_DIR = os.path.dirname(os.path.abspath(__file__))
     UIDIR = os.path.dirname(os.path.dirname(WEBPI_DIR))
-    PLONE_HOME = os.getcwd()
-    INSTANCE_HOME = os.path.join(PLONE_HOME, 'zeocluster')
-    STANDALONE_HOME = os.path.join(PLONE_HOME, 'zinstance')
-
-    environ = os.environ.copy()
-    environ['APPL_PHYSICAL_PATH'] = PLONE_HOME
 
     # Copy the bits of UI that need to be included in the package
     for path in ('base_skeleton', 'buildout_templates', 'helper_scripts'):
@@ -43,67 +35,12 @@ def main():
         logger.info('Copying UI directory: {0}'.format(path))
         shutil.copytree(os.path.join(UIDIR, path), path)
 
-    if os.path.exists(INSTANCE_HOME):
-        # Stop and remove ZEO service if present
-        try:
-            os.chdir(INSTANCE_HOME)
-            service_script = os.path.join(
-                'bin', 'zeoserver_service' + sysconfig.get_config_var('EXE'))
-            if os.path.exists(service_script):
-                args = [service_script, 'stop']
-                logger.info('Stopping the ZEO service: {0}'.format(
-                    ' '.join(args)))
-                subprocess.check_call(args)
-                args = [service_script, 'remove']
-                logger.info('Removing the ZEO service: {0}'.format(
-                    ' '.join(args)))
-                subprocess.check_call(args)
-        finally:
-            os.chdir(PLONE_HOME)
-
-    # Clean up any existing buildouts
-    for buildout in (INSTANCE_HOME, STANDALONE_HOME):
-        if not os.path.exists(buildout):
-            continue
-        if os.path.exists(os.path.join(buildout, 'parts', 'omelette')):
-            # Have to clean up ntfsutils.junction links before
-            # removing the tree or egg contents will be deleted
-            try:
-                os.chdir(buildout)
-                buildout_script = os.path.join(
-                    'bin', 'buildout' + sysconfig.get_config_var('EXE'))
-                args = [buildout_script, '-N', '-o', 'buildout:parts=']
-                logger.info(
-                    'Running non-development buildout to cleanup omelette: {0}'
-                    .format(' '.join(args)))
-                subprocess.check_call(args)
-            finally:
-                os.chdir(PLONE_HOME)
-        args = 'rmdir /s /q {0}'.format(buildout)
-        logger.info('Deleting existing buildout: {0}'.format(args))
-        subprocess.check_call(args, shell=True)
-
-    # Move old eggs aside and use them as --find-links so that the egg
-    # caches has only what's needed without downloading stuff that's
-    # already been installed
-    virtualenv_eggs = distutils.sysconfig.get_python_lib(prefix=os.curdir)
+    # Clean up zeo, buildout, eggs
+    cmd = [sys.executable, 'setup.py', '-v', 'clean_msdeploy']
+    logger.info('Cleaning up: {0}'.format(' '.join(cmd)))
+    subprocess.check_call(cmd)
     buildout_eggs = os.path.join('buildout-cache', 'eggs')
     old_eggs = buildout_eggs + '.old'
-    if not os.path.exists(old_eggs):
-        os.makedirs(old_eggs)
-    for egg_cache in (virtualenv_eggs, buildout_eggs):
-        if not os.path.exists(egg_cache):
-            continue
-        logger.info('Moving existing eggs aside: {0}'.format(egg_cache))
-        for egg in os.listdir(egg_cache):
-            old_egg = os.path.join(old_eggs, egg)
-            while os.path.isdir(old_egg):
-                cmd = 'rmdir /s /q {0}'.format(old_egg)
-                subprocess.check_call(cmd, shell=True)
-            else:
-                if os.path.exists(old_egg):
-                    os.remove(old_egg)
-            os.rename(os.path.join(egg_cache, egg), old_egg)
 
     # Use iiswsgi.build to make the packages and update the WebPI feed
     dist = core.run_setup('setup.py')

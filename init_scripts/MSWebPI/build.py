@@ -14,11 +14,10 @@ def main():
     """
     Build Plone MSDeploy and Web PI package.
 
-    Expects to be run with the system python with iiswsgi installed in
-    the PloneApp directory.
+    Expects to be run with the system python with iiswsgi installed.
 
-    >cd Plone.msdeploy
-    >%SYSTEMDRIVE%\Python27\python.exe ..\build.py
+    >cd init_scripts/MSWebPI
+    >%SYSTEMDRIVE%\Python27\python.exe build.py
 
     Since the Unified installer and buildout-cache layouts can result
     in deep paths, it is best to place the UI checkout at the root of

@@ -102,7 +102,9 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         try:
             os.chdir(os.environ['INSTANCE_HOME'])
 
-            cmd = [self.get_script_path('buildout', base=os.pardir)]
+            cmd = [os.path.abspath(os.path.join(sysconfig.get_path(
+                    'scripts', vars=dict(base=os.pardir)),
+                    'buildout' + sysconfig.get_config_var('EXE')))]
             cmd.extend(buildout_args)
             cmd.extend(['bootstrap', '-d'])
             logger.info(

@@ -4,7 +4,6 @@ import subprocess
 import logging
 import sysconfig
 
-import distutils.sysconfig
 from distutils import cmd
 
 from setuptools import setup
@@ -176,7 +175,6 @@ class clean_plone_msdeploy(cmd.Command):
         for buildout in (self.INSTANCE_HOME, self.STANDALONE_HOME):
             if os.path.exists(buildout):
                 self.clean_buildout(buildout)
-        self.clean_eggs()
 
     def clean_zeo(self, buildout):
         """Stop and remove ZEO service if present."""
@@ -214,32 +212,6 @@ class clean_plone_msdeploy(cmd.Command):
         cmd = 'rmdir /s /q {0}'.format(buildout)
         logger.info('Deleting existing buildout: {0}'.format(cmd))
         return subprocess.check_call(cmd, shell=True)
-
-    def clean_eggs(self):
-        """
-        Move old eggs aside to be used as --find-links.
-
-        Thus the egg cache has only what's needed without downloading
-        stuff that's already been installed.
-        """
-        virtualenv_eggs = distutils.sysconfig.get_python_lib(prefix=os.curdir)
-        buildout_eggs = os.path.join('buildout-cache', 'eggs')
-        old_eggs = buildout_eggs + '.old'
-        if not os.path.exists(old_eggs):
-            os.makedirs(old_eggs)
-        for egg_cache in (virtualenv_eggs, buildout_eggs):
-            if not os.path.exists(egg_cache):
-                continue
-            logger.info('Moving existing eggs aside: {0}'.format(egg_cache))
-            for egg in os.listdir(egg_cache):
-                old_egg = os.path.join(old_eggs, egg)
-                while os.path.isdir(old_egg):
-                    cmd = 'rmdir /s /q {0}'.format(old_egg)
-                    subprocess.check_call(cmd, shell=True)
-                else:
-                    if os.path.exists(old_egg):
-                        os.remove(old_egg)
-                os.rename(os.path.join(egg_cache, egg), old_egg)
 
 
 setup(name='PloneIISApp',

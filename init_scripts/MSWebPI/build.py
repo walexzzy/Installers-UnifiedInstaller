@@ -4,6 +4,8 @@ import subprocess
 import shutil
 import logging
 
+import distutils.sysconfig
+
 from iiswsgi import options
 from iiswsgi import install_msdeploy
 
@@ -34,10 +36,13 @@ def main():
         logger.info('Copying UI directory: {0}'.format(path))
         shutil.copytree(os.path.join(UIDIR, path), path)
 
-    # Clean up zeo, buildout, eggs
+    # Clean up zeo, buildout
     cmd = [sys.executable, 'setup.py', '-v', 'clean_msdeploy']
     logger.info('Cleaning up: {0}'.format(' '.join(cmd)))
     subprocess.check_call(cmd)
+
+    # Move old eggs aside
+    clean_eggs()
     buildout_eggs = os.path.join('buildout-cache', 'eggs')
     old_eggs = buildout_eggs + '.old'
 
@@ -63,6 +68,33 @@ def main():
     logger.info('Building the WebPI feed: {0}'.format(
         ' '.join(cmd)))
     subprocess.check_call(cmd)
+
+
+def clean_eggs():
+    """
+    Move old eggs aside to be used as --find-links.
+
+    Thus the egg cache has only what's needed without downloading
+    stuff that's already been installed.
+    """
+    virtualenv_eggs = distutils.sysconfig.get_python_lib(prefix=os.curdir)
+    buildout_eggs = os.path.join('buildout-cache', 'eggs')
+    old_eggs = buildout_eggs + '.old'
+    if not os.path.exists(old_eggs):
+        os.makedirs(old_eggs)
+    for egg_cache in (virtualenv_eggs, buildout_eggs):
+        if not os.path.exists(egg_cache):
+            continue
+        logger.info('Moving existing eggs aside: {0}'.format(egg_cache))
+        for egg in os.listdir(egg_cache):
+            old_egg = os.path.join(old_eggs, egg)
+            while os.path.isdir(old_egg):
+                cmd = 'rmdir /s /q {0}'.format(old_egg)
+                subprocess.check_call(cmd, shell=True)
+            else:
+                if os.path.exists(old_egg):
+                    os.remove(old_egg)
+            os.rename(os.path.join(egg_cache, egg), old_egg)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

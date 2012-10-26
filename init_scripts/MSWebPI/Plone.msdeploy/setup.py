@@ -203,7 +203,7 @@ class clean_plone_msdeploy(cmd.Command):
         # Best in general to let buildout recipes do their thing.
         buildout_script = os.path.join(
             'bin', 'buildout' + sysconfig.get_config_var('EXE'))
-        if os.path.exists(buildout_script):
+        if os.path.exists(os.path.join(buildout, buildout_script)):
             cmd = [buildout_script, '-N', '-o', 'buildout:parts=']
             logger.info('Cleanup buildout: {0}'.format(' '.join(cmd)))
             try:

@@ -67,15 +67,15 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
         if not os.path.exists(os.environ['INSTANCE_HOME']):
             # IIS controls number of instances, so CLIENTS here is 1
-            args = [self.executable, os.path.join(
+            cmd = [sys.executable, os.path.join(
                 os.environ['UIDIR'], 'helper_scripts', 'create_instance.py')]
-            args.extend(os.environ[key] for key in (
+            cmd.extend(os.environ[key] for key in (
                 'UIDIR', 'PLONE_HOME', 'INSTANCE_HOME', 'CLIENT_USER',
                 'ZEO_USER', 'PASSWORD', 'ROOT_INSTALL', 'RUN_BUILDOUT',
                 'INSTALL_LXML', 'OFFLINE', 'ITYPE', 'LOG_FILE'))
-            args.append("1")
-            logger.info('Creating the buildout: {0}'.format(' '.join(args)))
-            subprocess.check_call(args)
+            cmd.append("1")
+            logger.info('Creating the buildout: {0}'.format(' '.join(cmd)))
+            subprocess.check_call(cmd)
         else:
             logger.warn('The buildout already exists: {INSTANCE_HOME}'.format(
                 **os.environ))
@@ -102,32 +102,32 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         try:
             os.chdir(os.environ['INSTANCE_HOME'])
 
-            args = [self.get_script_path('buildout', base=os.pardir)]
-            args.extend(buildout_args)
-            args.extend(['bootstrap', '-d'])
+            cmd = [self.get_script_path('buildout', base=os.pardir)]
+            cmd.extend(buildout_args)
+            cmd.extend(['bootstrap', '-d'])
             logger.info(
-                'Bootstrapping the buildout: {0}'.format(' '.join(args)))
-            subprocess.check_call(args)
+                'Bootstrapping the buildout: {0}'.format(' '.join(cmd)))
+            subprocess.check_call(cmd)
 
-            args = [os.path.join(
+            cmd = [os.path.join(
                 'bin', 'buildout' + sysconfig.get_config_var('EXE')),
                     '-c', os.environ['BUILDOUT_CFG']]
-            args.extend(buildout_args)
-            logger.info('Setting up the buildout: {0}'.format(' '.join(args)))
-            subprocess.check_call(args)
+            cmd.extend(buildout_args)
+            logger.info('Setting up the buildout: {0}'.format(' '.join(cmd)))
+            subprocess.check_call(cmd)
 
             if os.environ['ITYPE'] == 'cluster':
                 service_script = os.path.join('bin', 'zeoserver_service' +
                                               sysconfig.get_config_var('EXE'))
                 if os.path.exists(service_script):
-                    args = [service_script, '--startup', 'auto', 'install']
+                    cmd = [service_script, '--startup', 'auto', 'install']
                     logger.info('Installing the ZEO service: {0}'.format(
-                        ' '.join(args)))
-                    subprocess.check_call(args)
-                    args = [service_script, 'start']
+                        ' '.join(cmd)))
+                    subprocess.check_call(cmd)
+                    cmd = [service_script, 'start']
                     logger.info('Starting the ZEO service: {0}'.format(
-                        ' '.join(args)))
-                    subprocess.check_call(args)
+                        ' '.join(cmd)))
+                    subprocess.check_call(cmd)
                 else:
                     logger.error(
                         'ZEO service script does not exist: {0}'.format(

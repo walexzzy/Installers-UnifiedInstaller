@@ -62,7 +62,7 @@ def main():
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
     msdeploy_bdists = [os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
                        os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
-                       os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
+                       WEBPI_DIR]
     cmd = [sys.executable, 'setup.py', '-v', 'bdist_webpi',
            '--msdeploy-bdists={0}'.format(' '.join(msdeploy_bdists)),
            'clean_webpi']

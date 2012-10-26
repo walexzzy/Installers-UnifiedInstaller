@@ -20,6 +20,14 @@ logger = logging.getLogger('plone.iiswsgi')
 
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
+    def initialize_options(self):
+        install_msdeploy.install_msdeploy.initialize_options(self)
+        self.find_links = None
+
+    def finalize_options(self):
+        install_msdeploy.install_msdeploy.finalize_options(self)
+        self.set_undefined_options('develop', ('find_links', 'find_links'))
+
     def run(self):
         """Reproduce UI behavior."""
         CWD = os.getcwd()

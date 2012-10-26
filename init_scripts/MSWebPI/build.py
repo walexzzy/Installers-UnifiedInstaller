@@ -42,10 +42,14 @@ def main():
     buildout_eggs = os.path.join('buildout-cache', 'eggs')
     old_eggs = buildout_eggs + '.old'
 
-    # Use iiswsgi.build to make the packages and update the WebPI feed
-    dist = core.run_setup('setup.py')
-    install = dist.get_command_obj('install_msdeploy')
-    install.ensure_finalized()
+    # Build the package with iiswsgi_install
+    installer = install_msdeploy.Installer(
+        app_name='PloneApp', require_stamp=False,
+        install_fcgi_app=False, virtualenv=True)
+    installer(['develop', '--find-links={0} {1}'.format(
+        os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty'),
+               'bdist_msdeploy'])
+
     webpi_script = install.get_script_path('iiswsgi_webpi')
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')

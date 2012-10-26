@@ -45,7 +45,7 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             CLIENTS="__webpi_clients_parameter__",
             ITYPE="cluster", PART='client1', INSTANCE_HOME='zeocluster',
             BUILDOUT_CFG='develop.cfg', WSGI_CONFIG='development.ini',
-            DEVELOP=str(int("__webpi_develop_parameter__".lower() == "false")))
+            DEVELOP=str(int("__webpi_develop_parameter__".lower() == "true")))
 
         if os.environ['ZEO_PORT']:
             try:
@@ -70,8 +70,8 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         except (ValueError, TypeError):
             os.environ.update(
                 CLIENTS=str(fcgi.app_attr_defaults_init['maxInstances']))
-            if os.environ['DEVELOP']:
-                os.environ.update(CLIIENTS="1")
+            if int(os.environ['DEVELOP']):
+                os.environ.update(CLIENTS="1")
 
         self.install()
 

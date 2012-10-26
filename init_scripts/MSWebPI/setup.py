@@ -242,9 +242,9 @@ class clean_plone_msdeploy(cmd.Command):
                 os.rename(os.path.join(egg_cache, egg), old_egg)
 
 
-setup(name='plone_msdeploy',
+setup(name='PloneApp',
       version=version,
-      title="Plone CMS",
+      title="Plone Application",
       description="""
       Leading open source CMS for Content Management, Document
       Management and Knowledge Management. Get your intranet, portal,

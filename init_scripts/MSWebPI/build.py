@@ -4,10 +4,7 @@ import subprocess
 import shutil
 import logging
 
-from distutils import core
-
 from iiswsgi import options
-from iiswsgi import webpi
 from iiswsgi import install_msdeploy
 
 logger = logging.getLogger('Plone.UnifiedInstaller')

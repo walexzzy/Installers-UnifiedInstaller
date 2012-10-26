@@ -1,3 +1,4 @@
+import sys
 import os
 import subprocess
 import shutil
@@ -6,6 +7,8 @@ import logging
 from distutils import core
 
 from iiswsgi import options
+from iiswsgi import webpi
+from iiswsgi import install_msdeploy
 
 logger = logging.getLogger('Plone.UnifiedInstaller')
 
@@ -50,17 +53,18 @@ def main():
         os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty'),
                'bdist_msdeploy'])
 
-    webpi_script = install.get_script_path('iiswsgi_webpi')
+    # use bdist_webpi to update the WebPI feed
     GITHUB_EXAMPLES = os.path.join(
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
-    args = [webpi_script, '-v', '-f', os.path.join(WEBPI_DIR, 'web-pi.xml'),
-            '-p', os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
-            '-p', os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
-            '-p', os.path.join(WEBPI_DIR, 'Plone.msdeploy'),
-            'bdist_msdeploy', '--find-links={0} {1}'.format(
-                os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty')]
-    logger.info('Delegating to `iiswsgi.build`: {0}'.format(' '.join(args)))
-    subprocess.check_call(args)
+    msdeploy_bdists = [os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
+                       os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
+                       os.path.join(WEBPI_DIR, 'Plone.msdeploy')]
+    cmd = [sys.executable, 'setup.py', '-v', 'bdist_webpi',
+           '--msdeploy-bdists={0}'.format(' '.join(msdeploy_bdists)),
+           'clean_webpi']
+    logger.info('Building the WebPI feed: {0}'.format(
+        ' '.join(cmd)))
+    subprocess.check_call(cmd)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

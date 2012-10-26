@@ -2,10 +2,10 @@
   
   <parameter 
     name="ApplicationPath" 
-    description="Full site path where you would like to install your application (i.e., PloneApp)" 
-    defaultValue="Default Web Site/PloneApp" 
+    description="Full site path where you would like to install your application (i.e., PloneIISApp)" 
+    defaultValue="Default Web Site/PloneIISApp" 
     tags="iisApp">
-    <parameterEntry kind="ProviderPath" scope="iisApp" match="PloneApp" />
+    <parameterEntry kind="ProviderPath" scope="iisApp" match="PloneIISApp" />
   </parameter>
 
   <parameter 

@@ -242,7 +242,7 @@ class clean_plone_msdeploy(cmd.Command):
                 os.rename(os.path.join(egg_cache, egg), old_egg)
 
 
-setup(name='PloneApp',
+setup(name='PloneIISApp',
       version=version,
       title="Plone Application",
       description="""

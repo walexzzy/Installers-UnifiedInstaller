@@ -43,7 +43,7 @@ def main():
 
     # Build the package with iiswsgi_install
     installer = install_msdeploy.Installer(
-        app_name='PloneApp', require_stamp=False,
+        app_name='plone_msdeploy', require_stamp=False,
         install_fcgi_app=False, virtualenv=True)
     installer(['develop', '--find-links={0} {1}'.format(
         os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty'),

@@ -16,6 +16,73 @@ version = '0.1'
 
 logger = logging.getLogger('plone.iiswsgi')
 
+setup_kw = dict(
+    name='PloneIISApp',
+      version=version,
+      title="Plone Application",
+      description="""
+      Leading open source CMS for Content Management, Document
+      Management and Knowledge Management. Get your intranet, portal,
+      web site or community site up and running in minutes!""",
+      long_description="""
+      Plone is powerful and flexible.
+
+      It is ideal as an intranet and extranet server, as a document publishing system, a portal server and as a groupware tool for collaboration between separately located entities.
+      
+      Plone is easy to use.
+      The Plone Team includes usability experts who have made Plone easy and attractive for content managers to add, update, and maintain content.
+      
+      Plone is easy to install.
+      You can install Plone with a click-and-run installer, and have a content management system running on your computer in just a few minutes.
+      
+      Plone is international.
+      The Plone interface has been translated into over 40 languages, and tools exist for managing multilingual content.
+      
+      Plone is standard.
+      Plone carefully follows standards for usability and accessibility. Plone pages are compliant with US Section 508, and the W3C's AA rating for accessibility, in addition to using best-practice web standards like XHTML and CSS.
+      
+      Plone is Open Source.
+      Plone is licensed under the GNU General Public License, the same license Linux uses. This gives you the right to use Plone without a license fee, and to improve upon the product.
+      
+      Plone is supported.
+      There are over three hundred developers in the Plone Development Team around the world, and a multitude of companies specializing in Plone development and support.
+      
+      Plone is extensible.
+      There are many add-on products for Plone that add new features and content types. In addition, Plone can be scripted using web standard solutions and Open Source languages.
+      
+      Plone is technology neutral.
+      Plone can interoperate with most relational database systems, open source and commercial, and runs on a vast array of platforms, including Linux, Windows, Mac OS X, Solaris and BSD.
+      
+      Plone is protected.
+      The nonprofit Plone Foundation was formed in 2004 to promote the use of Plone around the world and protect the Plone IP and trademarks.""",
+      classifiers=[
+        "Environment :: Web Environment",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+        ],
+      keywords='ContentMgmt Plone Zope Python Server FrameworkRuntime WSGI',
+      author='Plone Foundation',
+      author_email='board@plone.org',
+      author_url='http://plone.org',
+      url='http://plone.org',
+      help_url='http://plone.org/download',
+      license='GPL version 3',
+      license_url='http://www.gnu.org/licenses/gpl.txt',
+      icon_url='http://www.sixfeetup.com/blog/plone.png',
+      screenshot_url='http://plone.org/products/plone/screenshot',
+      install_requires=['iiswsgi',
+                        'nt_svcutils',
+                        'pywin32',
+                        'ntfsutils',
+                        'lxml==2.3.4',
+                        'zc.buildout==1.6.3'],
+      setup_requires=['setuptools-git',
+                      'iiswsgi'],
+      extras_require=dict(webpi_eggs=['virtualenv', 'iiswsgi']),
+      install_msdeploy=['WDeploy', 'virtualenv'],
+      install_webpi=['IISManagementConsole'])
 
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
@@ -231,72 +298,7 @@ class clean_plone_msdeploy(cmd.Command):
         return subprocess.check_call(cmd, shell=True)
 
 
-setup(name='PloneIISApp',
-      version=version,
-      title="Plone Application",
-      description="""
-      Leading open source CMS for Content Management, Document
-      Management and Knowledge Management. Get your intranet, portal,
-      web site or community site up and running in minutes!""",
-      long_description="""
-      Plone is powerful and flexible.
-
-      It is ideal as an intranet and extranet server, as a document publishing system, a portal server and as a groupware tool for collaboration between separately located entities.
-      
-      Plone is easy to use.
-      The Plone Team includes usability experts who have made Plone easy and attractive for content managers to add, update, and maintain content.
-      
-      Plone is easy to install.
-      You can install Plone with a click-and-run installer, and have a content management system running on your computer in just a few minutes.
-      
-      Plone is international.
-      The Plone interface has been translated into over 40 languages, and tools exist for managing multilingual content.
-      
-      Plone is standard.
-      Plone carefully follows standards for usability and accessibility. Plone pages are compliant with US Section 508, and the W3C's AA rating for accessibility, in addition to using best-practice web standards like XHTML and CSS.
-      
-      Plone is Open Source.
-      Plone is licensed under the GNU General Public License, the same license Linux uses. This gives you the right to use Plone without a license fee, and to improve upon the product.
-      
-      Plone is supported.
-      There are over three hundred developers in the Plone Development Team around the world, and a multitude of companies specializing in Plone development and support.
-      
-      Plone is extensible.
-      There are many add-on products for Plone that add new features and content types. In addition, Plone can be scripted using web standard solutions and Open Source languages.
-      
-      Plone is technology neutral.
-      Plone can interoperate with most relational database systems, open source and commercial, and runs on a vast array of platforms, including Linux, Windows, Mac OS X, Solaris and BSD.
-      
-      Plone is protected.
-      The nonprofit Plone Foundation was formed in 2004 to promote the use of Plone around the world and protect the Plone IP and trademarks.""",
-      classifiers=[
-        "Environment :: Web Environment",
-        "License :: OSI Approved :: GNU General Public License (GPL)",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-        ],
-      keywords='ContentMgmt Plone Zope Python Server FrameworkRuntime WSGI',
-      author='Plone Foundation',
-      author_email='board@plone.org',
-      author_url='http://plone.org',
-      url='http://plone.org',
-      help_url='http://plone.org/download',
-      license='GPL version 3',
-      license_url='http://www.gnu.org/licenses/gpl.txt',
-      icon_url='http://www.sixfeetup.com/blog/plone.png',
-      screenshot_url='http://plone.org/products/plone/screenshot',
-      install_requires=['iiswsgi',
-                        'nt_svcutils',
-                        'pywin32',
-                        'ntfsutils',
-                        'lxml==2.3.4',
-                        'zc.buildout==1.6.3'],
-      setup_requires=['setuptools-git',
-                      'iiswsgi'],
-      extras_require=dict(webpi_eggs=['virtualenv', 'iiswsgi']),
-      install_msdeploy=['WDeploy', 'virtualenv'],
-      install_webpi=['IISManagementConsole'],
-      cmdclass=dict(install_msdeploy=install_plone_msdeploy,
-                    clean_msdeploy=clean_plone_msdeploy),
-      )
+if __name__ == '__main__':
+    setup(cmdclass=dict(install_msdeploy=install_plone_msdeploy,
+                        clean_msdeploy=clean_plone_msdeploy),
+          **setup_kw)

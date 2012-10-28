@@ -118,4 +118,25 @@ def main(**kw):
 
 if __name__ == '__main__':
     kw = setup.setup_kw.copy()
+    kw['install_requires'] += [
+        'zope.interface==3.6.7',
+        'zope.pagetemplate==3.5.2',
+        'pytz==2012c',
+        'RestrictedPython==3.6.0',
+        'zope.browser==1.3',
+        'zope.component==3.9.5',
+        'zope.configuration==3.7.4',
+        'zope.contenttype==3.5.5',
+        'zope.event==3.5.2',
+        'zope.exceptions==3.6.2',
+        'zope.i18n==3.7.4',
+        'zope.i18nmessageid==3.5.3',
+        'zope.location==3.9.1',
+        'zope.proxy==3.6.1',
+        'zope.publisher==3.12.6',
+        'zope.schema==4.2.0',
+        'zope.security==3.7.4',
+        'zope.tal==3.5.2',
+        'zope.tales==3.5.2',
+        'zope.traversing==3.13.2']
     main(**kw)

@@ -72,7 +72,7 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             if int(os.environ['DEVELOP']):
                 os.environ.update(CLIENTS="1")
 
-        self.install()
+        install_msdeploy.install_msdeploy.run(self)
 
         if not os.path.exists(os.environ['BUILDOUT_DIST']):
             os.makedirs(os.environ['BUILDOUT_DIST'])
@@ -149,8 +149,6 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
         finally:
             os.chdir(CWD)
-
-        self.test()
 
 
 class clean_plone_msdeploy(cmd.Command):

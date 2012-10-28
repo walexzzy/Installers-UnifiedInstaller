@@ -84,6 +84,7 @@ setup_kw = dict(
       install_msdeploy=['virtualenv'],
       install_webpi=['IISManagementConsole'])
 
+
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
     password = None

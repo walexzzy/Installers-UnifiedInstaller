@@ -26,8 +26,7 @@ def main():
     in deep paths, it is best to place the UI checkout at the root of
     a drive.
     """
-    WEBPI_DIR = os.path.dirname(os.path.abspath(__file__))
-    UIDIR = os.path.dirname(os.path.dirname(WEBPI_DIR))
+    UIDIR = os.path.dirname(os.path.dirname(os.getcwd()))
 
     # Copy the bits of UI that need to be included in the package
     for path in ('base_skeleton', 'buildout_templates', 'helper_scripts'):
@@ -62,7 +61,7 @@ def main():
         os.path.dirname(os.path.dirname(options.__file__)), 'examples')
     msdeploy_bdists = [os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
                        os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
-                       WEBPI_DIR]
+                       os.curdir]
     cmd = [sys.executable, 'setup.py', '-v', 'bdist_webpi',
            '--msdeploy-bdists={0}'.format(' '.join(msdeploy_bdists)),
            'clean_webpi']

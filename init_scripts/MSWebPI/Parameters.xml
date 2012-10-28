@@ -16,7 +16,7 @@
     <!-- At least 5 characters -->
     <parameterValidation type="RegularExpression" validationString=".{5,}" />
     <parameterEntry kind="TextFile" scope="\\setup\.py$"
-                    match="__webpi_password_parameter__" />
+                    match="__msdeploy_password_parameter__" />
   </parameter>
 
   <parameter 
@@ -26,7 +26,7 @@
       defaultValue="auto">
     <parameterValidation type="RegularExpression,AllowEmpty" validationString="auto|[0-9]{0,5}" />
     <parameterEntry kind="TextFile" scope="\\setup\.py$"
-                    match="__webpi_zeo_port_parameter__" />
+                    match="__msdeploy_zeo_port_parameter__" />
   </parameter>
   
   <parameter 
@@ -37,7 +37,7 @@
     <!-- Integer >= 1 -->
     <parameterValidation type="RegularExpression,AllowEmpty" validationString="[1-9][0-9]*" />
     <parameterEntry kind="TextFile" scope="\\setup\.py$"
-                    match="__webpi_clients_parameter__" />
+                    match="__msdeploy_clients_parameter__" />
   </parameter>
 
   <parameter 
@@ -47,7 +47,7 @@
       defaultValue="True">
     <parameterValidation type="Boolean" />
     <parameterEntry kind="TextFile" scope="\\setup\.py$"
-                    match="__webpi_develop_parameter__" />
+                    match="__msdeploy_develop_parameter__" />
   </parameter>
   
 </parameters>

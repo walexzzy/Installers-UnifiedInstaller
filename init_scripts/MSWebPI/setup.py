@@ -37,14 +37,14 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             ZEO_USER="0", ROOT_INSTALL="0", OFFLINE="0", RUN_BUILDOUT="0",
             INSTALL_LXML="no",
             LOG_FILE=os.path.join(CWD, 'install.log'),
-            PASSWORD='__webpi_password_parameter__',
+            PASSWORD='__msdeploy_password_parameter__',
             BUILDOUT_DIST=os.path.join(
                 CWD, 'buildout-cache', 'downloads', 'dist'),
-            ZEO_PORT="__webpi_zeo_parameter__",
-            CLIENTS="__webpi_clients_parameter__",
+            ZEO_PORT="__msdeploy_zeo_parameter__",
+            CLIENTS="__msdeploy_clients_parameter__",
             ITYPE="cluster", PART='client1', INSTANCE_HOME='zeocluster',
             BUILDOUT_CFG='develop.cfg', WSGI_CONFIG='development.ini',
-            DEVELOP=str(int("__webpi_develop_parameter__".lower() == "true")))
+            DEVELOP=str(int("__msdeploy_develop_parameter__".lower() == "true")))
 
         if os.environ['ZEO_PORT']:
             try:

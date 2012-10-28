@@ -287,7 +287,7 @@ class clean_plone_msdeploy(cmd.Command):
         buildout_script = os.path.join(
             'bin', 'buildout' + sysconfig.get_config_var('EXE'))
         if os.path.exists(os.path.join(buildout, buildout_script)):
-            cmd = [buildout_script, '-N', '-o', 'buildout:parts=']
+            cmd = [buildout_script, '-N', 'buildout:parts=']
             logger.info('Cleanup buildout: {0}'.format(' '.join(cmd)))
             try:
                 os.chdir(buildout)

@@ -81,7 +81,7 @@ setup_kw = dict(
       setup_requires=['setuptools-git',
                       'iiswsgi'],
       extras_require=dict(webpi_eggs=['virtualenv', 'iiswsgi']),
-      install_msdeploy=['WDeploy', 'virtualenv'],
+      install_msdeploy=['virtualenv'],
       install_webpi=['IISManagementConsole'])
 
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):

@@ -19,6 +19,23 @@ logger = logging.getLogger('plone.iiswsgi')
 
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):
 
+    password = None
+    zeo_port = None
+    clients = None
+    develop = True
+
+    user_options = install_msdeploy.install_msdeploy.user_options + [
+        ('password', 'p', 'The admin user password.'),
+        ('zeo-port', 'z', """\
+If given, specifies to deploy a ZEO cluster with the ZEO server on the given \
+port.  Use 'auto' to automatically select a port based on the number of times \
+this app has been installed."""),
+        ('clients', 'c',
+         "When using ZEO, use this many FCGI processes simultaneously.  "
+         "Defaults to 2, or 1 if --develop."),
+        ('develop', 'd',
+         "Use a development cofiguration.")]
+
     def initialize_options(self):
         install_msdeploy.install_msdeploy.initialize_options(self)
         self.find_links = None
@@ -26,6 +43,22 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
     def finalize_options(self):
         install_msdeploy.install_msdeploy.finalize_options(self)
         self.set_undefined_options('develop', ('find_links', 'find_links'))
+
+        if self.zeo_port:
+            try:
+                self.zeo_port = int(self.zeo_port)
+            except (ValueError, TypeError):
+                # Automatic port choosing
+                self.zeo_port = 8100 + self.count
+
+        self.develop = self.develop.lower() == "true"
+
+        try:
+            self.clients = int(self.clients)
+        except (ValueError, TypeError):
+            self.clients = fcgi.app_attr_defaults_init['maxInstances']
+            if self.develop:
+                self.clients = 1
 
     def run(self):
         """Reproduce UI behavior."""
@@ -37,40 +70,25 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
             ZEO_USER="0", ROOT_INSTALL="0", OFFLINE="0", RUN_BUILDOUT="0",
             INSTALL_LXML="no",
             LOG_FILE=os.path.join(CWD, 'install.log'),
-            PASSWORD='__msdeploy_password_parameter__',
             BUILDOUT_DIST=os.path.join(
                 CWD, 'buildout-cache', 'downloads', 'dist'),
-            ZEO_PORT="__msdeploy_zeo_parameter__",
-            CLIENTS="__msdeploy_clients_parameter__",
+            ZEO_PORT=str(self.zeo_port),
+            CLIENTS=str(self.clients),
             ITYPE="cluster", PART='client1', INSTANCE_HOME='zeocluster',
             BUILDOUT_CFG='develop.cfg', WSGI_CONFIG='development.ini',
-            DEVELOP=str(int("__msdeploy_develop_parameter__".lower() == "true")))
+            DEVELOP=str(int(self.develop)))
 
-        if os.environ['ZEO_PORT']:
-            try:
-                os.environ.update(ZEO_PORT=str(int(os.environ['ZEO_PORT'])))
-            except (ValueError, TypeError):
-                # Automatic port choosing
-                os.environ.update(ZEO_PORT=str(8100 + self.count))
-        else:
+        if not self.zeo_port:
             os.environ.update(ITYPE="standalone",
                               PART='instance',
                               INSTANCE_HOME='zinstance')
 
-        if int(os.environ['DEVELOP']):
+        if self.develop:
             # TODO uncomment when all auto-checkout dists in
             # base_skeleton/develop.cfg have been released
             os.environ.update(
                 # BUILDOUT_CFG='buildout.cfg',
                 WSGI_CONFIG='production.ini')
-
-        try:
-            os.environ.update(CLIENTS=int(os.environ['CLIENTS']))
-        except (ValueError, TypeError):
-            os.environ.update(
-                CLIENTS=str(fcgi.app_attr_defaults_init['maxInstances']))
-            if int(os.environ['DEVELOP']):
-                os.environ.update(CLIENTS="1")
 
         install_msdeploy.install_msdeploy.run(self)
 
@@ -80,12 +98,13 @@ class install_plone_msdeploy(install_msdeploy.install_msdeploy):
         if not os.path.exists(os.environ['INSTANCE_HOME']):
             # IIS controls number of instances, so CLIENTS here is 1
             cmd = [sys.executable, os.path.join(
-                os.environ['UIDIR'], 'helper_scripts', 'create_instance.py')]
-            cmd.extend(os.environ[key] for key in (
-                'UIDIR', 'PLONE_HOME', 'INSTANCE_HOME', 'CLIENT_USER',
-                'ZEO_USER', 'PASSWORD', 'ROOT_INSTALL', 'RUN_BUILDOUT',
-                'INSTALL_LXML', 'OFFLINE', 'ITYPE', 'LOG_FILE'))
-            cmd.append("1")
+                os.environ['UIDIR'], 'helper_scripts', 'create_instance.py'),
+                   os.environ['UIDIR'], os.environ['PLONE_HOME'],
+                   os.environ['INSTANCE_HOME'], os.environ['CLIENT_USER'],
+                   os.environ['ZEO_USER'], self.password,
+                   os.environ['ROOT_INSTALL'], os.environ['RUN_BUILDOUT'],
+                   os.environ['INSTALL_LXML'], os.environ['OFFLINE'],
+                   os.environ['ITYPE'], os.environ['LOG_FILE'], "1"]
             logger.info('Creating the buildout: {0}'.format(' '.join(cmd)))
             subprocess.check_call(cmd)
         else:

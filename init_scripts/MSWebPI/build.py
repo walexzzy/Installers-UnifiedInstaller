@@ -6,7 +6,8 @@ Expects to be run in a virtualenv with iiswsgi installed.
 >cd init_scripts/MSWebPI
 >C:\Python27\Scripts\virtualenv --distribute --clear .
 >Scripts\easy_install.exe -U iiswsgi
->Scripts\python.exe build.py
+>Scripts\python.exe build.py release
+>Scripts\python.exe build.py release_feed
 
 Since the Unified installer and buildout-cache layouts can result
 in deep paths, it is best to place the UI checkout at the root of
@@ -30,6 +31,7 @@ logger = logging.getLogger('Plone.UnifiedInstaller')
 
 
 class clean_plone_msdeploy(setup.clean_plone_msdeploy):
+    """Do additional cleaning beyond what's in the distributed setup.py."""
 
     def run(self):
         setup.clean_plone_msdeploy.run(self)
@@ -78,6 +80,9 @@ def main(**kw):
 
 if __name__ == '__main__':
     kw = setup.setup_kw.copy()
+    # Explicit versions of the packages needed both in the virtualenv
+    # and in buildout so that buildout will run without complainging
+    # about version conflicts.
     kw['install_requires'] += [
         'virtualenv',
         'zope.interface==3.6.7',

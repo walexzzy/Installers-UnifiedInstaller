@@ -86,6 +86,8 @@ setup_kw = dict(
 
 
 class install_plone_msdeploy(install_msdeploy.install_msdeploy):
+    # NameError under distutils.core.run_setup
+    from iiswsgi import install_msdeploy
 
     password = None
     zeo_port = None

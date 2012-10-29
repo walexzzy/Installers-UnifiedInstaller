@@ -75,11 +75,7 @@ def main(**kw):
     buildout_eggs = os.path.join('buildout-cache', 'eggs')
     old_eggs = buildout_eggs + '.old'
 
-    GITHUB_EXAMPLES = os.path.join(
-        os.path.dirname(os.path.dirname(options.__file__)), 'examples')
-    msdeploy_bdists = [os.path.join(GITHUB_EXAMPLES, 'sample.msdeploy'),
-                       os.path.join(GITHUB_EXAMPLES, 'pyramid.msdeploy'),
-                       os.curdir]
+    msdeploy_bdists = [os.curdir]
 
     kw['cmdclass'] = dict(install_msdeploy=setup.install_plone_msdeploy,
                           clean_msdeploy=clean_plone_msdeploy)

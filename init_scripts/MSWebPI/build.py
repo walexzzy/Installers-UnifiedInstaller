@@ -115,6 +115,7 @@ def main(**kw):
 if __name__ == '__main__':
     kw = setup.setup_kw.copy()
     kw['install_requires'] += [
+        'virtualenv',
         'zope.interface==3.6.7',
         'zope.pagetemplate==3.5.2',
         'pytz==2012c',

@@ -14,15 +14,12 @@ in deep paths, it is best to place the UI checkout at the root of
 a drive.
 """
 
-import sys
 import os
 import subprocess
 import shutil
 import logging
 
 import setuptools
-
-from iiswsgi import options
 
 # setup script
 import setup

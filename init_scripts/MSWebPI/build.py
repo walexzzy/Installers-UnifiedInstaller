@@ -72,45 +72,9 @@ class clean_plone_msdeploy(setup.clean_plone_msdeploy):
 
 
 def main(**kw):
-    buildout_eggs = os.path.join('buildout-cache', 'eggs')
-    old_eggs = buildout_eggs + '.old'
-
-    msdeploy_bdists = [os.curdir]
-
     kw['cmdclass'] = dict(install_msdeploy=setup.install_plone_msdeploy,
                           clean_msdeploy=clean_plone_msdeploy)
-    if not sys.argv[1:]:
-        kw['script_args'] = [
-            # global options
-            '-v',
-
-            # Start with a clean environment
-            'clean_msdeploy',
-
-            # Install dependencies using old eggs and special sources
-            'develop', '--find-links={0}'.format(' '.join([
-                os.path.abspath(old_eggs), 'http://dist.plone.org/thirdparty',
-                'http://downloads.sourceforge.net/project/pywin32/pywin32'
-                '/Build%20217/pywin32-217.win32-py2.7.exe'])),
-
-            # Build the MSDeploy package files from templates
-            # Have to put it here to ensure it gets run before install_msdeploy
-            'bdist_msdeploy',
-
-            # Populate the build and test the install process
-            'install_msdeploy', '--skip-fcgi-app-install',
-
-            # Create the MSDeploy package zip file
-            'bdist_msdeploy',
-
-            # Build the WebPI feed and clear the WebPI caches
-            'bdist_webpi', '--msdeploy-bdists={0}'.format(
-                ' '.join(msdeploy_bdists)),
-            'clean_webpi',
-            ]
-
-    setuptools.setup(
-        **kw)
+    setuptools.setup(**kw)
 
 if __name__ == '__main__':
     kw = setup.setup_kw.copy()
@@ -137,3 +101,6 @@ if __name__ == '__main__':
         'zope.tales==3.5.2',
         'zope.traversing==3.13.2']
     main(**kw)
+
+
+# TODO use aliases

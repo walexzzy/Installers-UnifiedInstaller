@@ -165,7 +165,7 @@ this app has been installed."""),
                 # BUILDOUT_CFG='buildout.cfg',
                 WSGI_CONFIG='production.ini')
 
-        install_msdeploy.install_msdeploy.run(self)
+        self.pre_install()
 
         if not os.path.exists(os.environ['BUILDOUT_DIST']):
             os.makedirs(os.environ['BUILDOUT_DIST'])
@@ -243,6 +243,16 @@ this app has been installed."""),
 
         finally:
             os.chdir(CWD)
+
+        test = self.distribution.get_command_obj('test_msdeploy')
+        test.config_file = os.path.join(
+            os.environ['INSTANCE_HOME'], os.environ['WSGI_CONFIG'])
+        test.paster = os.path.join(
+            os.environ['INSTANCE_HOME'], 'bin', 'paster' +
+            sysconfig.get_config_var('EXE'))
+        test.ensure_finalized()
+        test.run()
+        self.post_install()
 
 
 class clean_plone_msdeploy(cmd.Command):

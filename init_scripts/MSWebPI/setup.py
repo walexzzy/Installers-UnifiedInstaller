@@ -12,13 +12,11 @@ from iiswsgi import install_msdeploy
 from iiswsgi import fcgi
 from iiswsgi import options
 
-version = '0.1'
-
 logger = logging.getLogger('plone.iiswsgi')
 
 setup_kw = dict(
     name='PloneIISApp',
-      version=version,
+      version='4.2',
       title="Plone Application",
       description="""
       Leading open source CMS for Content Management, Document

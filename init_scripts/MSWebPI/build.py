@@ -102,6 +102,8 @@ if __name__ == '__main__':
         'zope.tal==3.5.2',
         'zope.tales==3.5.2',
         'zope.traversing==3.13.2']
+    # Package the release setup.py, not this script
+    kw['script_name'] = 'setup.py'
     main(**kw)
 
 

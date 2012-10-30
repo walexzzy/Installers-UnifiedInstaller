@@ -15,7 +15,7 @@
       tags="New,Password">
     <!-- At least 5 characters -->
     <parameterValidation type="RegularExpression" validationString=".{5,}" />
-    <parameterEntry kind="TextFile" scope="\\setup\.py$"
+    <parameterEntry kind="TextFile" scope="\\setup\.cfg$"
                     match="__msdeploy_password_parameter__" />
   </parameter>
 
@@ -25,7 +25,7 @@
       description="If set, a ZEO service will be installed and the Zope instance(s) will connect to it.  If the value is an integer, the ZEO service will listen on that port.  If the value is 'auto' then the last digits of '8100' will be replaced by the number suffix of the installed app. If not set, a standalon Zope instance will be created."
       defaultValue="auto">
     <parameterValidation type="RegularExpression,AllowEmpty" validationString="auto|[0-9]{0,5}" />
-    <parameterEntry kind="TextFile" scope="\\setup\.py$"
+    <parameterEntry kind="TextFile" scope="\\setup\.cfg$"
                     match="__msdeploy_zeo_port_parameter__" />
   </parameter>
   
@@ -36,7 +36,7 @@
       defaultValue="">
     <!-- Integer >= 1 -->
     <parameterValidation type="RegularExpression,AllowEmpty" validationString="[1-9][0-9]*" />
-    <parameterEntry kind="TextFile" scope="\\setup\.py$"
+    <parameterEntry kind="TextFile" scope="\\setup\.cfg$"
                     match="__msdeploy_clients_parameter__" />
   </parameter>
 
@@ -46,7 +46,7 @@
       description="If `True`, include include various development tools."
       defaultValue="True">
     <parameterValidation type="Boolean" />
-    <parameterEntry kind="TextFile" scope="\\setup\.py$"
+    <parameterEntry kind="TextFile" scope="\\setup\.cfg$"
                     match="__msdeploy_develop_parameter__" />
   </parameter>
   

@@ -28,6 +28,10 @@ Installation
 
 Download the installer and double-click on the Plone logo
 
+Uninstall
+=========
+
+Has to come
 
 Contribute
 ----------

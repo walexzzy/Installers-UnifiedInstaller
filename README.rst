@@ -2,6 +2,9 @@
 Installer-OSX
 ==============
 
+** This Branch moved to: https://github.com/plone/Installers-OS-X **
+
+
 Installer for `Plone`_ on OSX.
 
 
